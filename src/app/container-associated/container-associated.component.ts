@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 
 @Component({
   selector: 'app-container-associated',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./container-associated.component.css']
 })
 export class ContainerAssociatedComponent implements OnInit {
-
+ @Input () id_contenitore : string;
   constructor() { }
 
   ngOnInit() {
