@@ -1,0 +1,69 @@
+
+.box-element {
+
+  border: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  align-items: center;
+  background: #fff;
+  border-radius: 4px;
+  margin: 4px;
+  box-sizing: border-box;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  resize: both;
+  overflow: scroll;
+  width: 250px;
+  height: 250px;
+  min-width: 50px;
+  min-height: 50px;
+  overflow-y: scroll;
+        
+}
+
+.box-element:active {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+  
+.work-container {
+ float: left;
+ margin: auto;
+ flex-flow: wrap;
+ display: flex;
+ align-items: center; 
+}
+
+.work-container:after {
+ content: "";
+ display: table;
+ clear: both;
+}
+
+.element {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  margin: 10px;
+  overflow: hidden;
+  flex-flow: wrap;
+  float: left;
+    
+}
+
+.titolo{
+  text-align: center;
+  align-items: right;
+  border: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  background: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: fit-content;
+  margin: 5px;
+  border-block-end-width: auto;
+}
