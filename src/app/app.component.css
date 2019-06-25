@@ -2,38 +2,14 @@
     float: left;
     margin: auto;
     flex-flow: wrap;
-    display: flex; 
+    display: flex;
     align-items: center; 
     width: 75%;
     height: 500px;
-    
    }
    
    .work-container:after {
     content: "";
     display: table;
     clear: both;
-    float: right top;
-    position: top fixed right fixed;
-   }
-
-   .colonna{
-    float: right top;
-    position: fixed right;
-    position: fixed top;
-    flex-flow: wrap;
-    display: flex; 
-   }
-
-   td{
-       border-left-color: blue;
-       border-left-style: solid;
-       border-left-width: 1px;
-       border-bottom-color: blue; 
-       border-bottom-style: solid;
-       border-bottom-width: 1px;
-       padding: 10px;
-       border-bottom-left-radius: 20px;
-       height: 50%;
-       align-items: center;
    }
