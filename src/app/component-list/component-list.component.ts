@@ -6,14 +6,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./component-list.component.css']
 })
 export class ComponentListComponent implements OnInit {
-@Input () contenitore:[{nome: string, id:string}];
-@Output () id_contenitore = new EventEmitter () ; 
+@Input () ListaContenitore;
+@Output() container = new EventEmitter <{id: string, nome: string}> (); 
 
   constructor() { }
 
   ngOnInit() {
   }
- espandiContenitore (id) {
-  this.id_contenitore.emit(id);
+ espandiContenitore (id,nome) {
+  this.container.emit( { id:id, nome:nome } );
  }
 }
