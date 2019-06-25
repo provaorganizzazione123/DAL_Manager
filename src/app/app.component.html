@@ -1,4 +1,9 @@
 
 <router-outlet>
-  <app-container-associated></app-container-associated>
+    <div class="work-container"  >
+  <app-container-associated [contenitoriAperti]="contenitoriAperti"></app-container-associated>
+    </div>
+
+  <app-component-list [ListaContenitore] = "listaContenitori" (container)="getIdByList($event)"></app-component-list>
+
 </router-outlet>
