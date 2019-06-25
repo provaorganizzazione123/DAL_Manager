@@ -1,0 +1,15 @@
+.work-container {
+    float: left;
+    margin: auto;
+    flex-flow: wrap;
+    display: flex;
+    align-items: center; 
+    width: 75%;
+    height: 500px;
+   }
+   
+   .work-container:after {
+    content: "";
+    display: table;
+    clear: both;
+   }
