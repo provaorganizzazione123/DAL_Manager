@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit,Input,Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,9 @@ import { Component,OnInit } from '@angular/core';
 export class AppComponent {
   title = 'ContainerofList';
   listaContenitori = [];
-  id:string;
+  contenitoriAperti = [];
+  @Output() contenitore = new EventEmitter <{id: string, nome: string}> ();
+  
   ngOnInit () {
   this.listaContenitori = [
     {nome:"Requisiti",id:"1"},
@@ -17,10 +19,11 @@ export class AppComponent {
     {nome:"Funzioni",id:"4"},
     {nome:"Features",id:"5"}    
   ]
-
 }
 
 getIdByList(event) {
-  this.id = event;
+  /* this.contenitore.emit({id:event.id,nome:event.nome}); */
+  this.contenitoriAperti.push({id:event.id,nome:event.nome});
+  
 }
 }
