@@ -1,9 +1,15 @@
 
 <router-outlet>
-    <div class="work-container"  >
-  <app-container-associated [id_contenitore]="id"></app-container-associated>
-    </div>
-
-  <app-component-list [contenitore] = "listaContenitori" (id_contenitore)="getIdByList($event)"></app-component-list>
-
+<div class="work-container">
+    <app-container-associated [id_contenitore]="id"></app-container-associated>
+  </div>
+  <div class="colonna">
+  <table style="position: fixed right">
+    <tr>
+      <td>
+        <app-component-list [contenitore] = "listaContenitori" (id_contenitore)="getIdByList($event)"></app-component-list>
+      </td>
+    </tr> 
+  </table>
+</div>
 </router-outlet>
