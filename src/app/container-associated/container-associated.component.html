@@ -1,7 +1,7 @@
 
-<p>{{id_contenitore}}</p>
 
-  <div class="titolo" cdkDrag cdkDragBoundary=".work-container" > <h3 style="float:left ; margin-left: 10%">Nome</h3>
+  <div class="titolo" *ngFor="let cont of contenitoriAperti" cdkDrag cdkDragBoundary=".work-container" >  
+    <h3 style="float:left ; margin-left: 10%">{{cont.nome}}</h3>
 
     <div cdkDragHandle>
       <svg width="24px" fill="currentColor" viewBox="0 0 24 24" style="float:right ; margin-right: 5% ; margin-top: 5%">
