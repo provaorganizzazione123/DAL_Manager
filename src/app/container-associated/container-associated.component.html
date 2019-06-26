@@ -2,18 +2,18 @@
 
 
   <div class="titolo" *ngFor="let cont of contenitoriAperti" cdkDrag cdkDragBoundary=".work-container" > 
-     <h3 style="float:left ; margin-left: 10%" >   
-    {{cont.nome}}
-     </h3>
-    <div cdkDragHandle>
-      <svg width="24px" fill="currentColor" viewBox="0 0 24 24" style="float:right ; margin-right: 5% ; margin-top: 5%">
-        <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
-        <path d="M0 0h24v24H0z" fill="none"></path>
-      </svg> 
-    </div>
-    
+      <div cdkDragHandle>
+          <svg width="20px" fill="currentColor" viewBox="0 0 24 24" style="float:left ; margin-left: 3% ; margin-top: 3%">
+            <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+            <path d="M0 0h24v24H0z" fill="none"></path>
+          </svg>
+         </div>
+     <h3 style="float:left ; margin-left: 2%" >     
+      {{cont.nome}}
+      </h3>
+      <h3 class="cancella">&times;</h3> 
   <div class="box-element">
-    <button class="element" *ngFor="let elemento of listElement">
+    <button class="element, btn btn-outline-primary" *ngFor="let elemento of listElement">
       <p>
         {{elemento.nome}}
       </p>
