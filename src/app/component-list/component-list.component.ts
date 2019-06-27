@@ -7,26 +7,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ComponentListComponent implements OnInit {
 @Input () ListaContenitore;
-@Output() container = new EventEmitter <{id: string, nome: string}> ();
-listId=[]; 
+@Output() container = new EventEmitter <{id: string, nome: string}> (); 
 
   constructor() { }
 
   ngOnInit() {
   }
  espandiContenitore (id,nome) {
-   let bool = true;
-   for (let index = 0; index < this.listId.length; index++) {
-     const element = this.listId[index];
-     if (element == id)
-     {
-        bool=false;
-        break;
-     }    
-   }
-   if (bool) {
-    this.listId.push(id);
-    this.container.emit( { id:id, nome:nome } );
-  }
+  this.container.emit( { id:id, nome:nome } );
  }
 }

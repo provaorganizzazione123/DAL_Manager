@@ -54,7 +54,7 @@
 }
 
 .titolo{
-  text-align: left;
+  text-align: center;
   align-items: right;
   border: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
@@ -63,19 +63,7 @@
   box-sizing: border-box;
   transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: min-content;
+  width: fit-content;
   margin: 5px;
   border-block-end-width: auto;
-}
-
-.cancella{
-  float: right;
-  margin-right: 3%;
-}
-
-button{
-  margin: 3px;
-  padding: 8px;
-  font-weight: 600;
-  font-size: medium;
 }

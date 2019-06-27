@@ -21,8 +21,6 @@ export class ContainerAssociatedComponent implements OnInit {
   ngOnInit() {
   }
 
-
-
   
 
 }
