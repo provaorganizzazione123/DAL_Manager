@@ -1,5 +1,6 @@
 
-<h1>ciao</h1>
+<h1 [ngClass]="{bottom: classe, top: !classe}" (click)="classe = !classe">ciao</h1>
+
 
 <router-outlet>
     <div class="work-container"  >
