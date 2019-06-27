@@ -9,6 +9,7 @@ export class AppComponent {
   title = 'ContainerofList';
   listaContenitori = [];
   contenitoriAperti = [];
+  idDaCancellare;
   @Output() contenitore = new EventEmitter <{id: string, nome: string}> ();
   
   ngOnInit () {
@@ -26,4 +27,9 @@ getIdByList(event) {
   this.contenitoriAperti.push({id:event.id,nome:event.nome});
   
 }
+
+cancellaIdDaLista(event) {
+  this.idDaCancellare=event.id;
+}
+
 }

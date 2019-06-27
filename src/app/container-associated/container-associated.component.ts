@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, Output,EventEmitter } from '@angular/core';
 import { element } from 'protractor';
 
 @Component({
@@ -9,6 +9,7 @@ import { element } from 'protractor';
 export class ContainerAssociatedComponent implements OnInit {
  @Input () contenitoriAperti;
  @Input () element : Element;
+ @Output () idContenitoreChiuso= new EventEmitter  ();
  listElement = [
   {nome:"elemento 1",id:"1"},
   {nome:"elemento 2",id:"2"},
@@ -22,7 +23,12 @@ export class ContainerAssociatedComponent implements OnInit {
   }
 
 
+  chiudiContainer(contId) {
+    let box = document.getElementById(contId);
+     box.parentNode.removeChild(box);
+    this.idContenitoreChiuso.emit({id:contId});
 
+     }
   
 
 }

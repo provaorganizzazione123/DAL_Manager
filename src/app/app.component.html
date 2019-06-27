@@ -4,14 +4,14 @@
 
 <router-outlet>
     <div class="work-container"  >
-  <app-container-associated [contenitoriAperti]="contenitoriAperti"></app-container-associated>
+  <app-container-associated [contenitoriAperti]="contenitoriAperti" (idContenitoreChiuso)= "cancellaIdDaLista($event)"></app-container-associated>
     </div>
 
   <div class="colonna">
   <table style="position: fixed right">
     <tr>
       <td>
-        <app-component-list [ListaContenitore] = "listaContenitori" (container)="getIdByList($event)"></app-component-list>
+        <app-component-list [ListaContenitore] = "listaContenitori" (container)="getIdByList($event)" [idDelete]="idDaCancellare"></app-component-list>
       </td>
     </tr> 
   </table>
