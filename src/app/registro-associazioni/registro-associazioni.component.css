@@ -1,0 +1,33 @@
+.container{
+  text-align: center;
+  align-items: center;
+  border-style: solid;
+  position: fixed;
+  bottom:0%;
+  position:fixed;
+  right:0%;
+  height:300px;
+  width:203px;
+  border-left-color: blue;
+  border-left-style: solid;
+  border-left-width: 2px;
+  border-bottom-color: blue;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-top-color: blue;
+  border-top-style:solid;
+  border-top-width:2px;
+  border-right-color:blue;
+  border-right-style:solid;
+  border-right-width:2px;
+  padding: 10px;
+  border-top-left-radius: 15px;
+  align-items: center;
+}
+
+
+.colonnaH4{
+  font-size: larger;
+  margin-left: 25%;
+}
+

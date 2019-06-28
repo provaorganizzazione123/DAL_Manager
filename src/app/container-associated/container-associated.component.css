@@ -21,7 +21,7 @@
   min-width: 170px;;
   min-height: 50px;
   overflow-y: scroll;
-        
+
 }
 
 .box-element::-webkit-scrollbar {
@@ -48,13 +48,13 @@
               0 8px 10px 1px rgba(0, 0, 0, 0.14),
               0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
-  
+
 .work-container {
  float: left;
  margin: auto;
  flex-flow: wrap;
  display: flex;
- align-items: center; 
+ align-items: center;
 }
 
 .work-container:after {
@@ -112,4 +112,9 @@ button{
 h3{
   font-size: 1.30rem;
   font-family: unset;
+}
+
+#EDIT{
+  position:fixed;
+  right:15%;
 }

@@ -21,7 +21,7 @@
     </ul>
   </div>
 </nav>
-<h1 [ngClass]="{bottom: classe, top: !classe}" (click)="classe = !classe">ciao</h1>
+<!-- <h1 [ngClass]="{bottom: classe, top: !classe}" (click)="classe = !classe">ciao</h1> -->
 
 <router-outlet>
     <div class="work-container"  >
@@ -34,8 +34,9 @@
       <td>
         <app-component-list [ListaContenitore] = "listaContenitori" (container)="getIdByList($event)" [idDelete]="idDaCancellare"></app-component-list>
       </td>
-    </tr> 
+    </tr>
   </table>
 </div>
+<app-registro-associazioni></app-registro-associazioni>
 
 </router-outlet>
