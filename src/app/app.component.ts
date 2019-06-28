@@ -24,6 +24,7 @@ export class AppComponent {
 getIdByList(event) {
   /* this.contenitore.emit({id:event.id,nome:event.nome}); */
   this.contenitoriAperti.push({id:event.id,nome:event.nome});
-  
 }
+
+  
 }

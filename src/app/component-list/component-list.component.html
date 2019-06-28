@@ -1,7 +1,6 @@
 
 
 <div class="container">
-<h3> Contenitori</h3>
-		<button *ngFor="let con of ListaContenitore" class="btn btn-primary" (click)="espandiContenitore(con.id,con.nome)">{{con.nome}}</button> <br>
-
+<h4 class="colonnaH4"> Contenitori</h4>
+		<button *ngFor="let con of ListaContenitore" class="btn btn-outline-primary" (click)="espandiContenitore(con.id,con.nome)">{{con.nome}}</button> <br>
 </div>
