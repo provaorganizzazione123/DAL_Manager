@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter,SimpleChange
+ } from '@angular/core';
 
 @Component({
   selector: 'app-component-list',
@@ -7,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ComponentListComponent implements OnInit {
 @Input () ListaContenitore;
+@Input() idDelete;
 @Output() container = new EventEmitter <{id: string, nome: string}> ();
 listId=[]; 
 
@@ -29,4 +31,11 @@ listId=[];
     this.container.emit( { id:id, nome:nome } );
   }
  }
+
+ ngOnChanges (changes: {[idDelete: string]:SimpleChange}){
+  
+  this.listId.splice(this.listId.indexOf(this.idDelete), 1);
+  this.idDelete=0;  
+}
+
 }
