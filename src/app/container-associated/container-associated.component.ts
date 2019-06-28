@@ -1,5 +1,9 @@
+
 import { Component, OnInit,Input, Output,EventEmitter } from '@angular/core';
 import { element } from 'protractor';
+import { ComponentListComponent } from '../component-list/component-list.component';
+declare var jquery:any;
+declare var $ :any;
 
 @Component({
   selector: 'app-container-associated',
@@ -22,7 +26,6 @@ export class ContainerAssociatedComponent implements OnInit {
   ngOnInit() {
   }
 
-
   chiudiContainer(contId) {
     let box = document.getElementById(contId);
      box.parentNode.removeChild(box);
@@ -30,5 +33,4 @@ export class ContainerAssociatedComponent implements OnInit {
 
      }
   
-
 }
