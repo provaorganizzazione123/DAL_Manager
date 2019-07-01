@@ -2,5 +2,6 @@
 
 <div class="container">
 <h4 class="colonnaH4"> Contenitori</h4>
-		<button *ngFor="let con of ListaContenitore" class="btn btn-outline-primary" (click)="espandiContenitore(con.id,con.nome)">{{con.nome}}</button> <br>
-</div>
+		<button *ngFor="let con of service.listaContenitori" class="btn btn-outline-primary" (click)="espandiContenitore(con.Id_Contenitore,con.Nome_Contenitore)">{{con.Nome_Contenitore}}</button> <br>
+	<button (click)="service.superfunzione()">ciaoooooooooooooooooo</button>
+	</div>

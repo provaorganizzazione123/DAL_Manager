@@ -14,9 +14,10 @@
 
 
   <div class="box-element">
-    <button class="element, btn btn-outline-primary" *ngFor="let elemento of listElement">
+    
+    <button class="element, btn btn-outline-primary" *ngFor="let elemento of service.listaElementi">
       <p class="descrizione">
-        {{elemento.nome}}
+        {{elemento.NomeElemento}}
       </p>
     </button>
   </div>
