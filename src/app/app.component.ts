@@ -10,15 +10,17 @@ export class AppComponent {
   listaContenitori = [];
   contenitoriAperti = [];
   idDaCancellare;
+
+
   @Output() contenitore = new EventEmitter <{id: string, nome: string}> ();
-  
+
   ngOnInit () {
   this.listaContenitori = [
     {nome:"Requisiti",id:"1"},
     {nome:"User Story",id:"2"},
     {nome:"Use Case",id:"3"},
     {nome:"Funzioni",id:"4"},
-    {nome:"Features",id:"5"}    
+    {nome:"Features",id:"5"}
   ]
 }
 

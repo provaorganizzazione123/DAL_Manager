@@ -91,6 +91,10 @@
   border-bottom-left-radius: 20px;
   border-top-left-radius: 20px;
   border-bottom-right-radius: 0px;
+
+
+
+
 }
 
 .cancella{
@@ -116,5 +120,8 @@ h3{
 
 #EDIT{
   position:fixed;
+  top:10%;
   right:15%;
 }
+
+
