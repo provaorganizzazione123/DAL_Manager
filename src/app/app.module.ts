@@ -10,12 +10,14 @@ import { ContainerAssociatedComponent } from './container-associated/container-a
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ComponentListComponent } from './component-list/component-list.component';
 import { ElementService } from './shared/element.service';
+import { ElementComponent } from './container-associated/element/element.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContainerAssociatedComponent,
     ComponentListComponent,
+    ElementComponent,
   ],
   imports: [
     BrowserModule,

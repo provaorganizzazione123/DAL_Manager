@@ -11,7 +11,7 @@ export class ElementService {
   formData : Element;
   list :Element[];
   listaContenitori : Contenitore[];
-  listaElementi : Element[][] = [];
+  listaElementi = [];
   listaElementiAppoggio: Element[];
 
 
@@ -27,9 +27,9 @@ export class ElementService {
   }
 
   filtraLista(Id_Cont){
-
+    var id = Id_Cont;
     var l = this.list.filter(e => e.Id_Contenitore == Id_Cont);
-    this.listaElementi.push(l);
+    this.listaElementi.push({id,l});
     console.log(this.listaElementi);
 
   }
