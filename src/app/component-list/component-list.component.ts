@@ -29,7 +29,7 @@ listId=[];
      }    
    }
    if (bool) {
-    this.service.refreshWhere(id);
+    this.service.filtraLista(id);
     this.listId.push(id);
     this.container.emit( { id:id, nome:nome } );
   }

@@ -16,6 +16,7 @@ declare var $ :any;
 export class ContainerAssociatedComponent implements OnInit {
  @Input () contenitoriAperti;
  listEleCont :Element[];
+ prova = document.getElementById('#proviamolo')
 
  //@Input () element : Element;
  @Output () idContenitoreChiuso= new EventEmitter  ();
@@ -23,8 +24,12 @@ export class ContainerAssociatedComponent implements OnInit {
   constructor( private service: ElementService) { }
 
   ngOnInit() {
-    this.service.refreshList();
+    //this.service.refreshList();
   }
+
+  
+  
+  
 
   chiudiContainer(contId) {
     let box = document.getElementById(contId);

@@ -1,5 +1,6 @@
 import { Component,OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { Contenitore } from './shared/contenitore.model';
+import { ElementService } from './shared/element.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,10 @@ export class AppComponent {
   idDaCancellare;
   @Output() contenitore = new EventEmitter <{id: string, nome: string}> ();
   
+  constructor( private service: ElementService) { }
+
   ngOnInit () {
-  
+    this.service.refreshList();
 }
 
 getIdByList(event) {

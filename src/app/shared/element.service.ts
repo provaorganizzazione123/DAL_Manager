@@ -11,7 +11,7 @@ export class ElementService {
   formData : Element;
   list :Element[];
   listaContenitori : Contenitore[];
-  listaElementi : Element[];
+  listaElementi : Element[][] = [];
   listaElementiAppoggio: Element[];
 
 
@@ -25,18 +25,28 @@ export class ElementService {
   refreshList(){
     this.http.get(this.rootURL + '/Elemento').toPromise().then(res=> this.list =res as Element[]);
   }
+
+  filtraLista(Id_Cont){
+
+    var l = this.list.filter(e => e.Id_Contenitore == Id_Cont);
+    this.listaElementi.push(l);
+    console.log(this.listaElementi);
+
+  }
+
   refreshContenitori(){
     this.http.get(this.rootURL + '/Contenitore').toPromise().then(res=> this.listaContenitori = res as Contenitore[]);
   }
-  refreshWhere(id : number){
+
+  // refreshWhere(id : number){
     
-    this.http.get(this.rootURL + '/Elemento/' + id).toPromise().then(res=> this.listaElementi = res as Element[]);
+  //   this.http.get(this.rootURL + '/Elemento/' + id).toPromise().then(res=> this.listaElementi = res as Element[]);
     
-    //this.listaElementiAppoggio.forEach(ele => {
-      //this.listaElementi[id].push(ele);
-      //console.log(ele.DescrizioneElemento)
-    //});
-    }
+  //   //this.listaElementiAppoggio.forEach(ele => {
+  //     //this.listaElementi[id].push(ele);
+  //     //console.log(ele.DescrizioneElemento)
+  //   //});
+  //   }
 
   putElemento(formData : Element){
     return this.http.put(this.rootURL + '/Elemento/' + formData.IdElemento, formData);
