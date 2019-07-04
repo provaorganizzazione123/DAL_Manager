@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter,SimpleChange
  } from '@angular/core';
+ import { ElementService } from 'src/app/shared/element.service';
 
 @Component({
   selector: 'app-component-list',
@@ -12,9 +13,10 @@ export class ComponentListComponent implements OnInit {
 @Output() container = new EventEmitter <{id: string, nome: string}> ();
 listId=[]; 
 
-  constructor() { }
+  constructor(private service:ElementService) { }
 
   ngOnInit() {
+    this.service.refreshContenitori()
   }
  espandiContenitore (id,nome) {
    let bool = true;
@@ -27,6 +29,7 @@ listId=[];
      }    
    }
    if (bool) {
+    this.service.filtraLista(id);
     this.listId.push(id);
     this.container.emit( { id:id, nome:nome } );
   }
@@ -37,5 +40,6 @@ listId=[];
   this.listId.splice(this.listId.indexOf(this.idDelete), 1);
   this.idDelete=0;  
 }
+
 
 }

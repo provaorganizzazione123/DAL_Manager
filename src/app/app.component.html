@@ -24,10 +24,10 @@
 </nav>
 <!-- <h1 [ngClass]="{bottom: classe, top: !classe}" (click)="classe = !classe">ciao</h1> -->
 <router-outlet>
-    <div class="work-container" >
-  <app-container-associated class="work-container"[contenitoriAperti]="contenitoriAperti" (idContenitoreChiuso)= "cancellaIdDaLista($event)"></app-container-associated>
-
-</div>
+  
+    <div class="work-container"  >
+  <app-container-associated  [contenitoriAperti]="contenitoriAperti" (idContenitoreChiuso)= "cancellaIdDaLista($event)"></app-container-associated>
+    </div>
 
   <div class="colonna">
   <table style="position: fixed right">
