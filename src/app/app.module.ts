@@ -13,7 +13,6 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ComponentListComponent } from './component-list/component-list.component';
 
 import { RegistroAssociazioniComponent } from './registro-associazioni/registro-associazioni.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import { ElementService } from './shared/element.service';
