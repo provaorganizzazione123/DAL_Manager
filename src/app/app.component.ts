@@ -12,6 +12,8 @@ export class AppComponent {
   listaContenitori : Contenitore[];
   contenitoriAperti = [];
   idDaCancellare;
+
+
   @Output() contenitore = new EventEmitter <{id: string, nome: string}> ();
   
   constructor( private service: ElementService) { }
