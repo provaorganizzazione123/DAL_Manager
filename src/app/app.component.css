@@ -1,11 +1,11 @@
 .work-container {
     float: left;
-    margin: auto;
+    margin-top:auto;
     flex-flow: wrap;
     display: flex;
     align-items: center;
     width: 85%;
-    height: 500px;
+    height: 500%;
     }
 
 .work-container:after {
@@ -65,14 +65,5 @@ table{
     padding-bottom: 0;
     }
 
-    .work-container {
-      float: left;
-      margin: auto;
-      display:flex;
-      position:fixed;
-      left:5px;
-      top:1px;
 
-
-    }
 
