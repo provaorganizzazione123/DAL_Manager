@@ -8,7 +8,11 @@
   <table style="position: fixed right">
     <tr>
       <td>
+<<<<<<< Updated upstream
         <app-component-list [ListaContenitore] = "listaContenitori" (container)="getIdByList($event)"></app-component-list>
+=======
+        <app-component-list [ListaContenitore] = "listaContenitori" (container)="getIdByList($event)" [idDelete]="idDaCancellare" (idCancellato)="resettaidDaCancellare($event)"></app-component-list>
+>>>>>>> Stashed changes
       </td>
     </tr> 
   </table>
