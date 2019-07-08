@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.Http;
@@ -16,7 +16,7 @@ namespace WebApplication2.Controllers
         // GET: api/Contenitore
         public IEnumerable<Contenitore> Get()
         {
-            IDbConnection db = new SqlConnection("Data Source=DESKTOP-JGEGIP6\\SQLEXPRESS; Initial catalog=DataBaseDiProva;Integrated Security = true;");
+            IDbConnection db = new SqlConnection("Data Source=DESKTOP-VBBJIQF; Initial catalog=DataBaseDiProva;Integrated Security = true;");
 
             string SqlString = "SELECT * FROM [Arc_Contenitori]";
 

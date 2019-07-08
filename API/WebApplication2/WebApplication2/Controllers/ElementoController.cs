@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.Http;
@@ -16,7 +16,7 @@ namespace WebApplication2.Controllers
         // GET api/values
         public IEnumerable<Elemento> Get()
         {
-            IDbConnection db = new SqlConnection("Data Source=DESKTOP-JGEGIP6\\SQLEXPRESS; Initial catalog=DataBaseDiProva;Integrated Security = true;");
+            IDbConnection db = new SqlConnection("Data Source=DESKTOP-VBBJIQF; Initial catalog=DataBaseDiProva;Integrated Security = true;");
 
             string SqlString = "SELECT * FROM [Arc_Elemento]";
 
@@ -27,7 +27,7 @@ namespace WebApplication2.Controllers
         //GET api/values/Parametro
         public IEnumerable<Elemento> Get(int id)
         {
-            IDbConnection db = new SqlConnection("Data Source=DESKTOP-JGEGIP6\\SQLEXPRESS; Initial catalog=DataBaseDiProva;Integrated Security = true;");
+            IDbConnection db = new SqlConnection("Data Source=DESKTOP-VBBJIQF; Initial catalog=DataBaseDiProva;Integrated Security = true;");
 
             string SqlString = "SELECT * FROM [Arc_Elemento] WHERE Id_Contenitore =" + id;
 
@@ -44,7 +44,7 @@ namespace WebApplication2.Controllers
                 return BadRequest(ModelState);
             }
             // ***************devo passare qui i campi da immetere nella query***********
-            IDbConnection db = new SqlConnection("Data Source=DESKTOP-JGEGIP6\\SQLEXPRESS; Initial catalog=DataBaseDiProva;Integrated Security = true;");
+            IDbConnection db = new SqlConnection("Data Source=DESKTOP-VBBJIQF; Initial catalog=DataBaseDiProva;Integrated Security = true;");
             string stringhetta = "Update [Arc_Elemento] SET NomeElemento='"+ elemento.NomeElemento+"', DescrizioneElemento='"+ elemento.DescrizioneElemento+"', Id_Contenitore= '"+ elemento.Id_Contenitore +"' WHERE IdElemento =" + elemento.IdElemento ;
             var affectedRows = db.Execute(stringhetta);
 
@@ -59,7 +59,7 @@ namespace WebApplication2.Controllers
                 return BadRequest(ModelState);
             }
             // ***************devo passare qui i campi da immetere nella query***********
-            IDbConnection db = new SqlConnection("Data Source=DESKTOP-JGEGIP6\\SQLEXPRESS; Initial catalog=DataBaseDiProva;Integrated Security = true;");
+            IDbConnection db = new SqlConnection("Data Source=DESKTOP-VBBJIQF; Initial catalog=DataBaseDiProva;Integrated Security = true;");
             string stringhetta = "INSERT INTO Arc_Elemento (NomeElemento, DescrizioneElemento, Id_Contenitore) Values ('" + elemento.NomeElemento + "', '" + elemento.DescrizioneElemento + "', '" + elemento.Id_Contenitore + "');";
             var affectedRows = db.Execute(stringhetta);
 
@@ -75,7 +75,7 @@ namespace WebApplication2.Controllers
                 return BadRequest(ModelState);
             }
             // ***************devo passare qui i campi da immetere nella query***********
-            IDbConnection db = new SqlConnection("Data Source=DESKTOP-JGEGIP6\\SQLEXPRESS; Initial catalog=DataBaseDiProva;Integrated Security = true;");
+            IDbConnection db = new SqlConnection("Data Source=DESKTOP-VBBJIQF; Initial catalog=DataBaseDiProva;Integrated Security = true;");
             string stringhetta = "DELETE FROM Arc_Elemento WHERE IdElemento=" + id;
             var affectedRows = db.Execute(stringhetta);
 

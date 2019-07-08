@@ -35,7 +35,8 @@ export class ElementService {
     var l = this.list.filter(e => e.Id_Contenitore == Id_Cont);
     this.listaElementi.push({id,l});
     }
- }
+
+  }
 
   controlist(id){
 
