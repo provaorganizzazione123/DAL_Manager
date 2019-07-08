@@ -30,7 +30,16 @@ getIdByList(event) {
 }
 
 cancellaIdDaLista(event) {
+  // evento che passa l'id del contenitore da "container-associated" a "component-list" attraverso la
+  // "variabile di appoggio". Questa variabile mi serve perchè al cambiare del suo valore parte
+  // l'onChange del component figlio "component-list"
   this.idDaCancellare=event.id;
+}
+
+resettaidDaCancellare(event){
+  // metodo per resettare la variabile "idDaCancellare", in modo che al suo prossimo cambiamento
+  // l'onChange del component figlio "component-list" trovi un nuovo valore e quindi si avvia.
+  this.idDaCancellare=event;
 }
 
 inserisciElemento(){
