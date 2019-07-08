@@ -9,12 +9,8 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/style" routerLinkActive="active">Aggiungi Elemento</a>
-
-      </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <button mat-raised-button (click)="inserisciElemento()">NuovoElemento</button>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">About</a>
@@ -22,7 +18,7 @@
     </ul>
   </div>
 </nav>
-<!-- <h1 [ngClass]="{bottom: classe, top: !classe}" (click)="classe = !classe">ciao</h1> -->
+
 <router-outlet>
   
     <div class="work-container"  >
@@ -39,5 +35,4 @@
   </table>
 </div>
 <app-registro-associazioni></app-registro-associazioni>
-
 </router-outlet>

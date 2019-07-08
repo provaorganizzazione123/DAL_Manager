@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Element } from './element.model';
 import {HttpClient} from '@angular/common/http';
 import { Contenitore } from './contenitore.model';
-import { element } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,6 @@ export class ElementService {
   listaContenitori : Contenitore[];
   listaElementi = [];
   listaElementiAppoggio: Element[];
-
 
   constructor(private http:HttpClient) { }
   readonly rootURL = "http://localhost:60537/api";
@@ -27,55 +25,19 @@ export class ElementService {
   }
 
   filtraLista(Id_Cont){
-
-    // Metodo che filtra la lista degli elementi in una sotto-lista che contiene la lista degli
-    // elementi e l'id del suo contenitore di appartenenza, questa lista verrà usata nele caricamento
-    // a video del contenitore 
-
     var id = Id_Cont;
-    if (this.controlist(id)){
     var l = this.list.filter(e => e.Id_Contenitore == Id_Cont);
-    this.listaElementi.push({id,l});
-    }
-
-  }
-
-  controlist(id){
-
-    // Metodo che controllo se nella lista filtrata è già presente una sottolista di quel contenitore
-
-    var cont = true;
-    this.listaElementi.forEach(ele => {
-      if (ele.id == id){
-        cont = false
-      }
-    });
-    return cont;
+    this.listaElementi.push({id,l}); 
   }
 
   refreshContenitori(){
     this.http.get(this.rootURL + '/Contenitore').toPromise().then(res=> this.listaContenitori = res as Contenitore[]);
   }
 
-  // refreshWhere(id : number){
-    
-  //   this.http.get(this.rootURL + '/Elemento/' + id).toPromise().then(res=> this.listaElementi = res as Element[]);
-    
-  //   //this.listaElementiAppoggio.forEach(ele => {
-  //     //this.listaElementi[id].push(ele);
-  //     //console.log(ele.DescrizioneElemento)
-  //   //});
-  //   }
-
   putElemento(formData : Element){
     return this.http.put(this.rootURL + '/Elemento/' + formData.IdElemento, formData);
   }
-  // superfunzione(){
-  //  // for (var i = 0; i < this.listaElementiAppoggio.length; i++) 
-  //  {
-  //     var lenght = this.listaElementi.push(this.listaElementiAppoggio)
-  //  }
-  
+ 
   deleteElemento(formData:Element){
     return this.http.delete(this.rootURL + '/Elemento/' + formData);
   }

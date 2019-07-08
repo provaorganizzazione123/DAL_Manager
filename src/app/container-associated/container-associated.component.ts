@@ -19,27 +19,15 @@ export class ContainerAssociatedComponent implements OnInit {
  listEleCont :Element[];
  prova = document.getElementById('#proviamolo')
 
- //@Input () element : Element;
  @Output () idContenitoreChiuso= new EventEmitter  ();
- //listElement :Element[];
   constructor( private service: ElementService) { }
 
-  ngOnInit() {
-    //this.service.refreshList();
+  ngOnInit() {  
   }
-
-  
-  
-  
 
   chiudiContainer(contId) {
     let box = document.getElementById(contId);
      box.parentNode.removeChild(box);
     this.idContenitoreChiuso.emit({id:contId});
-
-     }
-  
-    
-
-
+                          }
 } 
