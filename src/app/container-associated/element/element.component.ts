@@ -1,7 +1,6 @@
 import { Component, OnInit,Input, } from '@angular/core';
 import { Element } from 'src/app/shared/element.model';
 
-
 @Component({
   selector: 'app-element',
   templateUrl: './element.component.html',
@@ -20,9 +19,7 @@ elemento:Element;
       if (element.id == this.idContenitoreAperto){
            this.elemento=element.l;
            console.log (this.elemento.NomeElemento)
-      }
-       
+      } 
      });
     }
-  
 }

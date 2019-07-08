@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 
-import { NgModule, SchemaMetadata } from '@angular/core';
+import { NgModule} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import {ToastrModule} from 'ngx-toastr';
+import {ToastrModule} from 'ngx-toastr';
+import {MatButtonModule, MatCheckboxModule, MatDialog} from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,11 +14,11 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ComponentListComponent } from './component-list/component-list.component';
 
 import { RegistroAssociazioniComponent } from './registro-associazioni/registro-associazioni.component';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 import { ElementService } from './shared/element.service';
 import { ElementComponent } from './container-associated/element/element.component';
-
+import { InserimentoComponent } from './inserimento/inserimento.component';
+import * as Material from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,8 @@ import { ElementComponent } from './container-associated/element/element.compone
     ComponentListComponent,
     RegistroAssociazioniComponent,
     ElementComponent,
+    InserimentoComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -33,10 +36,50 @@ import { ElementComponent } from './container-associated/element/element.compone
     DragDropModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CommonModule,
+    Material.MatToolbarModule,
+    Material.MatGridListModule,
+    Material.MatFormFieldModule,
+    Material.MatInputModule,
+    Material.MatRadioModule,
+    Material.MatSelectModule,
+    Material.MatCheckboxModule,
+    Material.MatDatepickerModule,
+    Material.MatNativeDateModule,
+    Material.MatButtonModule,
+    Material.MatSnackBarModule,
+    Material.MatTableModule,
+    Material.MatPaginatorModule,
+    Material.MatSortModule,
+    Material.MatDialogModule,
+    Material.MatIconModule,
+    ToastrModule.forRoot()
+    
+   
+  ],
+  exports:[
+    Material.MatToolbarModule,
+    Material.MatGridListModule,
+    Material.MatFormFieldModule,
+    Material.MatInputModule,
+    Material.MatRadioModule,
+    Material.MatSelectModule,
+    Material.MatCheckboxModule,
+    Material.MatDatepickerModule,
+    Material.MatNativeDateModule,
+    Material.MatButtonModule,
+    Material.MatSnackBarModule,
+    Material.MatTableModule,
+    Material.MatPaginatorModule,
+    Material.MatSortModule,
+    Material.MatDialogModule,
+    Material.MatIconModule
+
   ],
   providers: [ElementService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[InserimentoComponent]
 })
 export class AppModule {
 
