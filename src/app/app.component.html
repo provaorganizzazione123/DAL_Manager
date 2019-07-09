@@ -1,17 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">DALmenager</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <button mat-raised-button (click)="inserisciElemento()">NuovoElemento</button>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 <router-outlet>
+  
     <div class="work-container"  >
-  <app-container-associated [contenitoriAperti]="contenitoriAperti"></app-container-associated>
+  <app-container-associated class="work-container"  [contenitoriAperti]="contenitoriAperti" (idContenitoreChiuso)= "cancellaIdDaLista($event)"></app-container-associated>
     </div>
 
   <div class="colonna">
   <table style="position: fixed right">
     <tr>
       <td>
-        <app-component-list [ListaContenitore] = "listaContenitori" (container)="getIdByList($event)"></app-component-list>
+        <app-component-list [ListaContenitore] = "listaContenitori" (container)="getIdByList($event)" [idDelete]="idDaCancellare"></app-component-list>
       </td>
-    </tr> 
+    </tr>
   </table>
 </div>
-
+<app-registro-associazioni></app-registro-associazioni>
 </router-outlet>

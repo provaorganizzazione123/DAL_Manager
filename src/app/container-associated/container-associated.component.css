@@ -1,38 +1,60 @@
 
 .box-element {
-
   border: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
   align-items: center;
-  background: #fff;
-  border-radius: 4px;
+  background:white;
+  border-radius: 8px;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
   margin: 4px;
   box-sizing: border-box;
   transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
   resize: both;
-  overflow: scroll;
+  overflow: unset;
   width: 250px;
   height: 250px;
-  min-width: 50px;
+  min-width: 170px;;
   min-height: 50px;
   overflow-y: scroll;
-        
+
 }
+
+.box-element::-webkit-scrollbar {
+  background-color:white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  }
+
+.box-element::-webkit-scrollbar-track {
+  background-color: white;
+  border-radius: 20px;
+}
+
+.box-element::-webkit-scrollbar-thumb {
+  background-color: orange;
+  border: 1px solid orange;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
 
 .box-element:active {
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
               0 8px 10px 1px rgba(0, 0, 0, 0.14),
               0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
-  
+
 .work-container {
  float: left;
  margin: auto;
  flex-flow: wrap;
  display: flex;
- align-items: center; 
+ align-items: center;
 }
 
 .work-container:after {
@@ -54,16 +76,52 @@
 }
 
 .titolo{
-  text-align: center;
+  text-align: left;
   align-items: right;
   border: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
-  background: #fff;
+  background:azure;
   border-radius: 10px;
   box-sizing: border-box;
   transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: fit-content;
+  width: min-content;
   margin: 5px;
   border-block-end-width: auto;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 0px;
+
+
+
+
 }
+
+.cancella{
+  float: right;
+  margin-right: 3%;
+  border: none;
+  background:azure;
+  font-size: 20px;
+  padding: inherit;
+}
+
+button{
+  margin: 3px;
+  padding: 8px;
+  font-weight: 600;
+  font-size: medium;
+}
+
+h3{
+  font-size: 1.30rem;
+  font-family: unset;
+}
+
+#EDIT{
+  position:fixed;
+  top:10%;
+  right:15%;
+}
+
+

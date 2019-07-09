@@ -1,5 +1,8 @@
-import { Component,OnInit,Input,Output,EventEmitter } from '@angular/core';
-
+import { Component,Output,EventEmitter } from '@angular/core';
+import { Contenitore } from './shared/contenitore.model';
+import { ElementService } from './shared/element.service';
+import { MatDialog, MatDialogConfig} from "@angular/material"
+import { InserimentoComponent } from './inserimento/inserimento.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,23 +10,34 @@ import { Component,OnInit,Input,Output,EventEmitter } from '@angular/core';
 })
 export class AppComponent {
   title = 'ContainerofList';
-  listaContenitori = [];
+  listaContenitori : Contenitore[];
   contenitoriAperti = [];
+  idDaCancellare;
+
+
   @Output() contenitore = new EventEmitter <{id: string, nome: string}> ();
   
+  constructor( private service: ElementService,
+                public dialog : MatDialog) { }
+
   ngOnInit () {
-  this.listaContenitori = [
-    {nome:"Requisiti",id:"1"},
-    {nome:"User Story",id:"2"},
-    {nome:"Use Case",id:"3"},
-    {nome:"Funzioni",id:"4"},
-    {nome:"Features",id:"5"}    
-  ]
+    this.service.refreshList();
 }
 
 getIdByList(event) {
   /* this.contenitore.emit({id:event.id,nome:event.nome}); */
   this.contenitoriAperti.push({id:event.id,nome:event.nome});
-  
 }
+
+cancellaIdDaLista(event) {
+  this.idDaCancellare=event.id;
+}
+
+inserisciElemento(){
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true;
+  dialogConfig.autoFocus = true;
+  dialogConfig.width = "60%";
+  this.dialog.open(InserimentoComponent, dialogConfig);
+  }  
 }
