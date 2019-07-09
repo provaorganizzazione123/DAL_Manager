@@ -40,7 +40,7 @@ listId=[];
 
  ngOnChanges (changes: {[idDelete: string]:SimpleChange}){
  if(this.idDelete==0){console.log('ciao')}
-else{
+else{ 
       if (this.listId.includes(this.idDelete)){                  // ho messo un if su listId perchè l'onchanges parte anche quando cambia questa proprietà
                                                                  // ma quando cambia listId l'onChanges non deve fare niente, deve cancellare l'id
                                                                  // solo quando lo include, altrimenti la lista si resetterebbe sembre e si potrebbe aprire 
