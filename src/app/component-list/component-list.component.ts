@@ -37,8 +37,8 @@ listId=[];
     this.container.emit({ id:id, nome:nome });
               }
                                 }
-
  ngOnChanges (changes: {[idDelete: string]:SimpleChange}){
+
  if(this.idDelete==0){console.log('ciao')}
 else{ 
       if (this.listId.includes(this.idDelete)){                  // ho messo un if su listId perchè l'onchanges parte anche quando cambia questa proprietà
@@ -54,4 +54,5 @@ else{
    //metodo del padre "resettaidDaCancellare"  
     }
   }
+
 }

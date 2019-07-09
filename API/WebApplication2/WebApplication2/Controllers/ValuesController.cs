@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
@@ -28,7 +28,7 @@ namespace WebApplication2.Controllers
             string DescrizioneElemento = "Inserimento Avvenuto Con Successo";
             string TipologiaElemento = "Tipologia 23";
 
-            IDbConnection db = new SqlConnection("Data Source=DESKTOP-JGEGIP6\\SQLEXPRESS; Initial catalog=DataBaseDiProva;Integrated Security = true;");
+            IDbConnection db = new SqlConnection("Data Source=DESKTOP-VBBJIQF; Initial catalog=DataBaseDiProva;Integrated Security = true;");
             string stringhetta = "INSERT INTO Arc_Elementi Values '" + IdElemento + "', '" + NomeElemento + "', '"+ DescrizioneElemento +"', '" + TipologiaElemento +"';" ;
             var affectedRows = db.Execute(stringhetta);
 
