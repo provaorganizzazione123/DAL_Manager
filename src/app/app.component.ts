@@ -40,6 +40,7 @@ resettaidDaCancellare(event){
   // metodo per resettare la variabile "idDaCancellare", in modo che al suo prossimo cambiamento
   // l'onChange del component figlio "component-list" trovi un nuovo valore e quindi si avvia.
   this.idDaCancellare=event;
+  
 }
 
 inserisciElemento(){
