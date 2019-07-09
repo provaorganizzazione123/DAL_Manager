@@ -16,18 +16,23 @@ import { ComponentListComponent } from './component-list/component-list.componen
 import { RegistroAssociazioniComponent } from './registro-associazioni/registro-associazioni.component';
 import { CommonModule } from '@angular/common';
 import { ElementService } from './shared/element.service';
-import { ElementComponent } from './container-associated/element/element.component';
 import { InserimentoComponent } from './inserimento/inserimento.component';
 import * as Material from "@angular/material";
+import { EliminazioneComponent } from './container-associated/element/eliminazione/eliminazione.component';
+import { ElementComponent } from './container-associated/element/element.component';
+import { ModificaComponent } from './container-associated/element/modifica/modifica.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ContainerAssociatedComponent,
     ComponentListComponent,
-    RegistroAssociazioniComponent,
     ElementComponent,
+    RegistroAssociazioniComponent,
     InserimentoComponent,
+    EliminazioneComponent,
+    ModificaComponent,
     
   ],
   imports: [
@@ -79,7 +84,7 @@ import * as Material from "@angular/material";
   ],
   providers: [ElementService],
   bootstrap: [AppComponent],
-  entryComponents:[InserimentoComponent]
+  entryComponents:[InserimentoComponent, EliminazioneComponent,ModificaComponent]
 })
 export class AppModule {
 

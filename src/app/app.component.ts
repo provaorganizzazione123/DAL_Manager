@@ -35,7 +35,7 @@ cancellaIdDaLista(event) {
 
 inserisciElemento(){
   const dialogConfig = new MatDialogConfig();
-  dialogConfig.disableClose = true;
+  dialogConfig.disableClose = false;//chiude se clicco fuori dal popup
   dialogConfig.autoFocus = true;
   dialogConfig.width = "60%";
   this.dialog.open(InserimentoComponent, dialogConfig);

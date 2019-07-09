@@ -34,12 +34,12 @@ export class ElementService {
     this.http.get(this.rootURL + '/Contenitore').toPromise().then(res=> this.listaContenitori = res as Contenitore[]);
   }
 
-  putElemento(formData : Element){
+  putElemento( formData: Element){
     return this.http.put(this.rootURL + '/Elemento/' + formData.IdElemento, formData);
   }
  
-  deleteElemento(formData:Element){
-    return this.http.delete(this.rootURL + '/Elemento/' + formData);
+  deleteElemento(id:number){
+    return this.http.delete(this.rootURL + '/Elemento/' + id);
   }
 
   populateDropDownList(){

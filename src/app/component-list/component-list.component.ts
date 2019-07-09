@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter,SimpleChange
- } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter,SimpleChange} from '@angular/core';
  import { ElementService } from 'src/app/shared/element.service';
 
 @Component({
@@ -37,7 +36,6 @@ listId=[];
               }
                                 }
  ngOnChanges (changes: {[idDelete: string]:SimpleChange}){
-  
   this.listId.splice(this.listId.indexOf(this.idDelete), 1);
   this.idDelete=0;  
                                                           }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.Http;
@@ -67,7 +67,7 @@ namespace WebApplication2.Controllers
         }
 
         [ResponseType(typeof(Elemento))]
-        public IHttpActionResult deleteElemento(int id)
+        public IHttpActionResult DeleteElemento(int id)
         {
 
             if (!ModelState.IsValid)
