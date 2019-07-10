@@ -1,8 +1,12 @@
 
- <div *ngFor="let ele of elemento">         
-    <button class="element, btn btn-outline-primary" (click)="catturaId(ele.IdElemento)" >
-      <p class="descrizione">
-        {{ele.NomeElemento}}
-      </p>
-    </button>
-    </div>
+ <div *ngFor="let ele of elemento">  
+   
+  <button class="element, btn btn-outline-primary" (click)="catturaId(ele.IdElemento)" >
+  <button class="btn btn-outline-danger" (click)=DeleteElemento(ele.IdElemento)>X</button>
+  <button class="btn btn-outline-info" (click)=ModificaElemento(ele.IdElemento)>Edit</button>
+    <p class="descrizione">
+      {{ele.NomeElemento}}
+    </p>
+  </button>
+   
+</div>

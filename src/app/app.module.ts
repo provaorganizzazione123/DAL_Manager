@@ -19,8 +19,10 @@ import { ElementService } from './shared/element.service';
 import { ElementComponent } from './container-associated/element/element.component';
 import { InserimentoComponent } from './inserimento/inserimento.component';
 import * as Material from "@angular/material";
-import { AssociatedService } from './container-associated/associated.service';
 
+import { AssociatedService } from './container-associated/associated.service';
+import { EliminazioneComponent } from './container-associated/element/eliminazione/eliminazione.component';
+import { ModificaComponent } from './container-associated/element/modifica/modifica.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { AssociatedService } from './container-associated/associated.service';
     RegistroAssociazioniComponent,
     ElementComponent,
     InserimentoComponent,
+    EliminazioneComponent,
+    ModificaComponent,
     
   ],
   imports: [
@@ -82,7 +86,7 @@ import { AssociatedService } from './container-associated/associated.service';
   providers: [ElementService,
               AssociatedService],
   bootstrap: [AppComponent],
-  entryComponents:[InserimentoComponent]
+  entryComponents:[InserimentoComponent, EliminazioneComponent, ModificaComponent]
 })
 export class AppModule {
 

@@ -59,8 +59,8 @@ export class ElementService {
     return this.http.put(this.rootURL + '/Elemento/' + formData.IdElemento, formData);
   }
  
-  deleteElemento(formData:Element){
-    return this.http.delete(this.rootURL + '/Elemento/' + formData);
+  deleteElemento(id:number){
+    return this.http.delete(this.rootURL + '/Elemento/' + id);
   }
 
   populateDropDownList(){
