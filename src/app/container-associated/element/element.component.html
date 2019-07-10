@@ -1,6 +1,6 @@
 
  <div *ngFor="let ele of elemento">         
-    <button class="element, btn btn-outline-primary" >
+    <button class="element, btn btn-outline-primary" (click)="catturaId(ele.IdElemento)" >
       <p class="descrizione">
         {{ele.NomeElemento}}
       </p>

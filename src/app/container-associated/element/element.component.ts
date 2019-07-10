@@ -1,4 +1,4 @@
-import { Component, OnInit,Input, } from '@angular/core';
+import { Component, OnInit,Input, Output, EventEmitter, } from '@angular/core';
 import { Element } from 'src/app/shared/element.model';
 
 @Component({
@@ -10,6 +10,7 @@ export class ElementComponent implements OnInit {
 
 @Input() idContenitoreAperto;
 @Input() listaElementi;
+@Output() IdElemento = new EventEmitter();
 elemento:Element;
   constructor() { }
 
@@ -21,5 +22,13 @@ elemento:Element;
            console.log (this.elemento.NomeElemento)
       } 
      });
+    }
+
+    catturaId(IdElemento:number){
+
+      // metodo che cattura l'id dell'elemento che deve essere aggiunto alla lista per l'associazione
+      // presente nel metodo del container-associated.
+
+      this.IdElemento.emit(IdElemento);
     }
 }

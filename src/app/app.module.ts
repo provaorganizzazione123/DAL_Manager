@@ -19,6 +19,8 @@ import { ElementService } from './shared/element.service';
 import { ElementComponent } from './container-associated/element/element.component';
 import { InserimentoComponent } from './inserimento/inserimento.component';
 import * as Material from "@angular/material";
+import { AssociatedService } from './container-associated/associated.service';
+
 
 @NgModule({
   declarations: [
@@ -77,7 +79,8 @@ import * as Material from "@angular/material";
     Material.MatIconModule
 
   ],
-  providers: [ElementService],
+  providers: [ElementService,
+              AssociatedService],
   bootstrap: [AppComponent],
   entryComponents:[InserimentoComponent]
 })
