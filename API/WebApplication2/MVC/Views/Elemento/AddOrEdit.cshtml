@@ -1,0 +1,36 @@
+﻿@model MVC.Models.mvcElementoModel
+@{
+    ViewBag.Title = "AddOrEdit";
+}
+
+<div class="form-body">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.IdElemento)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NomeElemento)
+            @Html.EditorFor(model => model.NomeElemento)
+            @Html.ValidationMessageFor(model => model.NomeElemento)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DescrizioneElemento)
+            @Html.EditorFor(model => model.DescrizioneElemento)
+            @Html.ValidationMessageFor(model => model.DescrizioneElemento)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipologiaElemento)
+            @Html.EditorFor(model => model.TipologiaElemento)
+            @Html.ValidationMessageFor(model => model.TipologiaElemento)
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-primary">
+            <input type="reset" value="Reset" class="btn btn-primary">
+        </div>
+        
+    }
+</div>
+
