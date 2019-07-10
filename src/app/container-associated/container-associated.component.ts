@@ -44,16 +44,16 @@ export class ContainerAssociatedComponent implements OnInit {
 
         }*/
 
-        this.PostAssociazione(this.assService.listaIdElementi).subscribe(
+        this.assService.PostAssociazione().subscribe(
           res => {         
           console.log('Inserimento avvenuto con successo', 'GRANDE');
           console.log(res);
         });
     }
     
-    PostAssociazione(listaId: number[]){
+    /* PostAssociazione(listaId: number[]){
       return this.http.post("http://localhost:60537/api/Associazione", this.assService.listaIdElementi);
-    }
+    } */
     
 
     aggiungiIdElementoALista(id){
