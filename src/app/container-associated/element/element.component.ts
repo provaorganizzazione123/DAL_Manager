@@ -1,3 +1,4 @@
+
 import { Component, OnInit,Input, EventEmitter, Output, } from '@angular/core';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { EliminazioneComponent } from './eliminazione/eliminazione.component';
@@ -17,6 +18,8 @@ export class ElementComponent implements OnInit {
 @Input() idContenitoreAperto;
 @Input() listaElementi;
 
+@Output() IdElemento = new EventEmitter();
+
 elemento:Element;
 
   constructor( private service : ElementService,
@@ -31,6 +34,17 @@ elemento:Element;
       } 
      });
     }
+
+
+    catturaId(IdElemento:number){
+
+      // metodo che cattura l'id dell'elemento che deve essere aggiunto alla lista per l'associazione
+      // presente nel metodo del container-associated.
+
+      this.IdElemento.emit(IdElemento);
+    }
+}
+
     
     /* Metodo DeleteElemento ----> """"" scaturito dal click sui bottoni X degli elementi """"
     Questo metodo crea una Dialog facendo partire il component Figlio --> EliminazioneComponent
@@ -59,3 +73,4 @@ elemento:Element;
     }
 
 }
+

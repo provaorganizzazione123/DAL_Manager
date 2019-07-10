@@ -19,6 +19,8 @@ import { ElementService } from './shared/element.service';
 import { ElementComponent } from './container-associated/element/element.component';
 import { InserimentoComponent } from './inserimento/inserimento.component';
 import * as Material from "@angular/material";
+
+import { AssociatedService } from './container-associated/associated.service';
 import { EliminazioneComponent } from './container-associated/element/eliminazione/eliminazione.component';
 import { ModificaComponent } from './container-associated/element/modifica/modifica.component';
 
@@ -81,7 +83,8 @@ import { ModificaComponent } from './container-associated/element/modifica/modif
     Material.MatIconModule
 
   ],
-  providers: [ElementService],
+  providers: [ElementService,
+              AssociatedService],
   bootstrap: [AppComponent],
   entryComponents:[InserimentoComponent, EliminazioneComponent, ModificaComponent]
 })
