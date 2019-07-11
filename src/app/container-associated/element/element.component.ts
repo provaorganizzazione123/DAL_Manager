@@ -7,7 +7,6 @@ import { Element } from 'src/app/shared/element.model';
 import { ElementService } from 'src/app/shared/element.service';
 import { AssociatedService } from '../associated.service';
 
-
 @Component({
   selector: 'app-element',
   templateUrl: './element.component.html',
@@ -20,6 +19,7 @@ export class ElementComponent implements OnInit {
 @Input() listaElementi;
 colore:boolean;
 @Input() edit : Boolean ; 
+
 @Output() IdElemento = new EventEmitter();
 
 elemento:Element;
@@ -30,16 +30,16 @@ elemento:Element;
 
   ngOnInit() {
 
+  
     this.listaElementi.forEach(element => {
       if (element.id == this.idContenitoreAperto){
            this.elemento=element.l;
       } 
      });
-     
+
      this.assService.riceveSignal.subscribe((param: boolean) => {
       this.evidenziaAssociati()
       });
-
     }
 
     ngAfterViewInit(): void {
@@ -53,8 +53,10 @@ elemento:Element;
       
     }
 
+
     catturaId(IdElemento:number){
-     if(!this.edit){// premendo il tasto "edit" abilito la modalità edit, e giocando con una booleana, abilito l'evento click del tasto Crea Associazione  
+      if(!this.edit){// premendo il tasto "edit" abilito la modalità edit, e giocando con una booleana, abilito l'evento click del tasto Crea Associazione
+
       // metodo che cattura l'id dell'elemento che deve essere aggiunto alla lista per l'associazione
       // presente nel metodo del container-associated.
 
@@ -147,6 +149,7 @@ elemento:Element;
     }
     else {}
     }
+    
 
 
     
@@ -175,7 +178,6 @@ elemento:Element;
       this.dialog.open(ModificaComponent, dialogConfig);
 
     }
-
 
     async caricaListaFiltro(IdPadre: number){
 
@@ -207,7 +209,5 @@ elemento:Element;
       });
 
     }
-
-
 }
 
