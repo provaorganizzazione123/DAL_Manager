@@ -8,7 +8,6 @@ import { ElementService } from 'src/app/shared/element.service';
 import { AssociatedService } from '../associated.service';
 
 
-
 @Component({
   selector: 'app-element',
   templateUrl: './element.component.html',
@@ -31,12 +30,22 @@ elemento:Element;
 
   ngOnInit() {
 
-  
     this.listaElementi.forEach(element => {
       if (element.id == this.idContenitoreAperto){
            this.elemento=element.l;
       } 
      });
+     
+     this.assService.riceveSignal.subscribe((param: boolean) => {
+      this.evidenziaAssociati()
+      });
+
+    }
+
+    ngAfterViewInit(): void {
+      //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+      //Add 'implements AfterViewInit' to the class.
+      this.assService.EvidenziaElementiAperti(true);
     }
 
     abilitazioneAssociazione(){
@@ -166,6 +175,39 @@ elemento:Element;
       this.dialog.open(ModificaComponent, dialogConfig);
 
     }
+
+
+    async caricaListaFiltro(IdPadre: number){
+
+      console.log("Entrato");
+
+      console.log(IdPadre);
+
+      await(this.assService.GetAssociazioneById(IdPadre));
+
+      this.evidenziaAssociati();
+
+    }
+
+    evidenziaAssociati(){
+
+      console.log(this.assService.listaFiltroAssociazioni);
+
+      this.assService.listaFiltroAssociazioni.forEach(ele => {
+        try{
+        let elemento = document.getElementById(ele.toString());
+        elemento.style.borderWidth = "5px";
+        elemento.style.borderCollapse = "separate";
+        elemento.style.borderColor="yellow";  
+        }
+        catch(err){
+          
+        }
+        
+      });
+
+    }
+
 
 }
 
