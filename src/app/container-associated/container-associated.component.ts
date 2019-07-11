@@ -59,11 +59,12 @@ export class ContainerAssociatedComponent implements OnInit {
 
         }*/
 
-        this.assService.PostAssociazione().subscribe(
-          res => {         
-          console.log('Inserimento avvenuto con successo', 'GRANDE');
-          console.log(res);
-        });
+        this.assService.PostAssociazione()
+        // .subscribe(
+        //   res => {         
+        //   console.log('Inserimento avvenuto con successo', 'GRANDE');
+        //   console.log(res);
+        // });
     }
     
   
