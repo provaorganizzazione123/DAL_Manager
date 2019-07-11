@@ -41,6 +41,8 @@ elemento:Element;
 
     catturaId(IdElemento:number){
 
+      console.log(this.assService.listaFiltroAssociazioni);
+
       // metodo che cattura l'id dell'elemento che deve essere aggiunto alla lista per l'associazione
       // presente nel metodo del container-associated.
 
