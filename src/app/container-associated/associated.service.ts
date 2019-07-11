@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AssociatedService {
+  listaAppoggioIdSelezionati = [];
 
   constructor(private http: HttpClient) { }
 

@@ -64,7 +64,8 @@ elemento:Element;
       
 
       if (this.colore)
-      { // entra in questo if se l'id è padre      
+      { // entra in questo if se l'id è padre   
+        this.assService.listaAppoggioIdSelezionati.push(IdElemento)   
         let IdElementoinStringa:string ;
         IdElementoinStringa = IdElemento.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
         let elemento = document.getElementById(IdElementoinStringa);
@@ -81,12 +82,24 @@ elemento:Element;
       }
         else{
           // entra in questo else se l'id non è il primo della lista e quindi non è "padre"
+          if(this.assService.listaAppoggioIdSelezionati.includes(IdElemento)){ // controllo se lid è presente nella lista di id selezionati
+            let IdElementoinStringa:string ;                        // se è presente, lo deselezionop e lo cancello dalla lista  
+          IdElementoinStringa=IdElemento.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+        let elemento = document.getElementById(IdElementoinStringa);
+        elemento.style.borderWidth = "1px";
+        elemento.style.borderCollapse = "separate";
+        elemento.style.borderColor=""; 
+        this.assService.listaAppoggioIdSelezionati.splice(this.assService.listaAppoggioIdSelezionati.indexOf(this.IdElemento), 1);
+          }
+          else { // se l'id non è presente nella lista id selezionati, lo seleziono e lo aggiungo alla lista
+          this.assService.listaAppoggioIdSelezionati.push(IdElemento) 
           let IdElementoinStringa:string ;
           IdElementoinStringa=IdElemento.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
         let elemento = document.getElementById(IdElementoinStringa);
         elemento.style.borderWidth = "5px";
         elemento.style.borderCollapse = "separate";
         elemento.style.borderColor="green"; 
+          }
         }
       }
       else{
@@ -94,12 +107,28 @@ elemento:Element;
         // NB: la lista si svuota se premo di nuovo sull'elemento che avevo scelto come padre. 
         // si dovrebbe cancellare tutto lo style del padre e degli eventuali figli scelti, ma non
         // ancora associati a db 
-        let IdElementoinStringa:string ;
-        IdElementoinStringa = IdElemento.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
-        let elemento = document.getElementById(IdElementoinStringa);
-        elemento.style.borderWidth = "1px";
-        elemento.style.borderCollapse = "separate";
-        elemento.style.borderColor=""; 
+        this.assService.listaAppoggioIdSelezionati.forEach(element => {
+          // ciclo la lista id selezionati, per prendere ogni elemento e deselezionarlo
+          let IdElementoinStringa:string ;
+          IdElementoinStringa = element.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+          let elemento = document.getElementById(IdElementoinStringa);
+          elemento.style.borderWidth = "1px";
+          elemento.style.borderCollapse = "separate";
+          elemento.style.borderColor=""; 
+
+          
+        });
+
+ // poi azzero la lista
+this.assService.listaAppoggioIdSelezionati = [];
+
+
+       // let IdElementoinStringa:string ;
+        //IdElementoinStringa = IdElemento.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+        //let elemento = document.getElementById(IdElementoinStringa);
+        //elemento.style.borderWidth = "1px";
+        //elemento.style.borderCollapse = "separate";
+        //elemento.style.borderColor=""; 
         
       }
     }
