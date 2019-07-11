@@ -6,6 +6,7 @@ import { Associated } from './associated.model';
   providedIn: 'root'
 })
 export class AssociatedService {
+  listaAppoggioIdSelezionati = [];
 
   constructor(private http: HttpClient) { }
 
