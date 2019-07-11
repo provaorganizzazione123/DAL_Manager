@@ -3,6 +3,7 @@ import { Element } from './element.model';
 import {HttpClient} from '@angular/common/http';
 import { Contenitore } from './contenitore.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -66,4 +67,7 @@ export class ElementService {
   populateDropDownList(){
     this.http.get(this.rootURL + '/Contenitore').toPromise().then(res => this.listaContenitori = res as Contenitore[] )
   }
+
+ 
+
 }
