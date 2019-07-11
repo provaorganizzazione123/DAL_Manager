@@ -18,6 +18,7 @@ declare var $ :any;
 })
 export class ContainerAssociatedComponent implements OnInit {
  @Input () contenitoriAperti;
+ 
  listEleCont :Element[];
  prova = document.getElementById('#proviamolo')
 
@@ -82,7 +83,7 @@ export class ContainerAssociatedComponent implements OnInit {
       else {
         // se l'id non è presente nella lista, posso procedere con il push dell'id
       this.assService.listaIdElementi.push(id);
-      console.log(this.assService.listaIdElementi)
+      
       }
     }
-} 
+}
