@@ -5,6 +5,7 @@ import { EliminazioneComponent } from './eliminazione/eliminazione.component';
 import { ModificaComponent } from './modifica/modifica.component';
 import { Element } from 'src/app/shared/element.model';
 import { ElementService } from 'src/app/shared/element.service';
+import { AssociatedService } from '../associated.service';
 
 
 @Component({
@@ -23,11 +24,11 @@ export class ElementComponent implements OnInit {
 elemento:Element;
 
   constructor( private service : ElementService,
+               private serv: AssociatedService,
                public dialog : MatDialog) { }
 
   ngOnInit() {
 
-  
     this.listaElementi.forEach(element => {
       if (element.id == this.idContenitoreAperto){
            this.elemento=element.l;
@@ -40,12 +41,12 @@ elemento:Element;
 
       // metodo che cattura l'id dell'elemento che deve essere aggiunto alla lista per l'associazione
       // presente nel metodo del container-associated.
-
+  
       this.IdElemento.emit(IdElemento);
-    }
-}
 
-    
+    }
+
+
     /* Metodo DeleteElemento ----> """"" scaturito dal click sui bottoni X degli elementi """"
     Questo metodo crea una Dialog facendo partire il component Figlio --> EliminazioneComponent
     passando l'id dell'elemento da cancellare tramite dialogConfig.data e passando 
