@@ -2,11 +2,9 @@ import { Component, OnInit,Input, Output,EventEmitter } from '@angular/core';
 import { ComponentListComponent } from '../component-list/component-list.component';
 import { ElementService } from 'src/app/shared/element.service';
 import { Element } from 'src/app/shared/element.model';
-import { Container } from '@angular/compiler/src/i18n/i18n_ast';
-import { Interpolation } from '@angular/compiler';
+//import 'rxjs/add/operator/catch';
 import { HttpClient } from '@angular/common/http';
 import { AssociatedService } from './associated.service';
-
 //import { ToastrService } from 'ngx-toastr';
 declare var jquery:any;
 declare var $ :any;
@@ -19,10 +17,8 @@ declare var $ :any;
 })
 export class ContainerAssociatedComponent implements OnInit {
  @Input () contenitoriAperti;
- 
  listEleCont :Element[];
  prova = document.getElementById('#proviamolo')
- abilitaDisabilita : Boolean = true;  // booleana per abilitare/disabilitare l'editMode
 
  
 
@@ -31,7 +27,6 @@ export class ContainerAssociatedComponent implements OnInit {
  constructor( private service: ElementService,
               private assService: AssociatedService,
               private http: HttpClient) { }
-              
 
   ngOnInit() {  
   }
@@ -42,35 +37,18 @@ export class ContainerAssociatedComponent implements OnInit {
     this.idContenitoreChiuso.emit({id:contId});
     }
 
-    abilitaAssociazione(){ // evento scatenato dal click del tasto "Edit"
-    // che abilita la selezionme degli elementi ed il tasto "Crea Associazione"   
-    let tasto = document.getElementById("CreaAss");  
-    if(this.abilitaDisabilita){                             // se la booleana è true, abilito l'edit e setto poi la booleana a false
-                                                            // prendo il tasto "crea Associazione"
-       tasto.hidden=false;                                  // mostro il tasto settando hidden a false       
-       this.abilitaDisabilita = false;}
-    else {                                                  // se la booleana è false, abilito l'edit e setto poi la booleana a true
-                                                            // prendo il tasto "crea Associazione"
-       tasto.hidden= true;                                  // nascondo il tasto settando hidden a true
-       this.abilitaDisabilita = true;
-    }
-    }
-
-
-    creaAssociazione(){ // metodo per creare l'associazione attraverso l'evfento click  del tasto "crea Associazione"
+    creaAssociazione(){
 
         /*for(let i = 0; i < this.listaIdElementi.length; i++){
 
         }*/
 
-        this.assService.PostAssociazione().subscribe(
-          res => {         
-          console.log('Inserimento avvenuto con successo', 'GRANDE');
-          console.log(res);
-        });
+        return this.assService.PostAssociazione()
     }
-    
- 
+  
+    /* PostAssociazione(listaId: number[]){
+      return this.http.post("http://localhost:60537/api/Associazione", this.assService.listaIdElementi);
+    } */
     
 
     aggiungiIdElementoALista(id){
@@ -98,7 +76,8 @@ export class ContainerAssociatedComponent implements OnInit {
       }
       else {
         // se l'id non è presente nella lista, posso procedere con il push dell'id
-      this.assService.listaIdElementi.push(id);      
+      this.assService.listaIdElementi.push(id);
+      console.log(this.assService.listaIdElementi)
       }
     }
-}
+} 

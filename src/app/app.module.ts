@@ -5,24 +5,22 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
-import {MatButtonModule, MatCheckboxModule, MatDialog} from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContainerAssociatedComponent } from './container-associated/container-associated.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ComponentListComponent } from './component-list/component-list.component';
-
 import { RegistroAssociazioniComponent } from './registro-associazioni/registro-associazioni.component';
 import { CommonModule } from '@angular/common';
 import { ElementService } from './shared/element.service';
 import { ElementComponent } from './container-associated/element/element.component';
 import { InserimentoComponent } from './inserimento/inserimento.component';
 import * as Material from "@angular/material";
-
 import { AssociatedService } from './container-associated/associated.service';
 import { EliminazioneComponent } from './container-associated/element/eliminazione/eliminazione.component';
 import { ModificaComponent } from './container-associated/element/modifica/modifica.component';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +32,7 @@ import { ModificaComponent } from './container-associated/element/modifica/modif
     InserimentoComponent,
     EliminazioneComponent,
     ModificaComponent,
+    
     
   ],
   imports: [
@@ -60,7 +59,13 @@ import { ModificaComponent } from './container-associated/element/modifica/modif
     Material.MatSortModule,
     Material.MatDialogModule,
     Material.MatIconModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 7000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false
+    }
+    ),
+    
     
    
   ],

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar, MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { Element } from 'src/app/shared/element.model';
 import { ElementService } from 'src/app/shared/element.service';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -15,7 +16,7 @@ import { NgForm } from '@angular/forms';
 export class ModificaComponent implements OnInit {
 
   constructor(private service : ElementService,
-    private _snackBar: MatSnackBar,
+    private toastr : ToastrService,
     public dialogRef : MatDialogRef<ModificaComponent>) {
     this.service.refreshList();
     this.idPassato=this.dialogRef._containerInstance._config.data;
@@ -52,7 +53,7 @@ export class ModificaComponent implements OnInit {
 
    updateRecord(form:NgForm){
     this.service.putElemento(form.value).subscribe(res => {
-      this._snackBar.open('Aggiornamento avvenuto con successo', 'GRANDE');
+      this.toastr.info('Risposta del server', 'Aggiornamento avvenuto con successo');
       this.service.refreshList();
     })
   }
