@@ -24,6 +24,7 @@ import { AssociatedService } from './container-associated/associated.service';
 import { EliminazioneComponent } from './container-associated/element/eliminazione/eliminazione.component';
 import { ModificaComponent } from './container-associated/element/modifica/modifica.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,7 @@ import { ModificaComponent } from './container-associated/element/modifica/modif
     InserimentoComponent,
     EliminazioneComponent,
     ModificaComponent,
+    
     
   ],
   imports: [
@@ -60,8 +62,14 @@ import { ModificaComponent } from './container-associated/element/modifica/modif
     Material.MatSortModule,
     Material.MatDialogModule,
     Material.MatIconModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 7000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false
+    }
+    ),
     
+   
    
   ],
   exports:[

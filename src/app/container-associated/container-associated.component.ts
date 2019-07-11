@@ -6,7 +6,6 @@ import { Container } from '@angular/compiler/src/i18n/i18n_ast';
 import { Interpolation } from '@angular/compiler';
 import { HttpClient } from '@angular/common/http';
 import { AssociatedService } from './associated.service';
-
 //import { ToastrService } from 'ngx-toastr';
 declare var jquery:any;
 declare var $ :any;
@@ -19,7 +18,6 @@ declare var $ :any;
 })
 export class ContainerAssociatedComponent implements OnInit {
  @Input () contenitoriAperti;
- 
  listEleCont :Element[];
  prova = document.getElementById('#proviamolo')
  abilitaDisabilita : Boolean = true;  // booleana per abilitare/disabilitare l'editMode
@@ -31,7 +29,6 @@ export class ContainerAssociatedComponent implements OnInit {
  constructor( private service: ElementService,
               private assService: AssociatedService,
               private http: HttpClient) { }
-              
 
   ngOnInit() {  
   }
@@ -56,7 +53,6 @@ export class ContainerAssociatedComponent implements OnInit {
     }
     }
 
-
     creaAssociazione(){ // metodo per creare l'associazione attraverso l'evfento click  del tasto "crea Associazione"
 
         /*for(let i = 0; i < this.listaIdElementi.length; i++){
@@ -70,7 +66,10 @@ export class ContainerAssociatedComponent implements OnInit {
         });
     }
     
- 
+  
+    /* PostAssociazione(listaId: number[]){
+      return this.http.post("http://localhost:60537/api/Associazione", this.assService.listaIdElementi);
+    } */
     
 
     aggiungiIdElementoALista(id){
@@ -98,7 +97,8 @@ export class ContainerAssociatedComponent implements OnInit {
       }
       else {
         // se l'id non è presente nella lista, posso procedere con il push dell'id
-      this.assService.listaIdElementi.push(id);      
+      this.assService.listaIdElementi.push(id);
+      
       }
     }
-}
+} 
