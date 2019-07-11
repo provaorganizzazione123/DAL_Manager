@@ -26,17 +26,17 @@ namespace WebApplication2.Controllers
             return ElementiTornati.ToList();
         }
 
-        // GET: api/Associazione/id
-        public IEnumerable<int> Get(int id)
+        // GET: api/Associazione/value
+        public IEnumerable<Associazione> Get(int id)
         {
 
             // Metodo che chiama in get la lista delle associazioni di un determinato elemento padre passandogli l'id
 
             IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
 
-            string SqlString = "SELECT Id_elemento2 FROM [Tab_Associaz_Elem] WHERE Id_Elemento1 =" + id;
+            string SqlString = "SELECT * FROM [Tab_Associaz_Elem] WHERE Id_Elemento1 =" + id;
 
-            var ElementiTornati = (List<int>)db.Query<int>(SqlString);
+            var ElementiTornati = (List<Associazione>)db.Query<Associazione>(SqlString);
 
             return ElementiTornati;
         }
