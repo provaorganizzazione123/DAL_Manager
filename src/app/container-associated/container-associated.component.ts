@@ -12,7 +12,7 @@ declare var jquery:any;
 declare var $ :any;
 
 @Component({
-  selector: 'app-container-associated',
+  selector: 'tr [app-container-associated]',
   templateUrl: './container-associated.component.html',
   
   styleUrls: ['./container-associated.component.css']

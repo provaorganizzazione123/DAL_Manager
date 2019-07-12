@@ -29,9 +29,7 @@ export class ModificaComponent implements OnInit {
       Id_Contenitore: this.eleEdit2.Id_Contenitore,
     }
     
-    
-      
-     }
+    }
 
     idPassato: number;
     eleEdit: Element[];
@@ -39,7 +37,6 @@ export class ModificaComponent implements OnInit {
   
 
   ngOnInit() {
-    
   }
 
 
@@ -55,6 +52,10 @@ export class ModificaComponent implements OnInit {
       this.toastr.info('Risposta del server', 'Aggiornamento avvenuto con successo');
       this.service.refreshList();
     })
+  }
+
+  chiudiInserimento(){
+    this.dialogRef.close();
   }
 }
 
