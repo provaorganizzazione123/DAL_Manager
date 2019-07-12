@@ -11,7 +11,7 @@ import { catchError} from 'rxjs/operators';
 })
 export class AssociatedService {
   listaAppoggioIdSelezionati = [];
-  IdPadreSelezionato: Number = 0;
+  IdPadreSelezionato: number = 0;
 
   errore: string;
   result: any;

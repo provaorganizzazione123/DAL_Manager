@@ -41,7 +41,12 @@ export class ContainerAssociatedComponent implements OnInit {
     }
 
     abilitaAssociazione(){ // evento scatenato dal click del tasto "Edit"
-    // che abilita la selezionme degli elementi ed il tasto "Crea Associazione"   
+                          // che abilita la selezionme degli elementi ed il tasto "Crea Associazione"   
+    
+    if (this.assService.IdPadreSelezionato != 0){
+
+      this.assService.listaIdElementi.push(this.assService.IdPadreSelezionato);
+    } 
     let tasto = document.getElementById("CreaAss");  
     if(this.abilitaDisabilita){                             // se la booleana è true, abilito l'edit e setto poi la booleana a false
                                                             // prendo il tasto "crea Associazione"
