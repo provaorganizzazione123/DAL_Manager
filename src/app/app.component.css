@@ -43,6 +43,7 @@ td{
     position: fixed;
     top: 9%;
     overflow-y: scroll;
+    
     }
 
 .top{
@@ -55,7 +56,6 @@ td{
     position:fixed;
     bottom:0px;
     font-size: 180%;
-    min-width: max-content;
     }
 
 table{
@@ -64,6 +64,14 @@ table{
 
 .bg-primary {
     background-color:#007BB3!important;
+    }
+
+.descrizione{
+    font-family: inherit;
+    font-size: medium;
+    color: blue;
+    padding-top: 0;
+    padding-bottom: 0;
     }
 
 .nav{
