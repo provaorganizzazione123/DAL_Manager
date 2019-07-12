@@ -1,4 +1,5 @@
 <div class="lead">Inserisci Elemento</div>
+<button class="chiudi" (click)="chiudiInserimento()">&times;</button>
 <br>
 <form name="forminserimento" #form="ngForm" (submit)="onSubmit(form)"autocomplete="off">
  <input type="hidden" name="IdElemento" #IdElemento="ngModel" [(ngModel)]="service.formData.IdElemento">

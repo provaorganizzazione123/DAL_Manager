@@ -240,4 +240,5 @@ elemento:Element;
   this.dialog.open(DettaglioComponent, dialogConfig);
     }
 
+
 }

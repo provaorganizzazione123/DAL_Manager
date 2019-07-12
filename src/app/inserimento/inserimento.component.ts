@@ -65,9 +65,13 @@ export class InserimentoComponent implements OnInit {
     })
   }
 
+  //Metodo per chiudere l'inserimento
   chiudiInserimento() { 
     this.dialogRef.close();    
     }
 
+
+
+  
 
 }

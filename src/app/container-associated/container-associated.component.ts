@@ -12,7 +12,7 @@ declare var jquery:any;
 declare var $ :any;
 
 @Component({
-  selector: 'app-container-associated',
+  selector: 'tr [app-container-associated]',
   templateUrl: './container-associated.component.html',
   
   styleUrls: ['./container-associated.component.css']
@@ -63,11 +63,7 @@ export class ContainerAssociatedComponent implements OnInit {
 
         }*/
 
-        this.assService.PostAssociazione().subscribe(
-          res => {         
-          console.log('Inserimento avvenuto con successo', 'GRANDE');
-          console.log(res);
-        });
+        this.assService.PostAssociazione()
     }
     
     /* PostAssociazione(listaId: number[]){
