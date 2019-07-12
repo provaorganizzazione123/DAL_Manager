@@ -6,6 +6,9 @@ import { ModificaComponent } from './modifica/modifica.component';
 import { Element } from 'src/app/shared/element.model';
 import { ElementService } from 'src/app/shared/element.service';
 import { AssociatedService } from '../associated.service';
+import { style } from '@angular/animations';
+import { __await } from 'tslib';
+
 
 @Component({
   selector: 'app-element',
@@ -18,11 +21,10 @@ export class ElementComponent implements OnInit {
 @Input() idContenitoreAperto;
 @Input() listaElementi;
 colore:boolean;
-@Input() edit : Boolean ; 
-
 @Output() IdElemento = new EventEmitter();
 
 elemento:Element;
+@Input() edit : Boolean ; 
 
   constructor( private service : ElementService,
                private assService: AssociatedService,
@@ -30,16 +32,16 @@ elemento:Element;
 
   ngOnInit() {
 
-  
     this.listaElementi.forEach(element => {
       if (element.id == this.idContenitoreAperto){
            this.elemento=element.l;
       } 
      });
-
+     
      this.assService.riceveSignal.subscribe((param: boolean) => {
       this.evidenziaAssociati()
       });
+
     }
 
     ngAfterViewInit(): void {
@@ -48,15 +50,10 @@ elemento:Element;
       this.assService.EvidenziaElementiAperti(true);
     }
 
-    abilitazioneAssociazione(){
-     
-      
-    }
-
 
     catturaId(IdElemento:number){
-      if(!this.edit){// premendo il tasto "edit" abilito la modalità edit, e giocando con una booleana, abilito l'evento click del tasto Crea Associazione
 
+      if(!this.edit){// premendo il tasto "edit" abilito la modalità edit, e giocando con una booleana, abilito l'evento click del tasto Crea Associazione
       // metodo che cattura l'id dell'elemento che deve essere aggiunto alla lista per l'associazione
       // presente nel metodo del container-associated.
 
@@ -135,8 +132,9 @@ elemento:Element;
           
         });
 
-            // poi azzero la lista
-             this.assService.listaAppoggioIdSelezionati = [];
+ // poi azzero la lista
+this.assService.listaAppoggioIdSelezionati = [];
+
 
        // let IdElementoinStringa:string ;
         //IdElementoinStringa = IdElemento.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
@@ -147,9 +145,6 @@ elemento:Element;
         
       }
     }
-    else {}
-    }
-    
 
 
     
@@ -178,6 +173,7 @@ elemento:Element;
       this.dialog.open(ModificaComponent, dialogConfig);
 
     }
+
 
     async caricaListaFiltro(IdPadre: number){
 
@@ -209,5 +205,7 @@ elemento:Element;
       });
 
     }
+
+
 }
 

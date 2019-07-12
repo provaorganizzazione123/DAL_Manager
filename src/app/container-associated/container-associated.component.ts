@@ -18,10 +18,10 @@ declare var $ :any;
 })
 export class ContainerAssociatedComponent implements OnInit {
  @Input () contenitoriAperti;
+ 
  listEleCont :Element[];
  prova = document.getElementById('#proviamolo')
  abilitaDisabilita : Boolean = true;  // booleana per abilitare/disabilitare l'editMode
-
  
 
  @Output () idContenitoreChiuso= new EventEmitter  ();
@@ -53,21 +53,19 @@ export class ContainerAssociatedComponent implements OnInit {
     }
     }
 
-    creaAssociazione(){ // metodo per creare l'associazione attraverso l'evfento click  del tasto "crea Associazione"
+    creaAssociazione(){
 
         /*for(let i = 0; i < this.listaIdElementi.length; i++){
 
         }*/
 
-        this.assService.PostAssociazione()
-        // .subscribe(
-        //   res => {         
-        //   console.log('Inserimento avvenuto con successo', 'GRANDE');
-        //   console.log(res);
-        // });
+        this.assService.PostAssociazione().subscribe(
+          res => {         
+          console.log('Inserimento avvenuto con successo', 'GRANDE');
+          console.log(res);
+        });
     }
     
-  
     /* PostAssociazione(listaId: number[]){
       return this.http.post("http://localhost:60537/api/Associazione", this.assService.listaIdElementi);
     } */
@@ -102,4 +100,4 @@ export class ContainerAssociatedComponent implements OnInit {
       
       }
     }
-} 
+}
