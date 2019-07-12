@@ -6,8 +6,8 @@ import { ModificaComponent } from './modifica/modifica.component';
 import { Element } from 'src/app/shared/element.model';
 import { ElementService } from 'src/app/shared/element.service';
 import { AssociatedService } from '../associated.service';
-import { style } from '@angular/animations';
 import { __await } from 'tslib';
+import { DettaglioComponent } from './dettaglio/dettaglio.component'
 
 
 @Component({
@@ -85,13 +85,7 @@ elemento:Element;
         elemento.style.borderWidth = "5px";
         elemento.style.borderCollapse = "separate";
         elemento.style.borderColor="red"; 
-
-        /*
-        QUI VA INSERITO IL CODICE DI LORIS CHE FA IL GET A DB DEGLI ELEMENTI ASSOCIATI AL CORRENTE ID.
-        LA LISTA CHE NE TORNA VA CICLATA E PER OGNI ID VA FATTO LO STYLE, IN MODO DA METTERE IN 
-        EVIDENZA CHE GLI ELEMENTI SONO GIà ASSOCIATI ALL'ATTUALE ID 
-        */
-          
+                
       }
         else{
           // entra in questo else se l'id non è il primo della lista e quindi non è "padre"
@@ -236,5 +230,15 @@ elemento:Element;
       this.dialog.open(ModificaComponent, dialogConfig);
 
     }
+
+    dettaglioElemento(Descrizione){
+      const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true;
+  dialogConfig.autoFocus = true;
+  dialogConfig.width = "60%";
+  dialogConfig.data=Descrizione;  
+  this.dialog.open(DettaglioComponent, dialogConfig);
+    }
+
 
 }

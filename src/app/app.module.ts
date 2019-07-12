@@ -23,6 +23,7 @@ import * as Material from "@angular/material";
 import { AssociatedService } from './container-associated/associated.service';
 import { EliminazioneComponent } from './container-associated/element/eliminazione/eliminazione.component';
 import { ModificaComponent } from './container-associated/element/modifica/modifica.component';
+import { DettaglioComponent } from './container-associated/element/dettaglio/dettaglio.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ModificaComponent } from './container-associated/element/modifica/modif
     InserimentoComponent,
     EliminazioneComponent,
     ModificaComponent,
+    DettaglioComponent,
     
     
   ],
@@ -94,7 +96,7 @@ import { ModificaComponent } from './container-associated/element/modifica/modif
   providers: [ElementService,
               AssociatedService],
   bootstrap: [AppComponent],
-  entryComponents:[InserimentoComponent, EliminazioneComponent, ModificaComponent]
+  entryComponents:[InserimentoComponent, EliminazioneComponent, ModificaComponent, DettaglioComponent]
 })
 export class AppModule {
 
