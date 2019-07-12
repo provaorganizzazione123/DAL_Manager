@@ -2,7 +2,7 @@
 .box-element {
   border: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
-  align-items: table;
+  align-items: center;
   background:white;
   border-radius: 8px;
   border-bottom-left-radius: 20px;
@@ -21,6 +21,7 @@
   min-width: 170px;;
   min-height: 50px;
   overflow-y: scroll;
+
 }
 
 .box-element::-webkit-scrollbar {
@@ -62,6 +63,17 @@
  clear: both;
 }
 
+.element {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  margin: 10px;
+  overflow: hidden;
+
+  height: 50px;
+}
+
 .titolo{
   text-align: left;
   align-items: right;
@@ -89,14 +101,14 @@
   padding: inherit;
 }
 
-button{
+.button{
   margin: 3px;
   padding: 8px;
   font-weight: 600;
   font-size: medium;
 }
 
-h3{
+.h3{
   font-size: 1.30rem;
   font-family: unset;
 }
@@ -106,8 +118,15 @@ h3{
   top:10%;
   left: 80%;
   margin-right: 1%;
-} 
+}
 
 
+#CreaAss{
+  position: fixed;
+  top: 8%;
+  left:1%;
+  flex:auto;
 
+
+}
 

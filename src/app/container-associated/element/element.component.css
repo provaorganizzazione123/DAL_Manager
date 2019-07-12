@@ -9,6 +9,18 @@
     margin: 2%;
   }
 
+#ElementoCreato{
+  margin-bottom:10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right:10px;
+  float: left;
+  margin-left:3px;
+  flex-flow: wrap;
+  display: flex;
+  align-items: center;
+}
+
 .descrizione {
     font-family: sans-serif;
     margin: 5%;
@@ -30,3 +42,20 @@ button{
     padding-top: 0;
     padding-bottom: 0;
     }
+
+ #Chiudi{
+  font-size: 12px;
+  padding: 2px;
+  margin-left: 100px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+#Modifica{
+  font-size: 12px;
+  padding: 2px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+
