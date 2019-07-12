@@ -1,13 +1,26 @@
 
- <div *ngFor="let ele of elemento" (click)="caricaListaFiltro(ele.IdElemento)">  
-   
-  <button class="element, btn btn-outline-primary" id = "{{ele.IdElemento}}" (click)="catturaId(ele.IdElemento)" >
-  <button class="btn btn-outline-danger" (click)=DeleteElemento(ele.IdElemento)>X</button>
-  <button class="btn btn-outline-info" (click)=ModificaElemento(ele.IdElemento)>Edit</button>
-    <p class="descrizione">
-      {{ele.NomeElemento}}
-    </p>
-  </button>
-   
+ <div *ngFor="let ele of elemento" class="container" > 
+   <!-- <div class="col-sm-10 sinistra" >  -->
+     <table>
+       <tr>
+         <td>
+     <button class="element, btn btn-outline-primary" id = "{{ele.IdElemento}}" (click)="catturaId(ele.IdElemento)" >
+      <p class="descrizione">
+        {{ele.NomeElemento}}
+      </p>
+    </button>
+         </td>
+ <hr>
+  <!-- </div> -->
+   <!-- <div class="col-sm-2 destra"> -->
+     <td>
+    <button class="btn btn-outline-danger" id="Chiudi" (click)="DeleteElemento(ele.IdElemento)">X</button>
+    <button class="btn btn-outline-info" id="Modifica" (click)="ModificaElemento(ele.IdElemento)">Edit</button>
+    <button class="btn btn-outline-info" id="Modifica" (click)="dettaglioElemento(ele.DescrizioneElemento)">Dettaglio</button>
+  <!-- </div>   -->
+  </td>
+</tr>
+</table>
+ 
 </div>
 

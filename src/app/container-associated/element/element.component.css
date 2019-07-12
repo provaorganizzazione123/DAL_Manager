@@ -58,4 +58,41 @@ button{
   padding-left: 10px;
 }
 
+.box-element {
+  border: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  align-items: center;
+  background:white;
+  border-radius: 8px;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+  margin: 4px;
+  box-sizing: border-box;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  resize: both;
+  overflow: unset;
+  width: 250px;
+  height: 250px;
+  min-width: 170px;;
+  min-height: 50px;
+  overflow-y: scroll;
+
+}
+.destra{
+  float:right; 
+  margin:2px;
+}
+
+.sinistra{
+  float:left;
+  margin:2px;
+}
+
+.box-div{
+  
+}
 

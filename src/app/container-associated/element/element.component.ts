@@ -6,8 +6,8 @@ import { ModificaComponent } from './modifica/modifica.component';
 import { Element } from 'src/app/shared/element.model';
 import { ElementService } from 'src/app/shared/element.service';
 import { AssociatedService } from '../associated.service';
-import { style } from '@angular/animations';
 import { __await } from 'tslib';
+import { DettaglioComponent } from './dettaglio/dettaglio.component'
 
 
 @Component({
@@ -85,13 +85,7 @@ elemento:Element;
         elemento.style.borderWidth = "5px";
         elemento.style.borderCollapse = "separate";
         elemento.style.borderColor="red"; 
-
-        /*
-        QUI VA INSERITO IL CODICE DI LORIS CHE FA IL GET A DB DEGLI ELEMENTI ASSOCIATI AL CORRENTE ID.
-        LA LISTA CHE NE TORNA VA CICLATA E PER OGNI ID VA FATTO LO STYLE, IN MODO DA METTERE IN 
-        EVIDENZA CHE GLI ELEMENTI SONO GIà ASSOCIATI ALL'ATTUALE ID 
-        */
-          
+                
       }
         else{
           // entra in questo else se l'id non è il primo della lista e quindi non è "padre"
@@ -132,19 +126,82 @@ elemento:Element;
           
         });
 
- // poi azzero la lista
-this.assService.listaAppoggioIdSelezionati = [];
-
-
-       // let IdElementoinStringa:string ;
-        //IdElementoinStringa = IdElemento.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
-        //let elemento = document.getElementById(IdElementoinStringa);
-        //elemento.style.borderWidth = "1px";
-        //elemento.style.borderCollapse = "separate";
-        //elemento.style.borderColor=""; 
+            // poi azzero la lista
+            this.assService.listaAppoggioIdSelezionati = [];
         
+        }
       }
-    }
+      else {
+
+        if(this.assService.IdPadreSelezionato == 0){}
+        else{
+        let IdElementoinStringa:string ;
+        IdElementoinStringa = this.assService.IdPadreSelezionato.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+        let elemento = document.getElementById(IdElementoinStringa);
+        elemento.style.borderWidth = "1px";
+        elemento.style.borderCollapse = "separate";
+        elemento.style.borderColor="";
+        
+        this.assService.listaFiltroAssociazioni.forEach(element => {
+            // ciclo la lista id selezionati, per prendere ogni elemento e deselezionarlo
+            let IdElementoinStringa:string ;
+            IdElementoinStringa = element.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+            let elemento = document.getElementById(IdElementoinStringa);
+            elemento.style.borderWidth = "1px";
+            elemento.style.borderCollapse = "separate";
+            elemento.style.borderColor="";       
+          });
+        
+        this.assService.listaFiltroAssociazioni = [];
+        }
+        
+        this.selezioneElementoPadre(IdElemento)
+        }
+      }
+
+      selezioneElementoPadre(IdElem: number){
+        this.assService.IdPadreSelezionato = IdElem;
+        let IdElementoinStringa:string ;
+        IdElementoinStringa = IdElem.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+        let elemento = document.getElementById(IdElementoinStringa);
+        elemento.style.borderWidth = "5px";
+        elemento.style.borderCollapse = "separate";
+        elemento.style.borderColor="red"; 
+  
+        this.caricaListaFiltro(IdElem)
+      }
+  
+      async caricaListaFiltro(IdPadre: number){
+  
+        console.log("Entrato");
+  
+        console.log(IdPadre);
+  
+        await(this.assService.GetAssociazioneById(IdPadre));
+  
+        this.evidenziaAssociati();
+  
+      }
+  
+      evidenziaAssociati(){
+  
+        console.log(this.assService.listaFiltroAssociazioni);
+  
+        this.assService.listaFiltroAssociazioni.forEach(ele => {
+          try{
+          let elemento = document.getElementById(ele.toString());
+          elemento.style.borderWidth = "5px";
+          elemento.style.borderCollapse = "separate";
+          elemento.style.borderColor="yellow";  
+          }
+          catch(err){
+            
+          }
+          
+        });
+  
+      }
+
 
 
     
@@ -174,38 +231,13 @@ this.assService.listaAppoggioIdSelezionati = [];
 
     }
 
-
-    async caricaListaFiltro(IdPadre: number){
-
-      console.log("Entrato");
-
-      console.log(IdPadre);
-
-      await(this.assService.GetAssociazioneById(IdPadre));
-
-      this.evidenziaAssociati();
-
+    dettaglioElemento(Descrizione){
+      const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true;
+  dialogConfig.autoFocus = true;
+  dialogConfig.width = "60%";
+  dialogConfig.data=Descrizione;  
+  this.dialog.open(DettaglioComponent, dialogConfig);
     }
-
-    evidenziaAssociati(){
-
-      console.log(this.assService.listaFiltroAssociazioni);
-
-      this.assService.listaFiltroAssociazioni.forEach(ele => {
-        try{
-        let elemento = document.getElementById(ele.toString());
-        elemento.style.borderWidth = "5px";
-        elemento.style.borderCollapse = "separate";
-        elemento.style.borderColor="yellow";  
-        }
-        catch(err){
-          
-        }
-        
-      });
-
-    }
-
 
 }
-

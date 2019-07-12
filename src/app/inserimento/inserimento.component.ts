@@ -4,6 +4,7 @@ import { ElementService } from '../shared/element.service';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Component({
   selector: 'app-inserimento',
   templateUrl: './inserimento.component.html',
@@ -64,5 +65,9 @@ export class InserimentoComponent implements OnInit {
     })
   }
 
-  
+  chiudiInserimento() { 
+    this.dialogRef.close();    
+    }
+
+
 }
