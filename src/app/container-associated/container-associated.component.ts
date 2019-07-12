@@ -6,6 +6,7 @@ import { Container } from '@angular/compiler/src/i18n/i18n_ast';
 import { Interpolation } from '@angular/compiler';
 import { HttpClient } from '@angular/common/http';
 import { AssociatedService } from './associated.service';
+import {MatSnackBarModule, MatSnackBar} from '@angular/material';
 //import { ToastrService } from 'ngx-toastr';
 declare var jquery:any;
 declare var $ :any;
@@ -28,7 +29,8 @@ export class ContainerAssociatedComponent implements OnInit {
   
  constructor( private service: ElementService,
               private assService: AssociatedService,
-              private http: HttpClient) { }
+              private http: HttpClient,
+              private snack: MatSnackBar) { }
 
   ngOnInit() {  
   }
@@ -44,11 +46,13 @@ export class ContainerAssociatedComponent implements OnInit {
     let tasto = document.getElementById("CreaAss");  
     if(this.abilitaDisabilita){                             // se la booleana è true, abilito l'edit e setto poi la booleana a false
                                                             // prendo il tasto "crea Associazione"
-       tasto.hidden=false;                                  // mostro il tasto settando hidden a false       
+       tasto.hidden=false;
+       this.snack.open("Sei in modalità EDIT","Ho capito");                                  // mostro il tasto settando hidden a false       
        this.abilitaDisabilita = false;}
     else {                                                  // se la booleana è false, abilito l'edit e setto poi la booleana a true
                                                             // prendo il tasto "crea Associazione"
-       tasto.hidden= true;                                  // nascondo il tasto settando hidden a true
+       tasto.hidden= true;   
+       this.snack.open("non sei più in modalità EDIT","Ho capito");                               // nascondo il tasto settando hidden a true
        this.abilitaDisabilita = true;
     }
     }
