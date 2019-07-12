@@ -22,10 +22,13 @@
 </nav>
 </div>
 <router-outlet>
-    <div class="work-container">
-  <app-container-associated class="work-container"  [contenitoriAperti]="contenitoriAperti" (idContenitoreChiuso)= "cancellaIdDaLista($event)"></app-container-associated>
-    </div>
- 
+  <div class="work-container">
+    <table>
+      <tr app-container-associated="contenitoriAperti" class="work-container"  [contenitoriAperti]="contenitoriAperti" (idContenitoreChiuso)= "cancellaIdDaLista($event)">
+      </tr>
+    </table>
+  </div>
+
   <div class="colonna">
   <table style="float: right">
     <tr>
