@@ -13,12 +13,17 @@
       <button  class="cancella" (click)="chiudiContainer(cont.id)">&times;</button> 
       <div class="box-element" >
         <div class="row">
-        <app-element [idContenitoreAperto]="cont.id" [listaElementi]="service.listaElementi" ></app-element >
+        <app-element [edit]= "abilitaDisabilita"  [idContenitoreAperto]="cont.id" [listaElementi]="service.listaElementi" (IdElemento)="aggiungiIdElementoALista($event)" ></app-element >
         </div>
       </div>
 
+<div>
+<button id="EDIT" type="button" class="btn btn-primary"  (click)= "abilitaAssociazione()">EDIT</button>
+</div>
 
-<button id="EDIT" type="button" class="btn btn-primary">EDIT</button>
+<div>
+  <button id="CreaAss" type="button" class="btn btn-primary" (click)="creaAssociazione()" hidden="hidden">Crea Associazione</button>
+</div>
 
 
 

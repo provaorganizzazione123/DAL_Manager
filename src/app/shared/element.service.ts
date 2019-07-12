@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Element } from './element.model';
 import {HttpClient} from '@angular/common/http';
 import { Contenitore } from './contenitore.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,9 @@ export class ElementService {
   listaElementi = [];
   listaElementiAppoggio: Element[];
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,
+              private toastr: ToastrService) { }
+              
   readonly rootURL = "http://localhost:60537/api";
   //nome metodo uguale a controller post
   postElemento(formData : Element){
@@ -59,8 +62,27 @@ export class ElementService {
     return this.http.put(this.rootURL + '/Elemento/' + formData.IdElemento, formData);
   }
  
-  deleteElemento(formData:Element){
-    return this.http.delete(this.rootURL + '/Elemento/' + formData);
+  deleteElemento(id:number){
+    return this.http.delete(this.rootURL + '/Elemento/' + id).subscribe(
+      data => {
+        switch(data[0]) { 
+          case "1": { 
+            this.toastr.warning('Risposta Server', data[1].toString())
+             break; 
+          } 
+          case "2": { 
+            this.toastr.info('Risposta Server', data[1].toString())
+             break; 
+          } 
+          case "3": { 
+            this.toastr.success('Risposta Server', data[1].toString())
+             break; 
+          }
+                        }
+               },
+      err =>{
+        this.toastr.error('Attenzione', err.error.ExceptionMessage);
+      });
   }
 
   populateDropDownList(){

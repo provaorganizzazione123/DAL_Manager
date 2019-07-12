@@ -20,6 +20,11 @@ import { ElementComponent } from './container-associated/element/element.compone
 import { InserimentoComponent } from './inserimento/inserimento.component';
 import * as Material from "@angular/material";
 
+import { AssociatedService } from './container-associated/associated.service';
+import { EliminazioneComponent } from './container-associated/element/eliminazione/eliminazione.component';
+import { ModificaComponent } from './container-associated/element/modifica/modifica.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +33,9 @@ import * as Material from "@angular/material";
     RegistroAssociazioniComponent,
     ElementComponent,
     InserimentoComponent,
+    EliminazioneComponent,
+    ModificaComponent,
+    
     
   ],
   imports: [
@@ -54,8 +62,14 @@ import * as Material from "@angular/material";
     Material.MatSortModule,
     Material.MatDialogModule,
     Material.MatIconModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 7000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false
+    }
+    ),
     
+   
    
   ],
   exports:[
@@ -77,9 +91,10 @@ import * as Material from "@angular/material";
     Material.MatIconModule
 
   ],
-  providers: [ElementService],
+  providers: [ElementService,
+              AssociatedService],
   bootstrap: [AppComponent],
-  entryComponents:[InserimentoComponent]
+  entryComponents:[InserimentoComponent, EliminazioneComponent, ModificaComponent]
 })
 export class AppModule {
 
