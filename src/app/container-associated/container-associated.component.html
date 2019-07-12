@@ -1,4 +1,3 @@
-
 <div class="titolo"  cdkDrag cdkDragBoundary=".work-container" *ngFor = "let cont of contenitoriAperti " id="{{cont.id}}"> 
 
       <div cdkDragHandle>
@@ -13,9 +12,10 @@
     
       <button  class="cancella" (click)="chiudiContainer(cont.id)">&times;</button> 
       <div class="box-element" >
-      <app-element  [idContenitoreAperto]="cont.id" [listaElementi]="service.listaElementi" ></app-element >
+        <div class="row">
+        <app-element [idContenitoreAperto]="cont.id" [listaElementi]="service.listaElementi" ></app-element >
+        </div>
       </div>
-</div>
 
 
 <button id="EDIT" type="button" class="btn btn-primary">EDIT</button>
