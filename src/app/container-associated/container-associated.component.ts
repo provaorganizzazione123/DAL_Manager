@@ -1,10 +1,12 @@
 import { Component, OnInit,Input, Output,EventEmitter } from '@angular/core';
+import { ComponentListComponent } from '../component-list/component-list.component';
 import { ElementService } from 'src/app/shared/element.service';
 import { Element } from 'src/app/shared/element.model';
+import { Container } from '@angular/compiler/src/i18n/i18n_ast';
+import { Interpolation } from '@angular/compiler';
 import { HttpClient } from '@angular/common/http';
 import { AssociatedService } from './associated.service';
 import {MatSnackBarModule, MatSnackBar} from '@angular/material';
-import {ToastrService } from 'ngx-toastr';
 //import { ToastrService } from 'ngx-toastr';
 declare var jquery:any;
 declare var $ :any;
@@ -28,8 +30,7 @@ export class ContainerAssociatedComponent implements OnInit {
  constructor( private service: ElementService,
               private assService: AssociatedService,
               private http: HttpClient,
-              private snack: MatSnackBar,
-              private toastr: ToastrService,) { }
+              private snack: MatSnackBar) { }
 
   ngOnInit() {  
   }
@@ -41,7 +42,12 @@ export class ContainerAssociatedComponent implements OnInit {
     }
 
     abilitaAssociazione(){ // evento scatenato dal click del tasto "Edit"
-    // che abilita la selezionme degli elementi ed il tasto "Crea Associazione"   
+                          // che abilita la selezionme degli elementi ed il tasto "Crea Associazione"   
+    
+    if (this.assService.IdPadreSelezionato != 0 && !this.assService.listaIdElementi.includes(this.assService.IdPadreSelezionato)){
+
+      this.assService.listaIdElementi.push(this.assService.IdPadreSelezionato);
+    } 
     let tasto = document.getElementById("CreaAss");  
     if(this.abilitaDisabilita){                             // se la booleana è true, abilito l'edit e setto poi la booleana a false
                                                             // prendo il tasto "crea Associazione"
@@ -53,6 +59,7 @@ export class ContainerAssociatedComponent implements OnInit {
        tasto.hidden= true;   
        this.snack.open("non sei più in modalità EDIT","Ho capito");                               // nascondo il tasto settando hidden a true
        this.abilitaDisabilita = true;
+       this.assService.EmitSignalComponent(2);    // Emissione segnale per la diselezione degli elementi associati o temporaneamente selezionati in verde
     }
     }
 
@@ -97,9 +104,10 @@ export class ContainerAssociatedComponent implements OnInit {
         // se l'id non è presente nella lista, posso procedere con il push dell'id
       this.assService.listaIdElementi.push(id);
       
+      
       }
+      
     }
-
     mostraLegenda(){
       // metrodo per aprire il tooltip "Legenda", azionato dal mouseOver del tasto "Legenda"
       let div = document.getElementById('legenda');
