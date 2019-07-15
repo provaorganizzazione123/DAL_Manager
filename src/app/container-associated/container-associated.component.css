@@ -116,7 +116,7 @@
 #EDIT{
   position:fixed;
   top:10%;
-  left: 80%;
+  left: 78%;
   margin-right: 1%;
 }
 
@@ -130,3 +130,22 @@
 
 }
 
+#Legenda{
+  position:fixed;
+  bottom: 0%;
+  left: 0%;
+  margin-right: 1%;
+}
+
+.toolTip{
+  float: right; 
+  margin-left : 88px;
+  border:solid 1px black;
+  align-items: center;
+  background:white;  
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);   
+  padding: 10px;
+  box-shadow: -1px -1px 11px 8px #ecb42a94;
+  
+}
