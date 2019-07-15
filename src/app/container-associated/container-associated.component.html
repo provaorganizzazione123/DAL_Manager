@@ -1,3 +1,4 @@
+
 <div class="titolo"  cdkDrag cdkDragBoundary=".work-container" *ngFor = "let cont of contenitoriAperti " id="{{cont.id}}"> 
 
       <div cdkDragHandle>
@@ -16,14 +17,27 @@
         <app-element [edit]= "abilitaDisabilita"  [idContenitoreAperto]="cont.id" [listaElementi]="service.listaElementi" (IdElemento)="aggiungiIdElementoALista($event)" ></app-element >
         </div>
       </div>
+      </div>
 
 <div>
-<button id="EDIT" type="button" class="btn btn-primary"  (click)= "abilitaAssociazione()">EDIT</button>
+<button id="EDIT" type="button" class="btn btn-primary"  (click)= "abilitaAssociazione()">EDIT MODE</button>
+</div>
+<div class="container">
+<div id = "Legenda">
+    <button  id="Legenda" class="btn btn-primary" (mouseover)="mostraLegenda()" (mouseleave)="nascondiLegenda()" > Legenda</button>
+    <div id = "legenda" hidden="hidden"  class="toolTip">
+        <button class="btn btn-primary" style ="background-color:red"></button> Elemento Selezionato <br>
+        <button class="btn btn-primary" style ="background-color:yellow"></button> Elemento Associato <br>
+        <button class="btn btn-primary" style ="background-color:green"></button> Elemento Da Associare (Edit Mode) 
+      </div>
 </div>
 
+</div>
 <div>
   <button id="CreaAss" type="button" class="btn btn-primary" (click)="creaAssociazione()" hidden="hidden">Crea Associazione</button>
 </div>
+
+
 
 
 

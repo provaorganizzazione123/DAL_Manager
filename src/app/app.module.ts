@@ -70,11 +70,13 @@ import { DettaglioComponent } from './container-associated/element/dettaglio/det
       preventDuplicates: false
     }
     ),
+    Material.MatTooltipModule,
     
    
    
   ],
   exports:[
+    Material.MatTooltipModule,
     Material.MatToolbarModule,
     Material.MatGridListModule,
     Material.MatFormFieldModule,
