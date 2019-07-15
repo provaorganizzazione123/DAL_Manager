@@ -27,13 +27,6 @@
     margin-left: -5px;
   }
 
-button{
-    margin: 2%;
-    min-width: 120px;
-    box-shadow: 0 5px 5px -3px rgba(179, 183, 238, 0.842),
-    0 4px 5px 0px rgba(179, 183, 238, 0.842),
-    0 2px 7px 0px rgba(179, 183, 238, 0.842);
-  }
 
 .descrizione{
     font-family: inherit;
@@ -43,19 +36,40 @@ button{
     padding-bottom: 0;
     }
 
- #Chiudi{
-  font-size: 12px;
-  padding: 2px;
-  margin-left: 100px;
-  padding-right: 10px;
-  padding-left: 10px;
+.chiudi{
+  font-size: 10px;
+  background-color: white;
+  margin: 5%;
+  margin-left: 10%;
+  border-style: none;
+  height: 20px;
+  width: 25px;
+  border-left-color: red;
+  border-left-style: solid;
 }
 
-#Modifica{
-  font-size: 12px;
-  padding: 2px;
-  padding-right: 10px;
-  padding-left: 10px;
+.modifica{
+  font-size: 10px;
+  background-color: white;
+  margin: 5%;
+  border-style: none;
+  height: 20px;
+  width: 25px;
+  margin-left: 10%;
+  border-left-color: green;
+  border-left-style: solid;
+}
+
+.dettaglio{
+  font-size: 10px;
+  background-color: white;
+  margin: 5%;
+  border-style: none;
+  height: 20px;
+  width: 25px;
+  margin-left: 10%;
+  border-left-color: orange;
+  border-left-style: solid;
 }
 
 .box-element {
@@ -92,7 +106,28 @@ button{
   margin:2px;
 }
 
-.box-div{
-  
+.btn{
+  min-width: 120px;
+  margin: -7%;
+  box-shadow: 0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842);
+  border-right-style: none;
+  border-top-style: none;
+  border-bottom-style: none;
+  border-left-style: solid;
+  border-left-width: 5px;
+  height: 100px;
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 0%;
 }
 
+td{
+  margin-bottom: 20%;
+}
+
+.separatore{
+  margin: 15%;
+}
+
+table{
+  border-bottom-color: grey;
+}

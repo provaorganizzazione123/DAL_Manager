@@ -82,9 +82,12 @@ elemento:Element;
         let IdElementoinStringa:string ;
         IdElementoinStringa = IdElemento.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
         let elemento = document.getElementById(IdElementoinStringa);
-        elemento.style.borderWidth = "5px";
-        elemento.style.borderCollapse = "separate";
-        elemento.style.borderColor="red"; 
+        elemento.style.borderLeftColor= "red";
+        elemento.style.borderLeftStyle= "Solid";
+        elemento.style.borderLeftWidth= "6px";
+        elemento.style.borderTopColor= "white";
+        elemento.style.borderBottomColor= "white";
+        elemento.style.boxShadow="0 5px 5px -3px rgba(242, 2, 2, 0.0), 0 4px 5px 0px rgba(242, 2, 2, 0.0), 0 2px 7px 0px rgba(242, 2, 2, 0.842)";
                 
       }
         else{
@@ -93,8 +96,11 @@ elemento:Element;
             let IdElementoinStringa:string ;                        // se è presente, lo deselezionop e lo cancello dalla lista  
           IdElementoinStringa=IdElemento.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
         let elemento = document.getElementById(IdElementoinStringa);
-        elemento.style.borderWidth = "1px";
+        elemento.style.borderWidth = "6px";
         elemento.style.borderCollapse = "separate";
+        elemento.style.borderLeftStyle= "Solid";
+        elemento.style.borderTopColor= "white";
+        elemento.style.borderBottomColor= "white";
         elemento.style.borderColor=""; 
         this.assService.listaAppoggioIdSelezionati.splice(this.assService.listaAppoggioIdSelezionati.indexOf(this.IdElemento), 1);
           }
@@ -105,6 +111,9 @@ elemento:Element;
         let elemento = document.getElementById(IdElementoinStringa);
         elemento.style.borderWidth = "5px";
         elemento.style.borderCollapse = "separate";
+        elemento.style.borderLeftStyle= "Solid";
+        elemento.style.borderTopColor= "white";
+        elemento.style.borderBottomColor= "white";
         elemento.style.borderColor="green"; 
           }
         }
@@ -119,7 +128,7 @@ elemento:Element;
           let IdElementoinStringa:string ;
           IdElementoinStringa = element.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
           let elemento = document.getElementById(IdElementoinStringa);
-          elemento.style.borderWidth = "1px";
+          elemento.style.borderWidth = "5px";
           elemento.style.borderCollapse = "separate";
           elemento.style.borderColor=""; 
 
@@ -138,7 +147,7 @@ elemento:Element;
         let IdElementoinStringa:string ;
         IdElementoinStringa = this.assService.IdPadreSelezionato.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
         let elemento = document.getElementById(IdElementoinStringa);
-        elemento.style.borderWidth = "1px";
+        elemento.style.borderWidth = "6px";
         elemento.style.borderCollapse = "separate";
         elemento.style.borderColor="";
         
@@ -147,7 +156,7 @@ elemento:Element;
             let IdElementoinStringa:string ;
             IdElementoinStringa = element.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
             let elemento = document.getElementById(IdElementoinStringa);
-            elemento.style.borderWidth = "1px";
+            elemento.style.borderWidth = "6px";
             elemento.style.borderCollapse = "separate";
             elemento.style.borderColor="";       
           });
@@ -164,10 +173,13 @@ elemento:Element;
         let IdElementoinStringa:string ;
         IdElementoinStringa = IdElem.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
         let elemento = document.getElementById(IdElementoinStringa);
-        elemento.style.borderWidth = "5px";
-        elemento.style.borderCollapse = "separate";
-        elemento.style.borderColor="red"; 
-  
+        elemento.style.borderLeftColor= "red";
+        elemento.style.borderLeftStyle= "Solid";
+        elemento.style.borderLeftWidth= "6px";
+        elemento.style.borderTopColor= "white";
+        elemento.style.borderBottomColor= "white";
+        elemento.style.boxShadow="0 5px 5px -3px rgba(242, 2, 2, 0.0), 0 4px 5px 0px rgba(242, 2, 2, 0.0), 0 2px 7px 0px rgba(242, 2, 2, 0.842)";
+
         this.caricaListaFiltro(IdElem)
       }
   
@@ -190,9 +202,12 @@ elemento:Element;
         this.assService.listaFiltroAssociazioni.forEach(ele => {
           try{
           let elemento = document.getElementById(ele.toString());
-          elemento.style.borderWidth = "5px";
-          elemento.style.borderCollapse = "separate";
-          elemento.style.borderColor="yellow";  
+          elemento.style.borderLeftColor= "yellow";
+          elemento.style.borderLeftStyle= "Solid";
+          elemento.style.borderLeftWidth= "6px";
+          elemento.style.borderTopColor= "white";
+          elemento.style.borderBottomColor= "white";
+          elemento.style.boxShadow="0 5px 5px -3px rgba(242, 242, 2, 0.0), 0 4px 5px 0px rgba(242, 242, 2, 0.0), 0 2px 7px 0px rgba(242, 242, 2, 0.842)";
           }
           catch(err){
             
