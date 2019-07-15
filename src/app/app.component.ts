@@ -4,6 +4,7 @@ import { ElementService } from './shared/element.service';
 import { MatDialog, MatDialogConfig} from "@angular/material"
 import { InserimentoComponent } from './inserimento/inserimento.component';
 import { AssociatedService } from './container-associated/associated.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,7 +21,7 @@ export class AppComponent {
   
   constructor( private service: ElementService,
                private assService: AssociatedService,
-                public dialog : MatDialog) { }
+                public dialog : MatDialog,) { }
 
   ngOnInit () {
     this.service.refreshList();
@@ -50,5 +51,7 @@ inserisciElemento(){
   dialogConfig.width = "60%";
   
   this.dialog.open(InserimentoComponent, dialogConfig);
-  }  
+  }
+  
+ 
 }
