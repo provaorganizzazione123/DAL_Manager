@@ -41,26 +41,33 @@ namespace WebApplication2.Controllers
           return ElementiTornati;
         }
 
-        // POST: api/Associazione
-        public IHttpActionResult PostAssociazione(List<int> listaId)
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-                // ***************devo passare qui i campi da immetere nella query***********
-                IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
-                for ( int i=1; i < listaId.Count(); i++) {
-                int idPadre = listaId[0];       
-                int idFiglio = listaId[i];
-                string stringhetta = "INSERT INTO Tab_Associaz_Elem (Id_Elemento1,Id_Elemento2) Values ('" + idPadre + "', '" + idFiglio + "');";
-                var affectedRows = db.Execute(stringhetta);
-                }
-                return CreatedAtRoute("DefaultApi", new { id = listaId[0] },listaId);
-            }
+    // POST: api/Associazione
+    public List<string> PostAssociazione(List<int> listaId)
+    {
+      if (!ModelState.IsValid)
+      {
+        // return BadRequest(ModelState);
+        return new List<string> { "1", "Il model state non è valido" };
+      }
+      else if (listaId.Count <= 1)
+      {
+        return new List<string> { "2", "Attenzione, seleziona almeno due elementi da associare" };
+      }
+      // ******devo passare qui i campi da immetere nella query****
+      IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
+      int conta = listaId.Count;
+      for (int i = 1; i != conta; i++)
+      {
+        int idPadre = listaId[0];
+        int idFiglio = listaId[i];
+        string stringhetta = "INSERT INTO Tab_Associaz_Elem (Id_Elemento1,Id_Elemento2) Values ('" + idPadre + "', '" + idFiglio + "');";
+        var affectedRows = db.Execute(stringhetta);
+      }
+      return new List<string> { "3", "Associazione avvenuta con successo" };
+    }
 
-        // PUT: api/Associazione/5
-        public void Put(int id, [FromBody]string value)
+    // PUT: api/Associazione/5
+    public void Put(int id, [FromBody]string value)
         {
         }
 
