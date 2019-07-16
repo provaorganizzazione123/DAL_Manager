@@ -1,0 +1,28 @@
+<button  class="cancella" (click)="chiudiInserimentoContenitore()">&times;</button>
+<div class="lead" >Inserisci Contenitore  
+</div>
+
+<br>
+<form name="forminserimento" #form="ngForm" (submit)="onSubmit(form)"autocomplete="off">
+  <input type="hidden" name="Id_Contenitore" #Id_Contenitore="ngModel" [(ngModel)]="serviceCont.formData.Id_Contenitore">
+  <div class="form-group">
+      <label>Nome Contenitore </label>
+      <input name="Nome_Contenitore" #Nome_Contenitore="ngModel" [(ngModel)]="serviceCont.formData.Nome_Contenitore" class="form-control" required>
+      <div class="validation-error" *ngIf="Nome_Contenitore.invalid && Nome_Contenitore.touched">Questo campo è obbligatiorio</div>
+
+  </div>
+  <div class="form-group">
+     
+     <select name="Colore_Contenitore" #Colore_Contenitore="ngModel" [(ngModel)] = "serviceCont.formData.Colore_Contenitore" required>
+      <option value="" >Seleziona Colore</option>   
+      <option value="#0000ff" style = "background-color: #0000ff">blu</option>
+      <option value="#ff0000" style = "background-color: #ff0000">red</option>
+      <option value="#00ff00" style = "background-color: #00ff00">green</option>
+      </select>
+    
+  </div>
+  <div class="form-group">
+      <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+  </div>
+
+</form>

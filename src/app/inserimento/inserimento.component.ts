@@ -49,12 +49,12 @@ export class InserimentoComponent implements OnInit {
 
   insertRecord(form:NgForm){
     this.service.postElemento(form.value).subscribe(
-      res => {
-        this.service.filtraLista(form.value.Id_Contenitore);
-       
+      async res => { await this.service.refreshList();
+        this.service.filtraLista(form.value.Id_Contenitore);       
         this.toastr.success('Risposta del Server', 'Inserimento avvenuto con successo');
+        this.service.emetteSegnaleAggiornamento(true);
         this.resetForm(form);
-        this.service.refreshList();
+       
       });
   }
   updateRecord(form:NgForm){

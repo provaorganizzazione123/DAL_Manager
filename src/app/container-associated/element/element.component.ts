@@ -42,6 +42,13 @@ elemento:Element;
      this.assService.riceveSignal.subscribe((param: number) => {
       this.catchSignalComponent(param)
       });
+      this.service.SegnaleAggiornamento.subscribe(()=>{
+        this.listaElementi.forEach(element => {
+          if (element.id == this.idContenitoreAperto){
+               this.elemento=element.l;
+          } 
+         });
+      })
 
     }
 

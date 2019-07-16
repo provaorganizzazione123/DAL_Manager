@@ -149,3 +149,12 @@
   box-shadow: -1px -1px 11px 8px #ecb42a94;
   
 }
+
+.dimensioneSpan{
+  width: 50px;
+  height: 15px;
+  margin: auto;
+  display:inline-block;
+  border: 1px solid grey;
+  border-radius: 10px;
+}

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter,SimpleChange
  } from '@angular/core';
  import { ElementService } from 'src/app/shared/element.service';
 import { AssociatedService } from '../container-associated/associated.service';
+import {ContenitoreService} from '../inserimento-contenitore/contenitore.service';
 
 @Component({
   selector: 'app-component-list',
@@ -9,19 +10,25 @@ import { AssociatedService } from '../container-associated/associated.service';
   styleUrls: ['./component-list.component.css']
 })
 export class ComponentListComponent implements OnInit {
-@Input () ListaContenitore;
+@Input() ListaContenitore;
 @Input() idDelete;
-@Output() container = new EventEmitter <{id: string, nome: string}> ();
-@Output () idCancellato = new EventEmitter () ;
+@Output() container = new EventEmitter <{id: string, nome: string, colore : string}> ();
+@Output() idCancellato = new EventEmitter () ;
 listId=[]; 
 
-  constructor(private service:ElementService, private assService: AssociatedService) { }
+  constructor(private service:ElementService,
+              private assService: AssociatedService,
+              private serviceCont:ContenitoreService) { }
 
   ngOnInit() {
-    this.service.refreshContenitori()
+    this.serviceCont.refreshContenitori();
+    this.serviceCont.segnaleAggiornamento.subscribe(()=>{
+    this.serviceCont.refreshContenitori();
+    // this.serviceCont.Aggiornamento(false)
+  });
   }
 
- espandiContenitore (id,nome) {
+ espandiContenitore (id,nome,colore) {
    let bool = true;
    for (let index = 0; index < this.listId.length; index++)
    {
@@ -35,7 +42,7 @@ listId=[];
    if (bool) {
     this.service.filtraLista(id);
     this.listId.push(id);
-    this.container.emit({ id:id, nome:nome });
+    this.container.emit({ id:id, nome:nome, colore:colore });
     
     }
   }
