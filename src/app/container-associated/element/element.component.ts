@@ -8,6 +8,7 @@ import { ElementService } from 'src/app/shared/element.service';
 import { AssociatedService } from '../associated.service';
 import { __await } from 'tslib';
 import { DettaglioComponent } from './dettaglio/dettaglio.component'
+import { style } from '@angular/animations';
 
 
 @Component({
@@ -109,7 +110,7 @@ elemento:Element;
           let IdElementoinStringa:string ;
           IdElementoinStringa=IdElemento.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
         let elemento = document.getElementById(IdElementoinStringa);
-        elemento.style.borderWidth = "5px";
+        elemento.style.borderWidth = "6px";
         elemento.style.borderCollapse = "separate";
         elemento.style.borderLeftStyle= "Solid";
         elemento.style.borderTopColor= "white";
@@ -131,6 +132,7 @@ elemento:Element;
           elemento.style.borderWidth = "5px";
           elemento.style.borderCollapse = "separate";
           elemento.style.borderColor=""; 
+          elemento.style.boxShadow= "0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842)";
 
           
         });
@@ -150,6 +152,7 @@ elemento:Element;
         elemento.style.borderWidth = "6px";
         elemento.style.borderCollapse = "separate";
         elemento.style.borderColor="";
+        elemento.style.boxShadow= "0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842)";
         
         this.assService.listaFiltroAssociazioni.forEach(element => {
             // ciclo la lista id selezionati, per prendere ogni elemento e deselezionarlo
@@ -158,7 +161,8 @@ elemento:Element;
             let elemento = document.getElementById(IdElementoinStringa);
             elemento.style.borderWidth = "6px";
             elemento.style.borderCollapse = "separate";
-            elemento.style.borderColor="";       
+            elemento.style.borderColor="";
+            elemento.style.boxShadow= "0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842)";       
           });
         
         this.assService.listaFiltroAssociazioni = [];
@@ -218,7 +222,15 @@ elemento:Element;
       }
 
 
+      colorescritta(idColore){
+        let colore = document.getElementById(idColore);
+        colore.style.color="white";
+      }
 
+      coloreOriginale(idColore){
+        let colore = document.getElementById(idColore);
+        colore.style.color="blue";
+      }
     
     /* Metodo DeleteElemento ----> """"" scaturito dal click sui bottoni X degli elementi """"
     Questo metodo crea una Dialog facendo partire il component Figlio --> EliminazioneComponent

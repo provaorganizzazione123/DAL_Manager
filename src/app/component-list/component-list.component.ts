@@ -39,8 +39,6 @@ listId=[];
     
     }
   }
-
-
                                 
 
  ngOnChanges (changes: {[idDelete: string]:SimpleChange}){

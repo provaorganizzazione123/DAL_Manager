@@ -5,8 +5,8 @@
      <table>
        <tr>
          <td>
-     <button class="element, btn btn-outline-primary" id = "{{ele.IdElemento}}" (click)="catturaId(ele.IdElemento)" >
-      <p class="descrizione">
+     <button (mouseover)="colorescritta(ele.NomeElemento)" (mouseleave)="coloreOriginale(ele.NomeElemento)" class="element, btn btn-outline-primary" id ="{{ele.IdElemento}}" (click)="catturaId(ele.IdElemento)" >
+      <p  class="descrizione" id ="{{ele.NomeElemento}}">
         {{ele.NomeElemento}}
       </p>
     </button>
