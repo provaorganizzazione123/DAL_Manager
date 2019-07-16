@@ -22,6 +22,7 @@ export class ElementComponent implements OnInit {
 @Input() idContenitoreAperto;
 @Input() listaElementi;
 colore:boolean;
+
 @Output() IdElemento = new EventEmitter();
 
 elemento:Element;
@@ -39,22 +40,34 @@ elemento:Element;
       } 
      });
      
-     this.assService.riceveSignal.subscribe((param: boolean) => {
-      this.evidenziaAssociati()
+     this.assService.riceveSignal.subscribe((param: number) => {
+      this.catchSignalComponent(param)
       });
 
     }
 
     ngAfterViewInit(): void {
-      //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-      //Add 'implements AfterViewInit' to the class.
-      this.assService.EvidenziaElementiAperti(true);
+      this.assService.EmitSignalComponent(1);  //Emissione del segnale per l'aggiornamento della messa in evidenza degli
+                                               //elementi associati
     }
 
+    ng
 
     catturaId(IdElemento:number){
 
-      if(!this.edit){// premendo il tasto "edit" abilito la modalità edit, e giocando con una booleana, abilito l'evento click del tasto Crea Associazione
+      if(!this.edit){
+        this.ModalitaEdit(IdElemento)      
+      }
+      else{
+        this.ModalitaVisione(IdElemento)
+      } 
+       
+      }
+
+//MODALITA EDIT: Modalità in cui l'utento puo creare nuove associazioni o eliminare quelle già esistenti
+      ModalitaEdit(IdElemento: number){
+
+        // premendo il tasto "edit" abilito la modalità edit, e giocando con una booleana, abilito l'evento click del tasto Crea Associazione
       // metodo che cattura l'id dell'elemento che deve essere aggiunto alla lista per l'associazione
       // presente nel metodo del container-associated.
 
@@ -88,7 +101,7 @@ elemento:Element;
         elemento.style.borderLeftWidth= "6px";
         elemento.style.borderTopColor= "white";
         elemento.style.borderBottomColor= "white";
-        elemento.style.boxShadow="0 5px 5px -3px rgba(242, 2, 2, 0.0), 0 4px 5px 0px rgba(242, 2, 2, 0.0), 0 2px 7px 0px rgba(242, 2, 2, 0.842)";
+        elemento.style.boxShadow="0 5px 5px -3px rgba(242, 2, 2, 0.0), 0 4px 5px 0px rgba(242, 2, 2, 0.0), 0 2px 7px 0px rgba(242, 2, 2, 0.842)"; 
                 
       }
         else{
@@ -141,21 +154,27 @@ elemento:Element;
             this.assService.listaAppoggioIdSelezionati = [];
         
         }
-      }
-      else {
 
-        if(this.assService.IdPadreSelezionato == 0){}
-        else{
-        let IdElementoinStringa:string ;
-        IdElementoinStringa = this.assService.IdPadreSelezionato.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
-        let elemento = document.getElementById(IdElementoinStringa);
-        elemento.style.borderWidth = "6px";
-        elemento.style.borderCollapse = "separate";
-        elemento.style.borderColor="";
-        elemento.style.boxShadow= "0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842)";
+      }
+
+
+
+ // MODALITA' VISIONE: Modalita in cui l'utente può visualizzare gli elementi associati ad un altro elemento selezionato
+      ModalitaVisione(IdElemento: number){
+
+        if(this.assService.IdPadreSelezionato != 0){
+
+          let IdElementoinStringa:string ;
+          IdElementoinStringa = this.assService.IdPadreSelezionato.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+          let elemento = document.getElementById(IdElementoinStringa);
+          elemento.style.borderWidth = "6px";
+          elemento.style.borderCollapse = "separate";
+          elemento.style.borderColor="";
+          elemento.style.boxShadow= "0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842)";
         
-        this.assService.listaFiltroAssociazioni.forEach(element => {
+          this.assService.listaFiltroAssociazioni.forEach(element => {
             // ciclo la lista id selezionati, per prendere ogni elemento e deselezionarlo
+            try{
             let IdElementoinStringa:string ;
             IdElementoinStringa = element.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
             let elemento = document.getElementById(IdElementoinStringa);
@@ -163,19 +182,20 @@ elemento:Element;
             elemento.style.borderCollapse = "separate";
             elemento.style.borderColor="";
             elemento.style.boxShadow= "0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842)";       
+            }
+            catch {}       
           });
         
-        this.assService.listaFiltroAssociazioni = [];
-        }
-        
-        this.selezioneElementoPadre(IdElemento)
-        }
+        this.assService.listaFiltroAssociazioni = []; 
+
+         }
+
+        this.selezioneElementoPadre(IdElemento) 
       }
 
       selezioneElementoPadre(IdElem: number){
         this.assService.IdPadreSelezionato = IdElem;
-        let IdElementoinStringa:string ;
-        IdElementoinStringa = IdElem.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+        let IdElementoinStringa: string = IdElem.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
         let elemento = document.getElementById(IdElementoinStringa);
         elemento.style.borderLeftColor= "red";
         elemento.style.borderLeftStyle= "Solid";
@@ -183,41 +203,65 @@ elemento:Element;
         elemento.style.borderTopColor= "white";
         elemento.style.borderBottomColor= "white";
         elemento.style.boxShadow="0 5px 5px -3px rgba(242, 2, 2, 0.0), 0 4px 5px 0px rgba(242, 2, 2, 0.0), 0 2px 7px 0px rgba(242, 2, 2, 0.842)";
-
+  
         this.caricaListaFiltro(IdElem)
       }
   
       async caricaListaFiltro(IdPadre: number){
+
+        await this.assService.GetAssociazioneById(IdPadre);
   
-        console.log("Entrato");
-  
-        console.log(IdPadre);
-  
-        await(this.assService.GetAssociazioneById(IdPadre));
-  
-        this.evidenziaAssociati();
-  
+        this.catchSignalComponent(1);       //Emissione del segnale per l'aggiornamento della messa in evidenza degli
+                                          //elementi associati
       }
   
-      evidenziaAssociati(){
-  
-        console.log(this.assService.listaFiltroAssociazioni);
-  
-        this.assService.listaFiltroAssociazioni.forEach(ele => {
-          try{
-          let elemento = document.getElementById(ele.toString());
-          elemento.style.borderLeftColor= "yellow";
-          elemento.style.borderLeftStyle= "Solid";
-          elemento.style.borderLeftWidth= "6px";
-          elemento.style.borderTopColor= "white";
-          elemento.style.borderBottomColor= "white";
-          elemento.style.boxShadow="0 5px 5px -3px rgba(242, 242, 2, 0.0), 0 4px 5px 0px rgba(242, 242, 2, 0.0), 0 2px 7px 0px rgba(242, 242, 2, 0.842)";
-          }
-          catch(err){
-            
-          }
+      catchSignalComponent(param: number){
+
+        /* Metodo che intercetta il segnale del service ed esegue istruzioni specifiche a seconda del valore 
+           numerico ricevuto. Ad ogni numero equivale una funzionalità specifica del component  */
+
+        switch (param) {
+          case 1: // Intercettazione del segnale per la messa in evidenza degli elementi associati ad un elemento padre
+                  this.assService.listaFiltroAssociazioni.forEach(ele => {
+                    try{
+                      let elemento = document.getElementById(ele.toString());
+                      elemento.style.borderLeftColor= "yellow";
+                      elemento.style.borderLeftStyle= "Solid";
+                      elemento.style.borderLeftWidth= "6px";
+                      elemento.style.borderTopColor= "white";
+                      elemento.style.borderBottomColor= "white";
+                      elemento.style.boxShadow="0 5px 5px -3px rgba(242, 242, 2, 0.0), 0 4px 5px 0px rgba(242, 242, 2, 0.0), 0 2px 7px 0px rgba(242, 242, 2, 0.842)"; 
+                    }
+                    catch(err){
+                    }
+                  });
+            break;
           
-        });
+          case 2: //Intercettazione del segnale per la deselezione degli elementi temporaneamente selezionati in verde 
+                  
+                  for (let i = 1; i < this.assService.listaIdElementi.length; i++) {
+                    var element = this.assService.listaIdElementi[i];
+                    try{
+                      let IdElementoinStringa:string ;
+                      IdElementoinStringa = element.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+                      let elemento = document.getElementById(IdElementoinStringa);
+                      elemento.style.borderWidth = "6px";
+                      elemento.style.borderCollapse = "separate";
+                      elemento.style.borderColor="";
+                      this.assService.listaIdElementi.splice(i,1)
+                    }
+                    catch {}       
+                    }
+                    this.assService.listaAppoggioIdSelezionati = [];
+                    console.log(this.assService.listaIdElementi) 
+                    console.log(this.assService.IdPadreSelezionato)
+            break;
+
+          default:
+            break;
+        }
+  
+        
   
       }
 
@@ -260,11 +304,11 @@ elemento:Element;
 
     dettaglioElemento(Descrizione){
       const dialogConfig = new MatDialogConfig();
-  dialogConfig.disableClose = true;
-  dialogConfig.autoFocus = true;
-  dialogConfig.width = "60%";
-  dialogConfig.data=Descrizione;  
-  this.dialog.open(DettaglioComponent, dialogConfig);
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.width = "60%";
+      dialogConfig.data=Descrizione;  
+      this.dialog.open(DettaglioComponent, dialogConfig);
     }
 
 

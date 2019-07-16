@@ -11,7 +11,7 @@ import { catchError} from 'rxjs/operators';
 })
 export class AssociatedService {
   listaAppoggioIdSelezionati = [];
-  IdPadreSelezionato: Number = 0;
+  IdPadreSelezionato: number = 0;
 
   errore: string;
   result: any;
@@ -23,11 +23,11 @@ export class AssociatedService {
 
   listaIdElementi: number[] = [];
 
-  riceveSignal: EventEmitter<boolean>;
+  riceveSignal: EventEmitter<number>;
 
   constructor(private http: HttpClient, private toastr: ToastrService) { 
 
-    this.riceveSignal = new EventEmitter<boolean>();
+    this.riceveSignal = new EventEmitter<number>();
 
   }
 
@@ -69,7 +69,7 @@ export class AssociatedService {
             await this.http.get(this.rootURL + '/Associazione/' + IdPadre.toString()).toPromise().then(res => this.listaFiltroAssociazioni = res as number[]);    
           }
                   
-         EvidenziaElementiAperti(signal: boolean){
+          EmitSignalComponent(signal: number){
                   
             this.riceveSignal.emit(signal);
                   
