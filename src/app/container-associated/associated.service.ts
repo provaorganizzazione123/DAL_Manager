@@ -45,7 +45,8 @@ export class AssociatedService {
              break; 
           } 
           case "3": { 
-            this.toastr.success('Risposta Server', data[1].toString())
+            this.toastr.success('Risposta Server', data[1].toString());
+            this.EmitSignalComponent(3);
              break; 
           }
                         }
