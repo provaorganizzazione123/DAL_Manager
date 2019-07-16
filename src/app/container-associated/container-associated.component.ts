@@ -80,7 +80,13 @@ export class ContainerAssociatedComponent implements OnInit {
     aggiungiIdElementoALista(id){
       // metodo che riceve l'id dell'elemento da associare dal componente "element" e lo aggiunge 
       // ad una lista di id da associare
-      if (this.assService.listaIdElementi.includes(id)){
+
+      // Controllo se è stato selezionato un elemento già associato al padre
+      if(this.assService.listaFiltroAssociazioni.includes(id)){
+
+      }
+
+      else if (this.assService.listaIdElementi.includes(id)){
         // con questa if controllo se l'id è gia inserito nella lista.
         // siccome l'id già esiste, l'aver cliccato 2 volte sullo stesso elemento,
         // ne comporta la cancellazione dalla lista.
