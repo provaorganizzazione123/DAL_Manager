@@ -18,7 +18,7 @@ export class ElementService {
 
   constructor(private http:HttpClient,
               private toastr: ToastrService) {
-                this.SegnaleAggiornamento= new EventEmitter<boolean>()
+              this.SegnaleAggiornamento= new EventEmitter<boolean>()
                }
               
   readonly rootURL = "http://localhost:60537/api";

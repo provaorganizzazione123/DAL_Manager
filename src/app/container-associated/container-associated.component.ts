@@ -1,12 +1,10 @@
 import { Component, OnInit,Input, Output,EventEmitter } from '@angular/core';
-import { ComponentListComponent } from '../component-list/component-list.component';
 import { ElementService } from 'src/app/shared/element.service';
 import { Element } from 'src/app/shared/element.model';
-import { Container } from '@angular/compiler/src/i18n/i18n_ast';
-import { Interpolation } from '@angular/compiler';
 import { HttpClient } from '@angular/common/http';
 import { AssociatedService } from './associated.service';
 import {MatSnackBarModule, MatSnackBar} from '@angular/material';
+import {ToastrService } from 'ngx-toastr';
 import { Contenitore } from '../shared/contenitore.model';
 //import { ToastrService } from 'ngx-toastr';
 declare var jquery:any;
@@ -31,10 +29,10 @@ export class ContainerAssociatedComponent implements OnInit {
  constructor( private service: ElementService,
               private assService: AssociatedService,
               private http: HttpClient,
-              private snack: MatSnackBar) { }
+              private snack: MatSnackBar,
+              private toastr: ToastrService,) { }
 
   ngOnInit() { }
-
 
 
   chiudiContainer(contId) {
@@ -44,8 +42,8 @@ export class ContainerAssociatedComponent implements OnInit {
     }
 
     abilitaAssociazione(){ // evento scatenato dal click del tasto "Edit"
-                          // che abilita la selezionme degli elementi ed il tasto "Crea Associazione"   
-    
+    // che abilita la selezionme degli elementi ed il tasto "Crea Associazione"   
+ 
     if (this.assService.IdPadreSelezionato != 0 && !this.assService.listaIdElementi.includes(this.assService.IdPadreSelezionato)){
 
       this.assService.listaIdElementi.push(this.assService.IdPadreSelezionato);
@@ -111,16 +109,16 @@ export class ContainerAssociatedComponent implements OnInit {
       else {
         // se l'id non è presente nella lista, posso procedere con il push dell'id
       this.assService.listaIdElementi.push(id);
-      
-      
       }
       
     }
+
     mostraLegenda(){
       // metrodo per aprire il tooltip "Legenda", azionato dal mouseOver del tasto "Legenda"
       let div = document.getElementById('legenda');
       div.hidden=false;    
     }
+  
     nascondiLegenda(){
       // metodo per chiudere il tooltip "Legenda", azionato dall'evento mouseLeave del tasto "Legenda"
       let div = document.getElementById('legenda');

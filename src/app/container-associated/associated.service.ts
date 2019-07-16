@@ -23,12 +23,10 @@ export class AssociatedService {
 
   listaIdElementi: number[] = [];
 
+
   riceveSignal: EventEmitter<number>;
-
   constructor(private http: HttpClient, private toastr: ToastrService) { 
-
-    this.riceveSignal = new EventEmitter<number>();
-
+  this.riceveSignal = new EventEmitter<number>();
   }
 
 
@@ -47,9 +45,9 @@ export class AssociatedService {
           case "3": { 
             this.toastr.success('Risposta Server', data[1].toString());
             this.EmitSignalComponent(3);
-             break; 
+            break; 
           }
-                        }
+             }
                },
       err =>{
         this.toastr.error('Attenzione', err.error.ExceptionMessage);
@@ -70,8 +68,9 @@ export class AssociatedService {
             await this.http.get(this.rootURL + '/Associazione/' + IdPadre.toString()).toPromise().then(res => this.listaFiltroAssociazioni = res as number[]);    
           }
                   
+
           EmitSignalComponent(signal: number){
-                  
+   
             this.riceveSignal.emit(signal);
                   
           }

@@ -42,8 +42,7 @@ listId=[];
    if (bool) {
     this.service.filtraLista(id);
     this.listId.push(id);
-    this.container.emit({ id:id, nome:nome, colore:colore });
-    
+    this.container.emit({ id:id, nome:nome, colore:colore }); 
     }
   }
                                 

@@ -11,7 +11,6 @@ import { DettaglioComponent } from './dettaglio/dettaglio.component'
 import { style } from '@angular/animations';
 import { timingSafeEqual } from 'crypto';
 
-
 @Component({
   selector: 'app-element',
   templateUrl: './element.component.html',
@@ -23,9 +22,7 @@ export class ElementComponent implements OnInit {
 @Input() idContenitoreAperto;
 @Input() listaElementi;
 colore:boolean;
-
 @Output() IdElemento = new EventEmitter();
-
 elemento:Element;
 @Input() edit : Boolean ; 
 
@@ -41,16 +38,9 @@ elemento:Element;
       } 
      });
      
-     this.assService.riceveSignal.subscribe((param: number) => {
-      this.catchSignalComponent(param)
+     this.assService.riceveSignal.subscribe((param: boolean) => {
+      this.evidenziaAssociati()
       });
-      this.service.SegnaleAggiornamento.subscribe(()=>{
-        this.listaElementi.forEach(element => {
-          if (element.id == this.idContenitoreAperto){
-               this.elemento=element.l;
-          } 
-         });
-      })
 
     }
 
@@ -60,14 +50,12 @@ elemento:Element;
     }
 
     catturaId(IdElemento:number){
-
       if(!this.edit){
         this.ModalitaEdit(IdElemento)      
       }
       else{
         this.ModalitaVisione(IdElemento)
       } 
-       
       }
 
 //MODALITA EDIT: Modalità in cui l'utento puo creare nuove associazioni o eliminare quelle già esistenti
@@ -81,6 +69,7 @@ elemento:Element;
 
       // ora richiamo la lista di id dall'associated.service e ne controllo la posizione dell'id attuale   
       // come prima cosa controllo che la lista non sia vuota, quindi diversa da 0   
+
     if(this.assService.listaIdElementi.length != 0 ){
       
       let indice = this.assService.listaIdElementi.indexOf(IdElemento);
@@ -216,13 +205,12 @@ elemento:Element;
         elemento.style.borderTopColor= "white";
         elemento.style.borderBottomColor= "white";
         elemento.style.boxShadow="0 5px 5px -3px rgba(242, 2, 2, 0.0), 0 4px 5px 0px rgba(242, 2, 2, 0.0), 0 2px 7px 0px rgba(242, 2, 2, 0.842)";
-  
         this.caricaListaFiltro(IdElem)
       }
   
       async caricaListaFiltro(IdPadre: number){
 
-        await this.assService.GetAssociazioneById(IdPadre);
+      await this.assService.GetAssociazioneById(IdPadre);
   
         this.catchSignalComponent(1);       //Emissione del segnale per l'aggiornamento della messa in evidenza degli
                                           //elementi associati
@@ -277,9 +265,6 @@ elemento:Element;
           default:
             break;
         }
-  
-        
-  
       }
 
 
@@ -320,13 +305,11 @@ elemento:Element;
     }
 
     dettaglioElemento(Descrizione){
-      const dialogConfig = new MatDialogConfig();
+    const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       dialogConfig.width = "60%";
       dialogConfig.data=Descrizione;  
       this.dialog.open(DettaglioComponent, dialogConfig);
     }
-
-
 }

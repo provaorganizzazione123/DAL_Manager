@@ -27,6 +27,7 @@ import { DettaglioComponent } from './container-associated/element/dettaglio/det
 import { InserimentoContenitoreComponent } from './inserimento-contenitore/inserimento-contenitore.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,8 +40,7 @@ import { InserimentoContenitoreComponent } from './inserimento-contenitore/inser
     ModificaComponent,
     DettaglioComponent,
     InserimentoContenitoreComponent,
-    
-    
+
   ],
   imports: [
     BrowserModule,
@@ -72,11 +72,11 @@ import { InserimentoContenitoreComponent } from './inserimento-contenitore/inser
       preventDuplicates: false
     }
     ),
-    
-   
+    Material.MatTooltipModule,
    
   ],
   exports:[
+    Material.MatTooltipModule,
     Material.MatToolbarModule,
     Material.MatGridListModule,
     Material.MatFormFieldModule,
@@ -98,6 +98,7 @@ import { InserimentoContenitoreComponent } from './inserimento-contenitore/inser
   providers: [ElementService,
               AssociatedService],
   bootstrap: [AppComponent],
+  entryComponents:[InserimentoComponent, EliminazioneComponent, ModificaComponent, DettaglioComponent]
   entryComponents:[
      InserimentoComponent, 
      EliminazioneComponent,

@@ -22,9 +22,9 @@ export class AppComponent {
   @Output() contenitore = new EventEmitter <{id: string, nome: string}> ();
   
   constructor( private service: ElementService,
-              private serviceCont: ContenitoreService,
+               private serviceCont: ContenitoreService,
                private assService: AssociatedService,
-                public dialog : MatDialog,) { }
+               public dialog : MatDialog,) { }
 
   ngOnInit () {
     this.service.refreshList();

@@ -120,14 +120,12 @@
   margin-right: 1%;
 }
 
-
 #CreaAss{
   position: fixed;
   top: 8%;
   left:1%;
   flex:auto;
-
-
+  margin-right: 1%;
 }
 
 #Legenda{
