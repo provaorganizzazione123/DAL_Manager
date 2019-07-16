@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { AssociatedService } from './associated.service';
 import {MatSnackBarModule, MatSnackBar} from '@angular/material';
 import {ToastrService } from 'ngx-toastr';
+import { Contenitore } from '../shared/contenitore.model';
 //import { ToastrService } from 'ngx-toastr';
 declare var jquery:any;
 declare var $ :any;
@@ -31,8 +32,8 @@ export class ContainerAssociatedComponent implements OnInit {
               private snack: MatSnackBar,
               private toastr: ToastrService,) { }
 
-  ngOnInit() {  
-  }
+  ngOnInit() { }
+
 
   chiudiContainer(contId) {
     let box = document.getElementById(contId);
@@ -42,6 +43,11 @@ export class ContainerAssociatedComponent implements OnInit {
 
     abilitaAssociazione(){ // evento scatenato dal click del tasto "Edit"
     // che abilita la selezionme degli elementi ed il tasto "Crea Associazione"   
+ 
+    if (this.assService.IdPadreSelezionato != 0 && !this.assService.listaIdElementi.includes(this.assService.IdPadreSelezionato)){
+
+      this.assService.listaIdElementi.push(this.assService.IdPadreSelezionato);
+    } 
     let tasto = document.getElementById("CreaAss");  
     if(this.abilitaDisabilita){                             // se la booleana è true, abilito l'edit e setto poi la booleana a false
                                                             // prendo il tasto "crea Associazione"
@@ -53,6 +59,7 @@ export class ContainerAssociatedComponent implements OnInit {
        tasto.hidden= true;   
        this.snack.open("non sei più in modalità EDIT","Ho capito");                               // nascondo il tasto settando hidden a true
        this.abilitaDisabilita = true;
+       this.assService.EmitSignalComponent(2);    // Emissione segnale per la diselezione degli elementi associati o temporaneamente selezionati in verde
     }
     }
 
@@ -73,7 +80,13 @@ export class ContainerAssociatedComponent implements OnInit {
     aggiungiIdElementoALista(id){
       // metodo che riceve l'id dell'elemento da associare dal componente "element" e lo aggiunge 
       // ad una lista di id da associare
-      if (this.assService.listaIdElementi.includes(id)){
+
+      // Controllo se è stato selezionato un elemento già associato al padre
+      if(this.assService.listaFiltroAssociazioni.includes(id)){
+
+      }
+
+      else if (this.assService.listaIdElementi.includes(id)){
         // con questa if controllo se l'id è gia inserito nella lista.
         // siccome l'id già esiste, l'aver cliccato 2 volte sullo stesso elemento,
         // ne comporta la cancellazione dalla lista.
@@ -96,8 +109,8 @@ export class ContainerAssociatedComponent implements OnInit {
       else {
         // se l'id non è presente nella lista, posso procedere con il push dell'id
       this.assService.listaIdElementi.push(id);
-      
       }
+      
     }
 
     mostraLegenda(){
@@ -105,6 +118,7 @@ export class ContainerAssociatedComponent implements OnInit {
       let div = document.getElementById('legenda');
       div.hidden=false;    
     }
+  
     nascondiLegenda(){
       // metodo per chiudere il tooltip "Legenda", azionato dall'evento mouseLeave del tasto "Legenda"
       let div = document.getElementById('legenda');

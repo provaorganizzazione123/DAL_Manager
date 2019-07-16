@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Element } from './element.model';
 import {HttpClient} from '@angular/common/http';
 import { Contenitore } from './contenitore.model';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +14,21 @@ export class ElementService {
   listaContenitori : Contenitore[];
   listaElementi = [];
   listaElementiAppoggio: Element[];
+  SegnaleAggiornamento: EventEmitter<boolean>;
 
   constructor(private http:HttpClient,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService) {
+              this.SegnaleAggiornamento= new EventEmitter<boolean>()
+               }
               
   readonly rootURL = "http://localhost:60537/api";
   //nome metodo uguale a controller post
-  postElemento(formData : Element){
-    return this.http.post(this.rootURL + '/Elemento', formData);
+  postElemento(formData : Element):Observable<Element>{
+    return this.http.post<Element>(this.rootURL + '/Elemento', formData);
   }
   
-  refreshList(){
-    this.http.get(this.rootURL + '/Elemento').toPromise().then(res=> this.list =res as Element[]);
+  async refreshList(){
+   await this.http.get(this.rootURL + '/Elemento').toPromise().then(res=> this.list =res as Element[]);
   }
 
   filtraLista(Id_Cont){
@@ -34,29 +38,25 @@ export class ElementService {
     // a video del contenitore 
 
     var id = Id_Cont;
-    if (this.controlist(id)){
+   // if (this.controlist(id)){
     var l = this.list.filter(e => e.Id_Contenitore == Id_Cont);
     this.listaElementi.push({id,l});
-    }
+   // }
 
   }
 
-  controlist(id){
+   // controlist(id){
 
     // Metodo che controllo se nella lista filtrata è già presente una sottolista di quel contenitore
 
-    var cont = true;
-    this.listaElementi.forEach(ele => {
-      if (ele.id == id){
-        cont = false
-      }
-    });
-    return cont;
-  }
-
-  refreshContenitori(){
-    this.http.get(this.rootURL + '/Contenitore').toPromise().then(res=> this.listaContenitori = res as Contenitore[]);
-  }
+  //   var cont = true;
+  //   this.listaElementi.forEach(ele => {
+  //     if (ele.id == id){
+  //       cont = false
+  //     }
+  //   });
+  //   return cont;
+  // }  
 
   putElemento(formData : Element){
     return this.http.put(this.rootURL + '/Elemento/' + formData.IdElemento, formData);
@@ -64,18 +64,27 @@ export class ElementService {
  
   deleteElemento(id:number){
     return this.http.delete(this.rootURL + '/Elemento/' + id).subscribe(
-      data => {
+      async data => {
         switch(data[0]) { 
           case "1": { 
-            this.toastr.warning('Risposta Server', data[1].toString())
+            this.toastr.warning('Risposta Server', data[1].toString());
+            await this.refreshList();
+            this.filtraLista(id);
+            this.emetteSegnaleAggiornamento(true);
              break; 
           } 
           case "2": { 
-            this.toastr.info('Risposta Server', data[1].toString())
+            this.toastr.info('Risposta Server', data[1].toString());
+            await this.refreshList();
+            this.filtraLista(id);
+            this.emetteSegnaleAggiornamento(true);
              break; 
           } 
           case "3": { 
-            this.toastr.success('Risposta Server', data[1].toString())
+            this.toastr.success('Risposta Server', data[1].toString());
+            await this.refreshList();
+            this.filtraLista(id);
+            this.emetteSegnaleAggiornamento(true);
              break; 
           }
                         }
@@ -87,5 +96,9 @@ export class ElementService {
 
   populateDropDownList(){
     this.http.get(this.rootURL + '/Contenitore').toPromise().then(res => this.listaContenitori = res as Contenitore[] )
+  }
+
+  emetteSegnaleAggiornamento (parametro:boolean){
+    this.SegnaleAggiornamento.emit(parametro);
   }
 }
