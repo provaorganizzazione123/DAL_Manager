@@ -1,1 +1,23 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body{
+    height: 100%;
+    width: 100%;
+}
+
+.nav{
+    position: fixed;
+    top:0;
+    width: 100%;
+    z-index: 1;
+}
+
+.navbar{
+    width: 100%;
+    z-index: 1;
+}
+
+.bg-primary {
+    background-color:#007BB3!important;
+    }
+

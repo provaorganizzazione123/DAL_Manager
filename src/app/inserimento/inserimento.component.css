@@ -1,0 +1,10 @@
+.chiudi{
+    float: right;
+    margin-right: 0%;
+    border: none;
+    background: azure;
+    font-size: 20px;
+    padding: inherit;
+    margin-top: -6%;
+    background-color: white
+}

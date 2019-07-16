@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { ElementService } from 'src/app/shared/element.service';
 import { MatSnackBar, MatDialogRef } from '@angular/material';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-eliminazione',
@@ -15,6 +16,7 @@ export class EliminazioneComponent implements OnInit {
     
   constructor(private _service : ElementService,
               private _snackBar: MatSnackBar,
+              private toastr: ToastrService,
               public dialogRef : MatDialogRef<EliminazioneComponent>) { }
     
 
@@ -25,11 +27,10 @@ export class EliminazioneComponent implements OnInit {
   /*METODO eliminaElemento
   Questo metodo si collega al service invocando il metodo di delete dell'Api*/
   eliminaElemento(){
-    this._service.deleteElemento(this.idFondamentale).subscribe(res =>{
-      this._snackBar.open('Elemento Cancellato Con Successo', 'GRANDE');
+    this._service.deleteElemento(this.idFondamentale);
+      //this.toastr.warning('Risposta del server', 'Elemento elimnato con successo');
       this.dialogRef.close();
       this._service.refreshList();
-    });
                     }
 
   chiudiPopup(){

@@ -1,0 +1,45 @@
+.cancella{
+    float: right;
+    margin-right: -25px;
+    margin-top: -20px;
+    border: none;
+    font-size: 25px;
+    background-color: white;
+  }
+
+.areaDettaglio{
+    margin-top: 15px;
+    margin-bottom: -15px;
+    margin-left: -20px;
+    margin-right: -20px;
+    width: -webkit-fill-available;
+    resize: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-style: none;
+    border-top-style: double;
+}
+
+.areaDettaglio::-webkit-scrollbar {
+    background-color:white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    }
+  
+  .areaDettaglio::-webkit-scrollbar-track {
+    background-color: white;
+    border-radius: 20px;
+  }
+  
+  .areaDettaglio::-webkit-scrollbar-thumb {
+    background-color: orange;
+    border: 1px solid orange;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .h3Dettaglio {
+    margin-bottom: -20px;
+    margin-left: -20px;
+    margin-top: -8px;
+  }

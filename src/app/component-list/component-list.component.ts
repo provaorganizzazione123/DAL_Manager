@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter,SimpleChange
  } from '@angular/core';
  import { ElementService } from 'src/app/shared/element.service';
+import { AssociatedService } from '../container-associated/associated.service';
 
 @Component({
   selector: 'app-component-list',
@@ -14,7 +15,7 @@ export class ComponentListComponent implements OnInit {
 @Output () idCancellato = new EventEmitter () ;
 listId=[]; 
 
-  constructor(private service:ElementService) { }
+  constructor(private service:ElementService, private assService: AssociatedService) { }
 
   ngOnInit() {
     this.service.refreshContenitori()
@@ -35,8 +36,11 @@ listId=[];
     this.service.filtraLista(id);
     this.listId.push(id);
     this.container.emit({ id:id, nome:nome });
-              }
-                                }
+    
+    }
+  }
+                                
+
  ngOnChanges (changes: {[idDelete: string]:SimpleChange}){
 
  if(this.idDelete==0){console.log('ciao')}

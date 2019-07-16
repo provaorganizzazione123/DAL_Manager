@@ -4,10 +4,12 @@
     flex-flow: wrap;
     display: flex;
     align-items: center;
-    width: 85%;
+    width: 92%;
     height: 500%;
     flex-flow: wrap;
-    display: flex;
+    display: grid;
+    overflow-x: auto;
+    overflow-y: hidden;
     }
 
 
@@ -17,11 +19,28 @@
     clear: both;
     }
 
+.work-container::-webkit-scrollbar {
+    background-color:white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    }
+      
+.work-container::-webkit-scrollbar-track {
+    background-color: white;
+    border-radius: 20px;
+    }
+      
+.work-container::-webkit-scrollbar-thumb {
+    background-color: orange;
+    border: 1px solid orange;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
 .colonna{
-    float: right top;
-    position: fixed;
+    position: absolute;
     right: 0%;
-    position:fixed top;
+    height: 100%;
     flex-flow: wrap;
     display: flex;
     width: 15%;
@@ -62,9 +81,6 @@ table{
     border-collapse: inherit;
     }
 
-.bg-primary {
-    background-color:#007BB3!important;
-    }
 
 .descrizione{
     font-family: inherit;
@@ -74,17 +90,6 @@ table{
     padding-bottom: 0;
     }
 
-.nav{
-    position: fixed;
-    top:0;
-    width: 100%;
-    z-index: 1;
-}
-
-.navbar{
-    width: 100%;
-    z-index: 1;
-}
 
 td::-webkit-scrollbar {
     background-color:white;
@@ -110,5 +115,4 @@ td:active {
                 0 8px 10px 1px rgba(0, 0, 0, 0.14),
                 0 3px 14px 2px rgba(0, 0, 0, 0.12);
   }
-
 

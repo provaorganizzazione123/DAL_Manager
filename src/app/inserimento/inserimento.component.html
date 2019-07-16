@@ -1,4 +1,8 @@
-<div class="lead">Inserisci Elemento</div>
+
+<button  class="cancella" (click)="chiudiInserimento()">&times;</button>
+<div class="lead" >Inserisci Elemento   
+</div>
+
 <br>
 <form name="forminserimento" #form="ngForm" (submit)="onSubmit(form)"autocomplete="off">
   <input type="hidden" name="IdElemento" #IdElemento="ngModel" [(ngModel)]="service.formData.IdElemento">
@@ -23,4 +27,6 @@
   <div class="form-group">
       <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
   </div>
+
 </form>
+

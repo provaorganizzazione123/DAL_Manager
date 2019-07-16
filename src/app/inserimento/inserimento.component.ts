@@ -3,7 +3,7 @@ import { MatDialogRef } from '@angular/material';
 import { ElementService } from '../shared/element.service';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-inserimento',
@@ -12,9 +12,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class InserimentoComponent implements OnInit {
 
-  
   constructor(private service : ElementService,
-              private _snackBar: MatSnackBar,
+              private toastr: ToastrService,
               public dialogRef : MatDialogRef<InserimentoComponent>) { } //dialogRef si aggancia al dialog che viene dal AppComponent
 
   ngOnInit() {
@@ -53,18 +52,26 @@ export class InserimentoComponent implements OnInit {
       res => {
         this.service.filtraLista(form.value.Id_Contenitore);
        
-        this._snackBar.open('Inserimento avvenuto con successo', 'GRANDE');
+        this.toastr.success('Risposta del Server', 'Inserimento avvenuto con successo');
         this.resetForm(form);
         this.service.refreshList();
       });
   }
   updateRecord(form:NgForm){
     this.service.putElemento(form.value).subscribe(res => {
-      this._snackBar.open('Aggiornamento avvenuto con successo', 'GRANDE');
+      this.toastr.info('Risposta del Server', 'Aggiornamento avvenuto con successo');
       this.resetForm(form);
       this.service.refreshList();
     })
   }
 
+  //Metodo per chiudere l'inserimento
+  chiudiInserimento() { 
+    this.dialogRef.close();    
+    }
+
+
+
   
+
 }
