@@ -7,6 +7,7 @@ import { Interpolation } from '@angular/compiler';
 import { HttpClient } from '@angular/common/http';
 import { AssociatedService } from './associated.service';
 import {MatSnackBarModule, MatSnackBar} from '@angular/material';
+import { Contenitore } from '../shared/contenitore.model';
 //import { ToastrService } from 'ngx-toastr';
 declare var jquery:any;
 declare var $ :any;
@@ -32,8 +33,9 @@ export class ContainerAssociatedComponent implements OnInit {
               private http: HttpClient,
               private snack: MatSnackBar) { }
 
-  ngOnInit() {  
-  }
+  ngOnInit() { }
+
+
 
   chiudiContainer(contId) {
     let box = document.getElementById(contId);

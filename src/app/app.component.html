@@ -12,7 +12,10 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <button class="nav-link" (click)="inserisciElemento()" style="background-color: #007BB3!important ; border: none ; color: white">NuovoElemento</button>
+        <button class="nav-link" (click)="inserisciContenitore()" style="background-color: #007BB3!important ; border: none ; color: white">Nuovo Contenitore</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" (click)="inserisciElemento()" style="background-color: #007BB3!important ; border: none ; color: white">Nuovo Elemento</button>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">About</a>
@@ -24,7 +27,7 @@
 <router-outlet>
   <div class="work-container">
     <table>
-      <tr app-container-associated="contenitoriAperti" class="work-container"  [contenitoriAperti]="contenitoriAperti" (idContenitoreChiuso)= "cancellaIdDaLista($event)">
+      <tr app-container-associated="contenitoriAperti" class="work-container"  [contenitoriAperti]="contenitoriAperti" (idContenitoreChiuso)= "cancellaIdDaLista($event)" >
       </tr>
     </table>
   </div>

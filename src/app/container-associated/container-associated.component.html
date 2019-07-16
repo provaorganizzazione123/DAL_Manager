@@ -1,5 +1,5 @@
 
-<div class="titolo"  cdkDrag cdkDragBoundary=".work-container" *ngFor = "let cont of contenitoriAperti " id="{{cont.id}}"> 
+<div class="titolo"  cdkDrag cdkDragBoundary=".work-container" *ngFor = "let cont of contenitoriAperti " id="{{cont.id}}" > 
 
       <div cdkDragHandle>
           <svg width="20px" fill="currentColor" viewBox="0 0 24 24" style="float:left ; margin-left: 3% ; margin-top: 3%">
@@ -7,10 +7,10 @@
             <path d="M0 0h24v24H0z" fill="none"></path>
           </svg>
          </div>
-     <h3 style="float:left ; margin-left: 2%" >
+     <h3 style="float:left ; margin-left: 2%" >      
       {{cont.nome}}
       </h3>
-    
+      <span class="dimensioneSpan" [ngStyle]="{'background-color': cont.colore}"></span>
       <button  class="cancella" (click)="chiudiContainer(cont.id)">&times;</button> 
       <div class="box-element" >
         <div class="row">

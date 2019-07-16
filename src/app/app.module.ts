@@ -24,6 +24,7 @@ import { AssociatedService } from './container-associated/associated.service';
 import { EliminazioneComponent } from './container-associated/element/eliminazione/eliminazione.component';
 import { ModificaComponent } from './container-associated/element/modifica/modifica.component';
 import { DettaglioComponent } from './container-associated/element/dettaglio/dettaglio.component';
+import { InserimentoContenitoreComponent } from './inserimento-contenitore/inserimento-contenitore.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { DettaglioComponent } from './container-associated/element/dettaglio/det
     EliminazioneComponent,
     ModificaComponent,
     DettaglioComponent,
+    InserimentoContenitoreComponent,
     
     
   ],
@@ -96,7 +98,12 @@ import { DettaglioComponent } from './container-associated/element/dettaglio/det
   providers: [ElementService,
               AssociatedService],
   bootstrap: [AppComponent],
-  entryComponents:[InserimentoComponent, EliminazioneComponent, ModificaComponent, DettaglioComponent]
+  entryComponents:[
+     InserimentoComponent, 
+     EliminazioneComponent,
+     ModificaComponent, 
+     DettaglioComponent,
+     InserimentoContenitoreComponent]
 })
 export class AppModule {
 
