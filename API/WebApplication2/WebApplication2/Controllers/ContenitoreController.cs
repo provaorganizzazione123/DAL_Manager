@@ -40,9 +40,10 @@ namespace WebApplication2.Controllers
       IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
      
         string stringhetta = "INSERT INTO Arc_Contenitori (Nome_Contenitore , Colore_Contenitore) Values ('" + Contenitore.Nome_Contenitore + "', '" + Contenitore.Colore_Contenitore + "');";
-        var affectedRows = db.Execute(stringhetta);
-
-      return new List<string> { "2", "Contenitore inserito con successo" };
+      try { var affectedRows = db.Execute(stringhetta);
+            return new List<string> { "2", "Contenitore inserito con successo" };
+      }
+      catch { return new List<string> { "3", "Contenitore già esistente" }; }     
     }
 
 
