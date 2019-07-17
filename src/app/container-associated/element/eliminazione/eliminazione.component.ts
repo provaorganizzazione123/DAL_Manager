@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { ElementService } from 'src/app/shared/element.service';
-import { MatSnackBar, MatDialogRef } from '@angular/material';
-import { ToastrService } from 'ngx-toastr';
+import { MatDialogRef } from '@angular/material';
+import { Element } from 'src/app/shared/element.model';
 
 @Component({
   selector: 'app-eliminazione',
@@ -11,23 +11,21 @@ import { ToastrService } from 'ngx-toastr';
 export class EliminazioneComponent implements OnInit {
   
   
-  idFondamentale: number;
+  deletedElement : Element;
   
     
   constructor(private _service : ElementService,
-              private _snackBar: MatSnackBar,
-              private toastr: ToastrService,
               public dialogRef : MatDialogRef<EliminazioneComponent>) { }
     
 
   ngOnInit() {
-    this.idFondamentale = this.dialogRef._containerInstance._config.data;
+    this.deletedElement = this.dialogRef._containerInstance._config.data;
   }
 
   /*METODO eliminaElemento
   Questo metodo si collega al service invocando il metodo di delete dell'Api*/
   eliminaElemento(){
-    this._service.deleteElemento(this.idFondamentale);
+    this._service.deleteElemento(this.deletedElement);
       //this.toastr.warning('Risposta del server', 'Elemento elimnato con successo');
       this.dialogRef.close();
       this._service.refreshList();

@@ -8,8 +8,7 @@ import { ElementService } from 'src/app/shared/element.service';
 import { AssociatedService } from '../associated.service';
 import { __await } from 'tslib';
 import { DettaglioComponent } from './dettaglio/dettaglio.component'
-import { style } from '@angular/animations';
-import { timingSafeEqual } from 'crypto';
+
 
 @Component({
   selector: 'app-element',
@@ -22,7 +21,9 @@ export class ElementComponent implements OnInit {
 @Input() idContenitoreAperto;
 @Input() listaElementi;
 colore:boolean;
+
 @Output() IdElemento = new EventEmitter();
+
 elemento:Element;
 @Input() edit : Boolean ; 
 
@@ -38,9 +39,17 @@ elemento:Element;
       } 
      });
      
-     this.assService.riceveSignal.subscribe((param: boolean) => {
-      this.evidenziaAssociati()
+     this.assService.riceveSignal.subscribe((param: number) => {
+      this.catchSignalComponent(param)
       });
+
+      this.service.SegnaleAggiornamento.subscribe(()=>{
+        this.service.listaElementi.forEach(element => {
+          if (element.id == this.idContenitoreAperto){
+               this.elemento=element.l;
+          } 
+         });
+      })
 
     }
 
@@ -49,19 +58,23 @@ elemento:Element;
                                                //elementi associati
     }
 
+    
+
     catturaId(IdElemento:number){
+
       if(!this.edit){
         this.ModalitaEdit(IdElemento)      
       }
       else{
         this.ModalitaVisione(IdElemento)
       } 
+       
       }
 
 //MODALITA EDIT: Modalità in cui l'utento puo creare nuove associazioni o eliminare quelle già esistenti
-  ModalitaEdit(IdElemento: number){
+      ModalitaEdit(IdElemento: number){
 
-      // premendo il tasto "edit" abilito la modalità edit, e giocando con una booleana, abilito l'evento click del tasto Crea Associazione
+        // premendo il tasto "edit" abilito la modalità edit, e giocando con una booleana, abilito l'evento click del tasto Crea Associazione
       // metodo che cattura l'id dell'elemento che deve essere aggiunto alla lista per l'associazione
       // presente nel metodo del container-associated.
 
@@ -69,8 +82,7 @@ elemento:Element;
 
       // ora richiamo la lista di id dall'associated.service e ne controllo la posizione dell'id attuale   
       // come prima cosa controllo che la lista non sia vuota, quindi diversa da 0   
-
-    if(this.assService.listaIdElementi.length != 0 ){
+      if(this.assService.listaIdElementi.length != 0 ){
       
       let indice = this.assService.listaIdElementi.indexOf(IdElemento);
       
@@ -79,6 +91,7 @@ elemento:Element;
       // = -1 Elemento già associato
       // altro  Elemento da associare
       
+
       if (indice === 0)
       { // entra in questo if se l'id è padre   
         this.assService.listaAppoggioIdSelezionati.push(IdElemento);
@@ -89,75 +102,71 @@ elemento:Element;
       else if(indice === -1){
 
       }
-      
-      else{
-        // entra in questo else se l'id non è il primo della lista e quindi non è "padre"
-        if(this.assService.listaAppoggioIdSelezionati.includes(IdElemento)){ // controllo se lid è presente nella lista di id selezionati
-          let IdElementoinStringa:string ;                        // se è presente, lo deselezionop e lo cancello dalla lista  
+        else{
+          // entra in questo else se l'id non è il primo della lista e quindi non è "padre"
+          if(this.assService.listaAppoggioIdSelezionati.includes(IdElemento)){ // controllo se lid è presente nella lista di id selezionati
+            let IdElementoinStringa:string ;                        // se è presente, lo deselezionop e lo cancello dalla lista  
           IdElementoinStringa=IdElemento.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
-          let elemento = document.getElementById(IdElementoinStringa);
-          elemento.style.borderWidth = "6px";
-          elemento.style.borderCollapse = "separate";
-          elemento.style.borderLeftStyle= "Solid";
-          elemento.style.borderTopColor= "white";
-          elemento.style.borderBottomColor= "white";
-          elemento.style.borderColor=""; 
-          this.assService.listaAppoggioIdSelezionati.splice(this.assService.listaAppoggioIdSelezionati.indexOf(this.IdElemento), 1);
-        }
-        else { // se l'id non è presente nella lista id selezionati, lo seleziono e lo aggiungo alla lista
+        let elemento = document.getElementById(IdElementoinStringa);
+        elemento.style.borderWidth = "6px";
+        elemento.style.borderCollapse = "separate";
+        elemento.style.borderLeftStyle= "Solid";
+        elemento.style.borderTopColor= "white";
+        elemento.style.borderBottomColor= "white";
+        elemento.style.borderColor=""; 
+        this.assService.listaAppoggioIdSelezionati.splice(this.assService.listaAppoggioIdSelezionati.indexOf(this.IdElemento), 1);
+          }
+          else { // se l'id non è presente nella lista id selezionati, lo seleziono e lo aggiungo alla lista
           this.assService.listaAppoggioIdSelezionati.push(IdElemento) 
           let IdElementoinStringa:string ;
           IdElementoinStringa=IdElemento.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
-          let elemento = document.getElementById(IdElementoinStringa);
-          elemento.style.borderWidth = "6px";
-          elemento.style.borderCollapse = "separate";
-          elemento.style.borderLeftStyle= "Solid";
-          elemento.style.borderTopColor= "white";
-          elemento.style.borderBottomColor= "white";
-          elemento.style.borderColor="green"; 
+        let elemento = document.getElementById(IdElementoinStringa);
+        elemento.style.borderWidth = "6px";
+        elemento.style.borderCollapse = "separate";
+        elemento.style.borderLeftStyle= "Solid";
+        elemento.style.borderTopColor= "white";
+        elemento.style.borderBottomColor= "white";
+        elemento.style.borderColor="green"; 
+          }
         }
       }
-    }
-    
-    else{
-      // entra in questo else quando la lista è uguale a 0, cioè vuota.
-      // NB: la lista si svuota se premo di nuovo sull'elemento che avevo scelto come padre. 
-      // si dovrebbe cancellare tutto lo style del padre e degli eventuali figli scelti, ma non
-      // ancora associati a db 
-      this.assService.listaAppoggioIdSelezionati.forEach(element => {
+      else{
+        // entra in questo else quando la lista è uguale a 0, cioè vuota.
+        // NB: la lista si svuota se premo di nuovo sull'elemento che avevo scelto come padre. 
+        // si dovrebbe cancellare tutto lo style del padre e degli eventuali figli scelti, ma non
+        // ancora associati a db 
+        this.assService.listaAppoggioIdSelezionati.forEach(element => {
+          // ciclo la lista id selezionati, per prendere ogni elemento e deselezionarlo
+          let IdElementoinStringa:string ;
+          IdElementoinStringa = element.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+          let elemento = document.getElementById(IdElementoinStringa);
+          elemento.style.borderWidth = "5px";
+          elemento.style.borderCollapse = "separate";
+          elemento.style.borderColor=""; 
+          elemento.style.boxShadow= "0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842)";
 
-        // ciclo la lista id selezionati, per prendere ogni elemento e deselezionarlo
-        let IdElementoinStringa:string ;
-        IdElementoinStringa = element.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
-        let elemento = document.getElementById(IdElementoinStringa);
-        elemento.style.borderWidth = "5px";
-        elemento.style.borderCollapse = "separate";
-        elemento.style.borderColor=""; 
-        elemento.style.boxShadow= "0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842)";
-
-      });
-      // Ripeto per la lista degli elementi già associati
-      this.assService.listaFiltroAssociazioni.forEach(element => {
-        // ciclo la lista id selezionati, per prendere ogni elemento e deselezionarlo
-        let IdElementoinStringa:string ;
-        IdElementoinStringa = element.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
-        let elemento = document.getElementById(IdElementoinStringa);
-        elemento.style.borderWidth = "5px";
-        elemento.style.borderCollapse = "separate";
-        elemento.style.borderColor=""; 
-        elemento.style.boxShadow= "0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842)";
-
-      });
-
-      // poi azzero la lista
-      this.assService.listaAppoggioIdSelezionati = [];
-      this.assService.listaFiltroAssociazioni = [];
-
+        });
+        // Ripeto per la lista degli elementi già associati
+        this.assService.listaFiltroAssociazioni.forEach(element => {
+          // ciclo la lista id selezionati, per prendere ogni elemento e deselezionarlo
+          let IdElementoinStringa:string ;
+          IdElementoinStringa = element.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+          let elemento = document.getElementById(IdElementoinStringa);
+          elemento.style.borderWidth = "5px";
+          elemento.style.borderCollapse = "separate";
+          elemento.style.borderColor=""; 
+          elemento.style.boxShadow= "0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842)";
+  
+        });
+          
         
-    }
 
-  }
+            // poi azzero la lista
+            this.assService.listaAppoggioIdSelezionati = [];
+            this.assService.listaFiltroAssociazioni = [];
+        }
 
+      }
 
 
  // MODALITA' VISIONE: Modalita in cui l'utente può visualizzare gli elementi associati ad un altro elemento selezionato
@@ -172,7 +181,7 @@ elemento:Element;
           elemento.style.borderCollapse = "separate";
           elemento.style.borderColor="";
           elemento.style.boxShadow= "0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842)";
-        
+              
           this.assService.listaFiltroAssociazioni.forEach(element => {
             // ciclo la lista id selezionati, per prendere ogni elemento e deselezionarlo
             try{
@@ -182,7 +191,7 @@ elemento:Element;
             elemento.style.borderWidth = "6px";
             elemento.style.borderCollapse = "separate";
             elemento.style.borderColor="";
-            elemento.style.boxShadow= "0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842)";       
+            elemento.style.boxShadow= "0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842)";
             }
             catch {}       
           });
@@ -190,8 +199,7 @@ elemento:Element;
         this.assService.listaFiltroAssociazioni = []; 
 
          }
-
-        this.assService.listaAppoggioIdSelezionati.push(IdElemento);
+         this.assService.listaAppoggioIdSelezionati.push(IdElemento);
         this.selezioneElementoPadre(IdElemento) 
       }
 
@@ -205,12 +213,13 @@ elemento:Element;
         elemento.style.borderTopColor= "white";
         elemento.style.borderBottomColor= "white";
         elemento.style.boxShadow="0 5px 5px -3px rgba(242, 2, 2, 0.0), 0 4px 5px 0px rgba(242, 2, 2, 0.0), 0 2px 7px 0px rgba(242, 2, 2, 0.842)";
+  
         this.caricaListaFiltro(IdElem)
       }
   
       async caricaListaFiltro(IdPadre: number){
 
-      await this.assService.GetAssociazioneById(IdPadre);
+        await this.assService.GetAssociazioneById(IdPadre);
   
         this.catchSignalComponent(1);       //Emissione del segnale per l'aggiornamento della messa in evidenza degli
                                           //elementi associati
@@ -257,16 +266,17 @@ elemento:Element;
                     console.log(this.assService.listaIdElementi) 
                     console.log(this.assService.IdPadreSelezionato)
             break;
-          
-          case 3:
+
+            case 3:
                   this.caricaListaFiltro(this.assService.IdPadreSelezionato);
                   this.catchSignalComponent(1); 
-
           default:
             break;
         }
+  
+        
+  
       }
-
 
       colorescritta(idColore){
         let colore = document.getElementById(idColore);
@@ -277,6 +287,8 @@ elemento:Element;
         let colore = document.getElementById(idColore);
         colore.style.color="blue";
       }
+
+
     
     /* Metodo DeleteElemento ----> """"" scaturito dal click sui bottoni X degli elementi """"
     Questo metodo crea una Dialog facendo partire il component Figlio --> EliminazioneComponent
@@ -305,11 +317,13 @@ elemento:Element;
     }
 
     dettaglioElemento(Descrizione){
-    const dialogConfig = new MatDialogConfig();
+      const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       dialogConfig.width = "60%";
       dialogConfig.data=Descrizione;  
       this.dialog.open(DettaglioComponent, dialogConfig);
     }
+
+
 }

@@ -1,13 +1,12 @@
 
 
-
- <div *ngFor="let ele of elemento" class="container" id="ElementoCreato"> 
+ <div *ngFor="let ele of elemento" class="container" id="ElementoCreato" > 
    <!-- <div class="col-sm-10 sinistra" >  -->
      <table>
        <tr>
          <td>
-     <button (mouseover)="colorescritta(ele.NomeElemento)" (mouseleave)="coloreOriginale(ele.NomeElemento)" class="element, btn btn-outline-primary" id ="{{ele.IdElemento}}" (click)="catturaId(ele.IdElemento)" >
-      <p  class="descrizione" id ="{{ele.NomeElemento}}">
+          <button (mouseover)="colorescritta(ele.NomeElemento)" (mouseleave)="coloreOriginale(ele.NomeElemento)" class="element, btn btn-outline-primary" id ="{{ele.IdElemento}}" (click)="catturaId(ele.IdElemento)" >
+            <p  class="descrizione" id ="{{ele.NomeElemento}}">
         {{ele.NomeElemento}}
       </p>
     </button>
@@ -16,7 +15,7 @@
   <!-- </div> -->
    <!-- <div class="col-sm-2 destra"> -->
      <td>
-    <button class="chiudi" (click)="DeleteElemento(ele.IdElemento)">X</button><hr class="separatore">
+    <button class="chiudi" (click)="DeleteElemento(ele)">X</button><hr class="separatore">
     <button class="modifica" (click)="ModificaElemento(ele.IdElemento)">Edit</button><hr class="separatore">
     <button class="dettaglio" (click)="dettaglioElemento(ele.DescrizioneElemento)">Dettaglio</button><hr class="separatore">
   <!-- </div>   -->

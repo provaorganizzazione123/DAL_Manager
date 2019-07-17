@@ -18,7 +18,7 @@ export class ElementService {
 
   constructor(private http:HttpClient,
               private toastr: ToastrService) {
-              this.SegnaleAggiornamento= new EventEmitter<boolean>()
+                this.SegnaleAggiornamento= new EventEmitter<boolean>()
                }
               
   readonly rootURL = "http://localhost:60537/api";
@@ -62,28 +62,28 @@ export class ElementService {
     return this.http.put(this.rootURL + '/Elemento/' + formData.IdElemento, formData);
   }
  
-  deleteElemento(id:number){
-    return this.http.delete(this.rootURL + '/Elemento/' + id).subscribe(
+  deleteElemento(deleteElemento : Element){
+    return this.http.delete(this.rootURL + '/Elemento/' + deleteElemento.IdElemento).subscribe(
       async data => {
         switch(data[0]) { 
           case "1": { 
             this.toastr.warning('Risposta Server', data[1].toString());
             await this.refreshList();
-            this.filtraLista(id);
+            this.filtraLista(deleteElemento.Id_Contenitore);
             this.emetteSegnaleAggiornamento(true);
              break; 
           } 
           case "2": { 
             this.toastr.info('Risposta Server', data[1].toString());
             await this.refreshList();
-            this.filtraLista(id);
+            this.filtraLista(deleteElemento.Id_Contenitore);
             this.emetteSegnaleAggiornamento(true);
              break; 
           } 
           case "3": { 
             this.toastr.success('Risposta Server', data[1].toString());
             await this.refreshList();
-            this.filtraLista(id);
+            this.filtraLista(deleteElemento.Id_Contenitore);
             this.emetteSegnaleAggiornamento(true);
              break; 
           }

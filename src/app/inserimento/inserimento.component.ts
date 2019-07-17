@@ -54,6 +54,7 @@ export class InserimentoComponent implements OnInit {
         this.toastr.success('Risposta del Server', 'Inserimento avvenuto con successo');
         this.service.emetteSegnaleAggiornamento(true);
         this.resetForm(form);
+       
       });
   }
   updateRecord(form:NgForm){
@@ -69,5 +70,8 @@ export class InserimentoComponent implements OnInit {
     this.dialogRef.close();    
     }
 
+
+
+  
 
 }
