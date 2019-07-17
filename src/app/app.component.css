@@ -116,4 +116,21 @@ td:active {
                 0 8px 10px 1px rgba(0, 0, 0, 0.14),
                 0 3px 14px 2px rgba(0, 0, 0, 0.12);
   }
+  
+
+.nav{
+    position: fixed;
+    top:0;
+    width: 100%;
+    z-index: 1;
+}
+
+.navbar{
+    width: 100%;
+    z-index: 1;
+}
+
+.bg-primary {
+    background-color:#007BB3!important;
+   }
 
