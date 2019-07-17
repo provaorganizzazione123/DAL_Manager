@@ -39,11 +39,24 @@ export class InserimentoContenitoreComponent implements OnInit {
 
     insertContenitore(form:NgForm){
       this.serviceCont.postContenitore(form.value).subscribe(
-        res =>{
+        data =>{
        // this.serviceCont.filtraLista(form.value.Id_Contenitore);
-        this.toastr.success('Risposta del Server', 'Inserimento avvenuto con successo');
+       switch( data[0]){
+         // case 1: non messo perche modelstate valid bla bla bla...
+        case "2" :
+          {
+        this.toastr.success('Risposta del Server', data[1]);
         this.resetForm(form);
-        this.serviceCont.Aggiornamento(true);      
+        this.serviceCont.Aggiornamento(true);    
+        break;
+          }  
+        case "3" :
+            {
+            this.toastr.warning('Risposta del Server', data[1]);
+            this.resetForm(form); 
+            break;
+            }  
+       }
       }
       )
     }
