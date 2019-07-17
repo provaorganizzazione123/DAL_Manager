@@ -114,7 +114,8 @@ elemento:Element;
         elemento.style.borderTopColor= "white";
         elemento.style.borderBottomColor= "white";
         elemento.style.borderColor=""; 
-        this.assService.listaAppoggioIdSelezionati.splice(this.assService.listaAppoggioIdSelezionati.indexOf(this.IdElemento), 1);
+        this.assService.listaIdElementi.splice(this.assService.listaIdElementi.indexOf(IdElemento),1);
+        this.assService.listaAppoggioIdSelezionati.splice(this.assService.listaAppoggioIdSelezionati.indexOf(IdElemento), 1);
           }
           else { // se l'id non è presente nella lista id selezionati, lo seleziono e lo aggiungo alla lista
           this.assService.listaAppoggioIdSelezionati.push(IdElemento) 

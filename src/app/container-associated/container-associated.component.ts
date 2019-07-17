@@ -102,7 +102,7 @@ export class ContainerAssociatedComponent implements OnInit {
         }
         else{
           // quindi se l'indice dell'id è diverso da zero, l'id deve essere eliminato dalla lista
-        this.assService.listaIdElementi.splice(this.assService.listaIdElementi.indexOf(id),1);
+        //this.assService.listaIdElementi.splice(this.assService.listaIdElementi.indexOf(id),1);
         console.log(this.assService.listaIdElementi)
         }
       }
