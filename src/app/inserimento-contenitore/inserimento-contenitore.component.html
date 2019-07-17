@@ -11,15 +11,19 @@
       <div class="validation-error" *ngIf="Nome_Contenitore.invalid && Nome_Contenitore.touched">Questo campo è obbligatiorio</div>
 
   </div>
-  <div class="form-group">
-     
-     <select name="Colore_Contenitore" #Colore_Contenitore="ngModel" [(ngModel)] = "serviceCont.formData.Colore_Contenitore" required>
-      <option value="" >Seleziona Colore</option>   
-      <option value="#0000ff" style = "background-color: #0000ff">blu</option>
-      <option value="#ff0000" style = "background-color: #ff0000">red</option>
-      <option value="#00ff00" style = "background-color: #00ff00">green</option>
-      </select>
-    
+  <div class="form-group divColore">
+    <label style="margin-left:7px">Seleziona il Colore </label><br>
+    <mat-radio-group name="Colore_Contenitore" #Colore_Contenitore="ngModel" [(ngModel)] = "serviceCont.formData.Colore_Contenitore" required>
+        <mat-radio-button value="#ff0000"><svg class="colore" style=" background-color:#ff0000"></svg></mat-radio-button>
+        <mat-radio-button value="#0000ff"><svg class="colore" style=" background-color:#0000ff"></svg></mat-radio-button>
+        <mat-radio-button value="#00ff00"><svg class="colore" style=" background-color:#00ff00"></svg></mat-radio-button>
+        <mat-radio-button value="#8f00ff"><svg class="colore" style=" background-color:#8f00ff"></svg></mat-radio-button> <br>
+        <mat-radio-button value="#ffff00"><svg class="colore" style=" background-color:#ffff00"></svg></mat-radio-button>
+        <mat-radio-button value="#ff8100"><svg class="colore" style=" background-color:#ff8100"></svg></mat-radio-button>
+        <mat-radio-button value="#000000"><svg class="colore" style=" background-color:#000000"></svg></mat-radio-button>
+        <mat-radio-button value="#808080"><svg class="colore" style=" background-color:#808080"></svg></mat-radio-button>
+    </mat-radio-group>
+   
   </div>
   <div class="form-group">
       <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>

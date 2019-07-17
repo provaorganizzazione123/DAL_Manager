@@ -13,7 +13,7 @@
   box-sizing: border-box;
   transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 16px;
+  padding: 8px;
   resize: both;
   overflow: unset;
   width: 250px;
@@ -21,6 +21,7 @@
   min-width: 170px;;
   min-height: 50px;
   overflow-y: scroll;
+  line-height: 1rem;
 
 }
 
@@ -70,7 +71,6 @@
   background-color: #f1f1f1;
   margin: 10px;
   overflow: hidden;
-
   height: 50px;
 }
 
@@ -83,7 +83,7 @@
   border-radius: 10px;
   box-sizing: border-box;
   transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.315);
   width: min-content;
   margin: 5px;
   border-block-end-width: auto;
@@ -108,22 +108,22 @@
   font-size: medium;
 }
 
-.h3{
+h3{
   font-size: 1.30rem;
-  font-family: unset;
+  margin-top: 0.40rem;
 }
 
 #EDIT{
   position:fixed;
-  top:10%;
-  left: 78%;
-  margin-right: 1%;
+  top: 58px;
+  right: 150px;
+  margin-right: 10px;
 }
 
 #CreaAss{
   position: fixed;
-  top: 8%;
-  left:1%;
+  bottom: 0%;
+  right: 150px;
   flex:auto;
   margin-right: 1%;
 }
@@ -149,10 +149,18 @@
 }
 
 .dimensioneSpan{
-  width: 50px;
-  height: 15px;
-  margin: auto;
-  display:inline-block;
-  border: 1px solid grey;
-  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+  margin-bottom: -2px;
+  margin-left: 5px;
+  display: inline-block;
+  border-style: none;
+  border-radius: 28px;
 }
+
+svg{
+  cursor:grab;
+}
+
+
