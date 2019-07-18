@@ -78,7 +78,9 @@ elemento:Element;
       // metodo che cattura l'id dell'elemento che deve essere aggiunto alla lista per l'associazione
       // presente nel metodo del container-associated.
 
-      this.IdElemento.emit(IdElemento); // passo l'id al container-associated (padre)
+      //this.IdElemento.emit(IdElemento); // passo l'id al container-associated (padre)
+      
+      this.aggiungiIdElementoAListaAdatta(IdElemento);
 
       // ora richiamo la lista di id dall'associated.service e ne controllo la posizione dell'id attuale   
       // come prima cosa controllo che la lista non sia vuota, quindi diversa da 0   
@@ -89,7 +91,7 @@ elemento:Element;
       // Controllo l'indice nella lista elementi e in base alla posizione:
       // = 0  Padre
       // = -1 Elemento già associato
-      // altro  Elemento da associare
+      // = altro  Elemento da associare
       
 
       if (indice === 0)
@@ -99,10 +101,30 @@ elemento:Element;
         this.selezioneElementoPadre(IdElemento);                
       }
 
-      else if(indice === -1){
+      else if(indice === -1)
+      { // entra in questo se è un elemento già associato
+
+        if(this.assService.listaDistruggiAssociazione.length == 0)
+        { // controlla se la lista da passare a db per la disassociazione ha nella posizion 0 il padre
+          this.assService.listaDistruggiAssociazione[0] = this.assService.IdPadreSelezionato
+        }
+  
+        if(!this.assService.listaDistruggiAssociazione.includes(IdElemento)){
+          this.assService.listaDistruggiAssociazione.push(IdElemento);
+          this.catchSignalComponent(4);
+          console.log("BOMBER NERO");
+          console.log(this.assService.listaDistruggiAssociazione)
+        }
+        else{
+         this.assService.listaDistruggiAssociazione.splice(this.assService.listaDistruggiAssociazione.indexOf(IdElemento),1)
+         this.assService.idGiallo = IdElemento;
+         console.log("BOMBER GIALLO")
+         console.log(this.assService.listaDistruggiAssociazione)
+         this.catchSignalComponent(5);     
+        }
 
       }
-        else{
+      else{
           // entra in questo else se l'id non è il primo della lista e quindi non è "padre"
           if(this.assService.listaAppoggioIdSelezionati.includes(IdElemento)){ // controllo se lid è presente nella lista di id selezionati
             let IdElementoinStringa:string ;                        // se è presente, lo deselezionop e lo cancello dalla lista  
@@ -165,6 +187,7 @@ elemento:Element;
             // poi azzero la lista
             this.assService.listaAppoggioIdSelezionati = [];
             this.assService.listaFiltroAssociazioni = [];
+            this.assService.listaDistruggiAssociazione = [];
         }
 
       }
@@ -268,10 +291,36 @@ elemento:Element;
                     console.log(this.assService.IdPadreSelezionato)
             break;
 
-            case 3:
+          case 3:
                   this.caricaListaFiltro(this.assService.IdPadreSelezionato);
-                  this.catchSignalComponent(1); 
-          default:
+                  this.catchSignalComponent(1);
+
+          break;
+            
+          case 4:
+                  let IdElementoinStringa = this.assService.listaDistruggiAssociazione[this.assService.listaDistruggiAssociazione.length-1].toString();
+                  let elemento = document.getElementById(IdElementoinStringa);
+                  elemento.style.borderWidth = "6px";
+                  elemento.style.borderCollapse = "separate";
+                  elemento.style.borderColor="black";
+                  elemento.style.borderTopColor= "white";
+                  elemento.style.borderBottomColor= "white";
+                  elemento.style.boxShadow="0 5px 5px -3px rgba( 5, 5, 5, 0.0), 0 4px 5px 0px rgba( 5, 5, 5, 0.0), 0 2px 7px 0px rgba( 5, 5, 5, 0.842)"; 
+
+            break;
+
+            case 5:
+                  let elementoGiallo = document.getElementById(this.assService.idGiallo.toString());
+                  elementoGiallo.style.borderLeftColor= "yellow";
+                  elementoGiallo.style.borderLeftStyle= "Solid";
+                  elementoGiallo.style.borderLeftWidth= "6px";
+                  elementoGiallo.style.borderTopColor= "white";
+                  elementoGiallo.style.borderBottomColor= "white";
+                  elementoGiallo.style.boxShadow="0 5px 5px -3px rgba(242, 242, 2, 0.0), 0 4px 5px 0px rgba(242, 242, 2, 0.0), 0 2px 7px 0px rgba(242, 242, 2, 0.842)"; 
+          
+            break;
+
+            default:
             break;
         }
   
@@ -287,6 +336,42 @@ elemento:Element;
       coloreOriginale(idColore){
         let colore = document.getElementById(idColore);
         colore.style.color="blue";
+      }
+
+    
+      aggiungiIdElementoAListaAdatta(id){
+        // metodo che riceve l'id dell'elemento da associare dal componente "element" e lo aggiunge 
+        // ad una lista di id da associare
+  
+        // Controllo se è stato selezionato un elemento già associato al padre
+        if(this.assService.listaFiltroAssociazioni.includes(id)){
+          //this.caricaListaDistruggiAssociazione(id)
+        }
+  
+        else if (this.assService.listaIdElementi.includes(id)){
+          // con questa if controllo se l'id è gia inserito nella lista.
+          // siccome l'id già esiste, l'aver cliccato 2 volte sullo stesso elemento,
+          // ne comporta la cancellazione dalla lista.
+          let indice = this.assService.listaIdElementi.indexOf(id)
+          if (indice == 0){
+            // Questo if serve a vedere se l'indice dell'id in questione è uguale a 0.
+            // Se è uguale a 0 vuol dire che è il primo, e quindi quello che deve essere preso 
+            // in considerazione come id del padre. In questo caso quindi, se si clicca di nuovo sull'elemento 
+            // padre, non bisogna solo cancellare l'id dalla lista, ma azzerare l'associazione, e quindi 
+            // la lista di id.
+            this.assService.listaIdElementi = [];
+          }
+          else{
+            // quindi se l'indice dell'id è diverso da zero, l'id deve essere eliminato dalla lista
+          //this.assService.listaIdElementi.splice(this.assService.listaIdElementi.indexOf(id),1);
+          console.log(this.assService.listaIdElementi)
+          }
+        }
+        else {
+          // se l'id non è presente nella lista, posso procedere con il push dell'id
+        this.assService.listaIdElementi.push(id);
+        }
+        
       }
 
 

@@ -12,34 +12,34 @@ using System.Web;
 
 namespace WebApplication2.Controllers
 {
-    public class AssociazioneController : ApiController
+  public class AssociazioneController : ApiController
+  {
+    // GET: api/Associazione
+    public IEnumerable<Associazione> Get()
     {
-        // GET: api/Associazione
-        public IEnumerable<Associazione> Get()
-        {
-            IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
+      IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
 
-            string SqlString = "SELECT * FROM [Tab_Associaz_Elem]";
+      string SqlString = "SELECT * FROM [Tab_Associaz_Elem]";
 
-            var ElementiTornati = (List<Associazione>)db.Query<Associazione>(SqlString);
+      var ElementiTornati = (List<Associazione>)db.Query<Associazione>(SqlString);
 
-            return ElementiTornati.ToList();
-        }
+      return ElementiTornati.ToList();
+    }
 
-        // GET: api/Associazione/id
-        public IEnumerable<int> Get(int id)
-        {
+    // GET: api/Associazione/id
+    public IEnumerable<int> Get(int id)
+    {
 
-          // Metodo che chiama in get la lista delle associazioni di un determinato elemento padre passandogli l'id
+      // Metodo che chiama in get la lista delle associazioni di un determinato elemento padre passandogli l'id
 
-          IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
+      IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
 
-          string SqlString = "SELECT Id_elemento2 FROM [Tab_Associaz_Elem] WHERE Id_Elemento1 =" + id;
+      string SqlString = "SELECT Id_elemento2 FROM [Tab_Associaz_Elem] WHERE Id_Elemento1 =" + id;
 
-          var ElementiTornati = (List<int>)db.Query<int>(SqlString);
+      var ElementiTornati = (List<int>)db.Query<int>(SqlString);
 
-          return ElementiTornati;
-        }
+      return ElementiTornati;
+    }
 
     // POST: api/Associazione
     public List<string> PostAssociazione(List<int> listaId)
@@ -68,12 +68,32 @@ namespace WebApplication2.Controllers
 
     // PUT: api/Associazione/5
     public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Associazione/5
-        public void Delete(int id)
-        {
-        }
+    {
     }
+
+    // DELETE: api/Associazione/5
+    public List<string> DeleteAssociazione(List<int> listaId)
+    {
+      if (!ModelState.IsValid)
+      {
+        // return BadRequest(ModelState);
+        return new List<string> { "1", "Il model state non è valido" };
+      }
+      else if (listaId.Count <= 1)
+      {
+        return new List<string> { "2", "Attenzione, seleziona almeno due elementi da disassociare" };
+      }
+      // ******devo passare qui i campi da immetere nella query****
+      IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
+      int conta = listaId.Count;
+      for (int i = 1; i <= conta; i++)
+      {
+        int idPadre = listaId[0];
+        int idFiglio = listaId[i];
+        string stringhetta = "DELETE FROM Tab_Associaz_Elem WHERE Id_Elemento1='" + idPadre + "' AND Id_Elemento2='" + idFiglio + "' ";
+        var affectedRows = db.Execute(stringhetta);
+      }
+      return new List<string> { "3", "La disassociazione tra gli elementi ha avuto successo" };
+    }
+  }
 }
