@@ -57,7 +57,6 @@ export class ContainerAssociatedComponent implements OnInit {
        this.snack.open("Sei in modalità EDIT","Ho capito");                                  // mostro il tasto settando hidden a false       
        this.abilitaDisabilita = false;}
     else {                                                  // se la booleana è false, abilito l'edit e setto poi la booleana a true
-                                                            // prendo il tasto "crea Associazione"
        tasto.hidden= true;
        //tasto1.hidden = true;   
        this.snack.open("non sei più in modalità EDIT","Ho capito");                               // nascondo il tasto settando hidden a true

@@ -220,10 +220,12 @@ elemento:Element;
             catch {}       
           });
         
-        this.assService.listaFiltroAssociazioni = []; 
+        this.assService.listaFiltroAssociazioni = [];
+        this.assService.listaIdElementi = []; 
 
          }
          this.assService.listaAppoggioIdSelezionati.push(IdElemento);
+         this.assService.listaIdElementi.push(IdElemento);
         this.selezioneElementoPadre(IdElemento) 
       }
 
@@ -282,16 +284,40 @@ elemento:Element;
                       elemento.style.borderWidth = "6px";
                       elemento.style.borderCollapse = "separate";
                       elemento.style.borderColor="";
+                      elemento.style.boxShadow= "0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842)";
                       this.assService.listaIdElementi.splice(i,1)
                     }
                     catch {}       
                     }
-                    this.assService.listaAppoggioIdSelezionati = [];
-                    console.log(this.assService.listaIdElementi) 
-                    console.log(this.assService.IdPadreSelezionato)
+
+                    for (let i = 1; i < this.assService.listaDistruggiAssociazione.length; i++) {
+                      var element = this.assService.listaDistruggiAssociazione[i];
+                      try{
+                        let IdElementoinStringa:string ;
+                        IdElementoinStringa = element.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+                        let elemento = document.getElementById(IdElementoinStringa);
+                        elemento.style.borderWidth = "6px";
+                        elemento.style.borderCollapse = "separate";
+                        elemento.style.borderColor="yellow";
+                        elemento.style.borderTopColor= "white";
+                        elemento.style.borderBottomColor= "white";
+                        elemento.style.boxShadow="0 5px 5px -3px rgba(242, 242, 2, 0.0), 0 4px 5px 0px rgba(242, 242, 2, 0.0), 0 2px 7px 0px rgba(242, 242, 2, 0.842)"; 
+                      }
+                      catch {}       
+                      }
+
+                  this.assService.listaDistruggiAssociazione.splice(1,this.assService.listaDistruggiAssociazione.length)
+                  this.assService.listaAppoggioIdSelezionati = [];
+                  console.log("VERIFICA")
+                  console.log(this.assService.listaIdElementi) 
+                  console.log(this.assService.IdPadreSelezionato)
+                  console.log(this.assService.listaDistruggiAssociazione)
             break;
 
           case 3:
+                  for (let i = 1; i < this.assService.listaIdElementi.length; i++) {
+                    this.assService.listaIdElementi.splice(i,1);
+                  }
                   this.caricaListaFiltro(this.assService.IdPadreSelezionato);
                   this.catchSignalComponent(1);
 
