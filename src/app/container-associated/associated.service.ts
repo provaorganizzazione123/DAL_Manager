@@ -20,8 +20,10 @@ export class AssociatedService {
 
   listaAssociazioni: Associated[] = [];
   listaFiltroAssociazioni: number[] = [];
+  listaDistruggiAssociazione: number[] = [];
 
   listaIdElementi: number[] = [];
+  idGiallo: number;
 
 
   riceveSignal: EventEmitter<number>;
@@ -54,6 +56,34 @@ export class AssociatedService {
       }
                                                                                               )
                     }
+
+        DeleteAssociazione(){
+
+        this.http.delete("http://localhost:60537/api/Associazione" , this.listaDistruggiAssociazione).subscribe(
+      data => {
+        switch(data[0]) { 
+          case "1": { 
+            this.toastr.warning('Risposta Server', data[1].toString())
+             break; 
+          } 
+          case "2": { 
+            this.toastr.info('Risposta Server', data[1].toString())
+             break; 
+          } 
+          case "3": { 
+            this.toastr.success('Risposta Server', data[1].toString());
+            this.EmitSignalComponent(3);
+            break; 
+          }
+             }
+               },
+      err =>{
+        this.toastr.error('Attenzione', err.error.ExceptionMessage);
+      }
+                                                                                              )
+
+        }
+
         GetAssociazione(){
 
           // Metodo che richiama l'API per il GET di tutte le associazioni presenti nel DB e le salva nella listaAssociazioni
