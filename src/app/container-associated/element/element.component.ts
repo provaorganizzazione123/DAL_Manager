@@ -278,14 +278,18 @@ elemento:Element;
   
       }
 
-      colorescritta(idColore){
-        let colore = document.getElementById(idColore);
-        colore.style.color="white";
-      }
-
-      coloreOriginale(idColore){
+      colorescritta(idColore, idIcon){
         let colore = document.getElementById(idColore);
         colore.style.color="blue";
+        let icona = document.getElementById(idIcon);
+        icona.style.display="block";
+      }
+
+      coloreOriginale(idColore, idIcon){
+        let colore = document.getElementById(idColore);
+        colore.style.color="blue";
+        let icona = document.getElementById(idIcon);
+        icona.style.display="none";
       }
 
 

@@ -6,7 +6,6 @@ import {HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {MatButtonModule, MatCheckboxModule, MatDialog} from '@angular/material';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContainerAssociatedComponent } from './container-associated/container-associated.component';
@@ -38,9 +37,7 @@ import { InserimentoContenitoreComponent } from './inserimento-contenitore/inser
     EliminazioneComponent,
     ModificaComponent,
     DettaglioComponent,
-    InserimentoContenitoreComponent,
-    
-    
+    InserimentoContenitoreComponent
   ],
   imports: [
     BrowserModule,

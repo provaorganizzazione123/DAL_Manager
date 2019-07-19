@@ -9,24 +9,11 @@
     margin: 2%;
   }
 
-#ElementoCreato{
-  margin-bottom:10px;
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-right:10px;
-  float: left;
-  margin-left:3px;
-  flex-flow: wrap;
-  display: flex;
-  align-items: center;
-}
-
-.descrizione {
-    font-family: sans-serif;
-    margin: 5%;
-    margin-left: -5px;
+  #ElementoCreato{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 3%;
   }
-
 
 .descrizione{
     font-family: inherit;
@@ -34,6 +21,8 @@
     color: blue;
     padding-top: 0;
     padding-bottom: 0;
+    margin: -2%;
+    margin-left: -12px;
     }
 
 .chiudi{
@@ -130,4 +119,12 @@ td{
 
 table{
   border-bottom-color: grey;
+}
+
+.posIcon{
+  margin-left: 172px;
+  padding: 0px;
+  display:none;
+  margin-bottom: -10px;
+  margin-top: -18px;
 }

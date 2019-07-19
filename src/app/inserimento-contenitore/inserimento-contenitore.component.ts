@@ -65,4 +65,3 @@ export class InserimentoContenitoreComponent implements OnInit {
       this.dialogRef.close()
     }
 }
-

@@ -1,27 +1,22 @@
 
-
- <div *ngFor="let ele of elemento" class="container" id="ElementoCreato" > 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  <!--icone import-->
+ <div *ngFor="let ele of elemento" class="container list-group-item list-group-item-action" id="ElementoCreato" > 
    <!-- <div class="col-sm-10 sinistra" >  -->
-     <table>
-       <tr>
-         <td>
-          <button (mouseover)="colorescritta(ele.NomeElemento)" (mouseleave)="coloreOriginale(ele.NomeElemento)" class="element, btn btn-outline-primary" id ="{{ele.IdElemento}}" (click)="catturaId(ele.IdElemento)" >
-            <p  class="descrizione" id ="{{ele.NomeElemento}}">
-        {{ele.NomeElemento}}
+     
+    <div (mouseover)="colorescritta(ele.NomeElemento, ele.IdElemento)" (mouseleave)="coloreOriginale(ele.NomeElemento, ele.IdElemento)" class=""  (click)="catturaId(ele.IdElemento)" >
+      <p class="descrizione" id ="{{ele.NomeElemento}}">
+      {{ele.NomeElemento}}
       </p>
-    </button>
-         </td>
- <hr>
+      <span class="posIcon" id="{{ele.IdElemento}}"><i class="fa fa-home"></i></span>
+    </div>
+         
+ 
   <!-- </div> -->
    <!-- <div class="col-sm-2 destra"> -->
-     <td>
-    <button class="chiudi" (click)="DeleteElemento(ele)">X</button><hr class="separatore">
+    
+    <!-- <button class="chiudi" (click)="DeleteElemento(ele)">X</button><hr class="separatore">
     <button class="modifica" (click)="ModificaElemento(ele.IdElemento)">Edit</button><hr class="separatore">
-    <button class="dettaglio" (click)="dettaglioElemento(ele.DescrizioneElemento)">Dettaglio</button><hr class="separatore">
+    <button class="dettaglio" (click)="dettaglioElemento(ele.DescrizioneElemento)">Dettaglio</button><hr class="separatore"> -->
   <!-- </div>   -->
-  </td>
-</tr>
-</table>
- 
 </div>
 
