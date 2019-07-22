@@ -71,29 +71,48 @@ namespace WebApplication2.Controllers
     {
     }
 
-    // DELETE: api/Associazione/5
-    public List<string> DeleteAssociazione(List<int> listaId)
+    // DELETE: api/Associazione/[int]
+    //public List<string> DeleteAssociazione(List<int> listaId)
+    //{
+    //  if (!ModelState.IsValid)
+    //  {
+    //    // return BadRequest(ModelState);
+    //    return new List<string> { "1", "Il model state non è valido" };
+    //  }
+    //  else if (listaId.Count <= 1)
+    //  {
+    //    return new List<string> { "2", "Attenzione, seleziona almeno due elementi da disassociare" };
+    //  }
+    //  // ******devo passare qui i campi da immetere nella query****
+    //  IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
+    //  int conta = listaId.Count;
+    //  for (int i = 1; i <= conta; i++)
+    //  {
+    //    int idPadre = listaId[0];
+    //    int idFiglio = listaId[i];
+    //    string stringhetta = "DELETE FROM Tab_Associaz_Elem WHERE Id_Elemento1='" + idPadre + "' AND Id_Elemento2='" + idFiglio + "' ";
+    //    var affectedRows = db.Execute(stringhetta);
+    //  }
+    //  return new List<string> { "3", "La disassociazione tra gli elementi ha avuto successo" };
+    //}
+
+    //DELETE: api/Associazione/5
+    public List<string> DeleteAssociazione(int id)
     {
       if (!ModelState.IsValid)
       {
-        // return BadRequest(ModelState);
-        return new List<string> { "1", "Il model state non è valido" };
+        return new List<string> { "1", "Model state non valido" };
       }
-      else if (listaId.Count <= 1)
-      {
-        return new List<string> { "2", "Attenzione, seleziona almeno due elementi da disassociare" };
-      }
-      // ******devo passare qui i campi da immetere nella query****
-      IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
-      int conta = listaId.Count;
-      for (int i = 1; i <= conta; i++)
-      {
-        int idPadre = listaId[0];
-        int idFiglio = listaId[i];
-        string stringhetta = "DELETE FROM Tab_Associaz_Elem WHERE Id_Elemento1='" + idPadre + "' AND Id_Elemento2='" + idFiglio + "' ";
-        var affectedRows = db.Execute(stringhetta);
-      }
-      return new List<string> { "3", "La disassociazione tra gli elementi ha avuto successo" };
+
+       // ***************devo passare qui i campi da immetere nella query***********
+       IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
+
+       //Elimina l'elemento dalla tabella Arc_Elemento
+       string stringhetta = "DELETE FROM Tab_Associaz_Elem WHERE Id_Associazione=" + id;
+       var affectedRows = db.Execute(stringhetta);
+
+        return new List<string> { "2", "Elemento disassociato con succcesso" };
+
     }
   }
 }

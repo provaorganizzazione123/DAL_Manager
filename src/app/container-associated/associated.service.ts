@@ -23,6 +23,7 @@ export class AssociatedService {
   listaDistruggiAssociazione: number[] = [];
 
   listaIdElementi: number[] = [];
+  listaIdAssociazioniDaEliminare: number[] = [];
   idGiallo: number;
 
 
@@ -57,11 +58,45 @@ export class AssociatedService {
                                                                                               )
                     }
 
-        DeleteAssociazione(){
+    DeleteAssociazione(){
 
-       
+      for (let i = 1; i < this.listaDistruggiAssociazione.length; i++) {
+                        
+        this.listaAssociazioni.forEach(ass => {
+                          
+          if(ass.Id_Elemento1 == this.listaDistruggiAssociazione[0] && ass.Id_elemento2 == this.listaDistruggiAssociazione[i]){
+                  
+            this.listaIdAssociazioniDaEliminare.push(ass.Id_Associazione);
+                    
+          }
+        });   
+      }
 
-        }
+      console.log(this.listaIdAssociazioniDaEliminare);
+
+      this.listaIdAssociazioniDaEliminare.forEach(ass => {
+
+        return this.http.delete(this.rootURL + '/Associazione/' + ass).subscribe(
+          async data => {
+            switch(data[0]) { 
+              case "1": {
+                this.toastr.warning('Risposta Server', data[1].toString());
+                break; 
+              } 
+              case "2": { 
+                this.toastr.show('Risposta Server', data[1].toString());
+                break; 
+              }
+            }
+          },
+          err =>{
+            this.toastr.info('Disassociazioni:', err.error.ExceptionMessage);
+          });
+      });
+
+      this.EmitSignalComponent(6);
+                    
+    }
 
         GetAssociazione(){
 

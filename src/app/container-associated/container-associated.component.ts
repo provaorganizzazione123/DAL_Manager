@@ -48,15 +48,17 @@ export class ContainerAssociatedComponent implements OnInit {
 
       this.assService.listaIdElementi.push(this.assService.IdPadreSelezionato);
     } 
-    let tasto = document.getElementById("CreaAss");  
+    let tasto = document.getElementById("CreaAss");
+    let tasto1 = document.getElementById("DisAss");  
     if(this.abilitaDisabilita){                             // se la booleana è true, abilito l'edit e setto poi la booleana a false
                                                             // prendo il tasto "crea Associazione"
        tasto.hidden=false;
+       tasto1.hidden=false;
        this.snack.open("Sei in modalità EDIT","Ho capito");                                  // mostro il tasto settando hidden a false       
        this.abilitaDisabilita = false;}
     else {                                                  // se la booleana è false, abilito l'edit e setto poi la booleana a true
-                                                            // prendo il tasto "crea Associazione"
-       tasto.hidden= true;   
+       tasto.hidden= true;
+       tasto1.hidden = true;   
        this.snack.open("non sei più in modalità EDIT","Ho capito");                               // nascondo il tasto settando hidden a true
        this.abilitaDisabilita = true;
        this.assService.EmitSignalComponent(2);    // Emissione segnale per la diselezione degli elementi associati o temporaneamente selezionati in verde
@@ -71,6 +73,10 @@ export class ContainerAssociatedComponent implements OnInit {
 
         this.assService.PostAssociazione()
     }
+
+    distruggiAssociazione(){
+      this.assService.DeleteAssociazione()
+    }
     
     /* PostAssociazione(listaId: number[]){
       return this.http.post("http://localhost:60537/api/Associazione", this.assService.listaIdElementi);
@@ -83,7 +89,7 @@ export class ContainerAssociatedComponent implements OnInit {
 
       // Controllo se è stato selezionato un elemento già associato al padre
       if(this.assService.listaFiltroAssociazioni.includes(id)){
-
+        //this.caricaListaDistruggiAssociazione(id)
       }
 
       else if (this.assService.listaIdElementi.includes(id)){
@@ -98,12 +104,10 @@ export class ContainerAssociatedComponent implements OnInit {
           // padre, non bisogna solo cancellare l'id dalla lista, ma azzerare l'associazione, e quindi 
           // la lista di id.
           this.assService.listaIdElementi = [];
-          console.log(this.assService.listaIdElementi)
         }
         else{
           // quindi se l'indice dell'id è diverso da zero, l'id deve essere eliminato dalla lista
-        this.assService.listaIdElementi.splice(this.assService.listaIdElementi.indexOf(id),1);
-        console.log(this.assService.listaIdElementi)
+        //this.assService.listaIdElementi.splice(this.assService.listaIdElementi.indexOf(id),1);
         }
       }
       else {
@@ -112,6 +116,27 @@ export class ContainerAssociatedComponent implements OnInit {
       }
       
     }
+
+    caricaListaDistruggiAssociazione(idSelezionato: number){
+
+      if(this.assService.listaDistruggiAssociazione.length == 0){
+        this.assService.listaDistruggiAssociazione[0] = this.assService.IdPadreSelezionato
+      }
+
+      if(!this.assService.listaDistruggiAssociazione.includes(idSelezionato)){
+        this.assService.listaDistruggiAssociazione.push(idSelezionato);
+        this.assService.EmitSignalComponent(4);
+      
+      }
+      else{
+       this.assService.listaDistruggiAssociazione.splice(this.assService.listaIdElementi.indexOf(idSelezionato),1)
+       this.assService.idGiallo = idSelezionato;
+       this.assService.EmitSignalComponent(5);     
+      }
+
+
+    }
+
 
     mostraLegenda(){
       // metrodo per aprire il tooltip "Legenda", azionato dal mouseOver del tasto "Legenda"
