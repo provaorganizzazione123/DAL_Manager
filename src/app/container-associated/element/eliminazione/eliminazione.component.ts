@@ -24,12 +24,12 @@ export class EliminazioneComponent implements OnInit {
 
   /*METODO eliminaElemento
   Questo metodo si collega al service invocando il metodo di delete dell'Api*/
-  eliminaElemento(){
-    this._service.deleteElemento(this.deletedElement);
-      //this.toastr.warning('Risposta del server', 'Elemento elimnato con successo');
-      this.dialogRef.close();
-      this._service.refreshList();
-                    }
+  // eliminaElemento(){
+  //   this._service.deleteElemento(this.deletedElement);
+  //     //this.toastr.warning('Risposta del server', 'Elemento elimnato con successo');
+  //     this.dialogRef.close();
+  //     this._service.refreshList();
+  //                   }
 
   chiudiPopup(){
     this.dialogRef.close();

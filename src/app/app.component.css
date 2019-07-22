@@ -37,17 +37,16 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     }
 
-.colonna{
-    position: absolute;
-    right: 0%;
-    height: 100%;
-    position:fixed top;
-    flex-flow: wrap;
-    display: flex;
-    width: 15%;
-    margin-left: 1%;
-    overflow: scroll;
-    }
+    .colonna{
+        position: absolute;
+        right: 0%;
+        height: 100%;
+        flex-flow: wrap;
+        display: flex;
+        width: 160px;
+        margin-left: 1%;
+        overflow: scroll;
+        }
 
 td{
     border-left-color: blue;
