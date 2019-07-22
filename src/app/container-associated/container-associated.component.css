@@ -13,7 +13,7 @@
   box-sizing: border-box;
   transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 8px;
+  padding: 16px;
   resize: both;
   overflow: unset;
   width: 250px;
@@ -21,7 +21,6 @@
   min-width: 170px;;
   min-height: 50px;
   overflow-y: scroll;
-  line-height: 1rem;
 
 }
 
@@ -83,7 +82,7 @@
   border-radius: 10px;
   box-sizing: border-box;
   transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.315);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: min-content;
   margin: 5px;
   border-block-end-width: auto;
@@ -93,12 +92,17 @@
 }
 
 .cancella{
-  float: right;
-  margin-right: 3%;
   border: none;
-  background:azure;
+  background: azure;
   font-size: 20px;
   padding: inherit;
+  width: 20px;
+  height: 20px;
+  position: fixed;
+  margin-left: 238px;
+  margin-top: 0px;
+  color: black;
+  background-color: lavender;
 }
 
 .button{
@@ -108,31 +112,30 @@
   font-size: medium;
 }
 
-h3{
+.h3{
   font-size: 1.30rem;
-  margin-top: 0.40rem;
+  font-family: unset;
 }
 
 #EDIT{
   position:fixed;
-  top: 58px;
-  right: 150px;
-  margin-right: 10px;
+  top:10%;
+  left: 78%;
+  margin-right: 1%;
 }
 
 #CreaAss{
   position: fixed;
-  bottom: 0%;
-  right: 150px;
+  top: 8%;
+  left:1%;
   flex:auto;
   margin-right: 1%;
 }
 
 #Legenda{
   position:fixed;
-  bottom: 0%;
-  left: 0%;
   margin-right: 1%;
+  margin-top: 1%;
 }
 
 .toolTip{
@@ -140,7 +143,7 @@ h3{
   margin-left : 88px;
   border:solid 1px black;
   align-items: center;
-  background:white;  
+  background:white*1;  
   border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);   
   padding: 10px;
@@ -149,18 +152,23 @@ h3{
 }
 
 .dimensioneSpan{
-  width: 20px;
-  height: 20px;
-  margin-top: 10px;
-  margin-bottom: -2px;
-  margin-left: 5px;
-  display: inline-block;
-  border-style: none;
-  border-radius: 28px;
+  width: 50px;
+  height: 15px;
+  margin: auto;
+  display:inline-block;
+  border: 1px solid grey;
+  border-radius: 10px;
 }
 
-svg{
-  cursor:grab;
+#ListaElementi{
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  width: 265px;
 }
 
-
+.card-title{
+  margin-left: 0.50rem;
+  margin-bottom: 0;
+}
