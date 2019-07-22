@@ -17,6 +17,7 @@ export class AppComponent {
   listaContenitori : Contenitore[];
   contenitoriAperti = [];
   idDaCancellare;
+  IdChiusuraSignal: EventEmitter<number>;
 
 
   @Output() contenitore = new EventEmitter <{id: string, nome: string}> ();
@@ -24,27 +25,32 @@ export class AppComponent {
   constructor( private service: ElementService,
                private serviceCont: ContenitoreService,
                private assService: AssociatedService,
-               public dialog : MatDialog,) { }
+               public dialog : MatDialog,) {
+
+               this.IdChiusuraSignal = new EventEmitter<number>();
+                }
 
   ngOnInit () {
     this.service.refreshList();
     this.assService.GetAssociazione();
 }
 
-getIdByList(event) {
-  /* this.contenitore.emit({id:event.id,nome:event.nome}); */
+  getIdByList(event) {
   this.contenitoriAperti.push({id:event.id,nome:event.nome, colore:event.colore});
 }
 
 cancellaIdDaLista(event) {
-  this.idDaCancellare=event.id;
-}
 
-resettaidDaCancellare(event){
-  // metodo per resettare la variabile "idDaCancellare", in modo che al suo prossimo cambiamento
-  // l'onChange del component figlio "component-list" trovi un nuovo valore e quindi si avvia.
-  this.idDaCancellare=event;
-  
+  for (let i = 0; i < this.contenitoriAperti.length; i++) {
+    
+    if(this.contenitoriAperti[i].id == event.id){
+      this.contenitoriAperti.splice(i,1);
+    }
+    
+  }
+
+  this.IdChiusuraSignal.emit(event.id);
+
 }
 
 inserisciElemento(){
