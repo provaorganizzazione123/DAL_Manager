@@ -25,6 +25,10 @@ import { EliminazioneComponent } from './container-associated/element/eliminazio
 import { ModificaComponent } from './container-associated/element/modifica/modifica.component';
 import { DettaglioComponent } from './container-associated/element/dettaglio/dettaglio.component';
 import { InserimentoContenitoreComponent } from './inserimento-contenitore/inserimento-contenitore.component';
+import { ElementiAssociatiComponent } from './registro-associazioni/elementi-associati/elementi-associati.component';
+import { TreeviewModule } from 'ngx-treeview';
+import { AlertModule } from 'ngx-bootstrap';
+
 
 
 @NgModule({
@@ -39,10 +43,14 @@ import { InserimentoContenitoreComponent } from './inserimento-contenitore/inser
     ModificaComponent,
     DettaglioComponent,
     InserimentoContenitoreComponent,
+    ElementiAssociatiComponent,
+    
     
     
   ],
   imports: [
+    AlertModule.forRoot(),
+    TreeviewModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     DragDropModule,
