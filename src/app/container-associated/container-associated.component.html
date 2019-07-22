@@ -1,23 +1,40 @@
 
-<div class="titolo"  cdkDrag cdkDragBoundary=".work-container" *ngFor = "let cont of contenitoriAperti " id="{{cont.id}}" > 
+<!-- <div class="card " cdkDrag cdkDragBoundary=".work-container" *ngFor = "let cont of contenitoriAperti " id="{{cont.id}}" >
 
-      <div cdkDragHandle>
-          <svg width="20px" fill="currentColor" viewBox="0 0 24 24" style="float:left ; margin-left: 8px ; margin-top: 8px">
-            <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
-            <path d="M0 0h24v24H0z" fill="none"></path>
-          </svg>
-         </div>
-     <h3 style="float:left ; margin-left: 2%" >      
+   <div cdkDragHandle class="list-group">
+      <svg width="20px" fill="currentColor" viewBox="0 0 24 24" style="float:left ; margin-left: 8px ; margin-top: 8px">
+        <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+        <path d="M0 0h24v24H0z" fill="none"></path>
+      </svg>
+  </div>
+     <h3 style="float:left ; margin-left: 2%" >
       {{cont.nome}}
       </h3>
       <span class="dimensioneSpan" [ngStyle]="{'background-color': cont.colore}"></span>
-      <button  class="cancella" (click)="chiudiContainer(cont.id)">&times;</button> 
-      <div class="box-element" >
-        <div class="row">
+      <button  class="cancella" (click)="chiudiContainer(cont.id)">&times;</button>
+   <div class="container"> container start
+      <div class="car">
+       <div class="row">
+        <div class="col-lg-4">
         <app-element [edit]= "abilitaDisabilita"  [idContenitoreAperto]="cont.id" [listaElementi]="service.listaElementi" (IdElemento)="aggiungiIdElementoALista($event)" ></app-element >
         </div>
+       </div>
       </div>
-      </div>
+  </div> container End
+</div> -->
+<div class="card " style="width: 16.5rem; background-color:lavender;" *ngFor = "let cont of contenitoriAperti " id="{{cont.id}}" >
+  <h5 class="card-title">{{cont.nome}}</h5>
+  <button  class="btn btn-primary cancella" (click)="chiudiContainer(cont.id)">&times;</button>
+  <div class="card-body list-group" id="ListaElementi">
+
+      <app-element style="background-color: lavender ; border-style: none" [edit]= "abilitaDisabilita" class="list-group-item"  [idContenitoreAperto]="cont.id" [listaElementi]="service.listaElementi" (IdElemento)="aggiungiIdElementoALista($event)" ></app-element >
+
+    </div>
+</div>
+
+
+
+
 
 <div>
 <button id="EDIT" type="button" class="btn btn-primary"  (click)= "abilitaAssociazione()">EDIT MODE</button>
@@ -28,17 +45,15 @@
     <div id = "legenda" hidden="hidden"  class="toolTip">
         <button class="btn btn-primary" style ="background-color:red"></button> Elemento Selezionato <br>
         <button class="btn btn-primary" style ="background-color:yellow"></button> Elemento Associato <br>
-        <button class="btn btn-primary" style ="background-color:green"></button> Elemento Da Associare (Edit Mode) 
+        <button class="btn btn-primary" style ="background-color:green"></button> Elemento Da Associare (Edit Mode)<br>
+        <button class="btn btn-primary" style ="background-color:black"></button> Elemento da Dissociare (Edit Mode)
       </div>
 </div>
 
 </div>
 <div>
-  
   <button id="CreaAss" type="button" class="btn btn-primary" (click)="creaAssociazione()" hidden="hidden">Crea Associazione</button>
-  <button id="DisAss" type="button" class="btn btn-primary" (click)="distruggiAssociazione()" hidden="hidden">Distruggi Associazione</button>
 </div>
-
 
 
 

@@ -7,7 +7,7 @@
   position:fixed;
   right:0%;
   height:45%;
-  width: 160px;;
+  width:15%;
   border-left-color: blue;
   border-left-style: solid;
   border-left-width: 2px;
@@ -28,8 +28,8 @@
 }
 
 .colonnaH4{
-  font-size: medium;
-  margin-left: -2px;
+  font-size: larger;
+  margin-left: 10%;
   float: left;
   text-align: -webkit-auto;
 }
