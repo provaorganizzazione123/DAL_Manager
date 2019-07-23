@@ -3,12 +3,12 @@
 
  <!-- inizio a fare il drag and drop -->
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box " *ngFor="let ele of elemento" cdkDrag>{{ele.NomeElemento}} 
+  <div class="example-box " *ngFor="let ele of elemento" cdkDrag id="{{ele.IdElemento}}" (click)="catturaId(ele.IdElemento)">{{ele.NomeElemento}}
     <div (mouseover)="colorescritta(ele.NomeElemento, ele.IdElemento)" (mouseleave)="coloreOriginale(ele.NomeElemento, ele.IdElemento)" class=""  (click)="catturaId(ele.IdElemento)" >
     <span class="posIcon" id="{{ele.IdElemento}}"><i class="fa fa-cog"></i></span>
   </div>
 </div>
-  
+
 
 
 <!--icone import-->

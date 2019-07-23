@@ -1,16 +1,15 @@
 .work-container {
-    float: left;
-    margin-top:3.5%;;
-    flex-flow: wrap;
-    display: flex;
-    align-items: center;
-    width: 92%;
-    height: 500%;
-    flex-flow: wrap;
-    display: grid;
-    overflow-x: auto;
-    overflow-y: auto;
-    }
+  float: left;
+  margin-top:3.5%;
+  flex-flow:wrap;
+   display:flex;
+  align-items:right;
+  width: 92%;
+  height: 300%;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  }
 
 
 .work-container:after {
@@ -25,13 +24,13 @@
     border-radius: 20px;
     width: 7px;
     }
-      
+
 .work-container::-webkit-scrollbar-track {
     background-color: white;
     border-radius: 20px;
     width: 7px;
     }
-      
+
 .work-container::-webkit-scrollbar-thumb {
     background-color: orange;
     border: 1px solid orange;
@@ -100,13 +99,13 @@ td::-webkit-scrollbar {
     border-radius: 20px;
     width: 7px;
     }
-  
+
 td::-webkit-scrollbar-track {
     background-color: white;
     border-radius: 20px;
     width: 7px;
   }
-  
+
 td::-webkit-scrollbar-thumb {
     background-color: orange;
     border: 1px solid orange;
@@ -114,14 +113,14 @@ td::-webkit-scrollbar-thumb {
     width: 7px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   }
-  
-  
+
+
 td:active {
     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
                 0 8px 10px 1px rgba(0, 0, 0, 0.14),
                 0 3px 14px 2px rgba(0, 0, 0, 0.12);
   }
-  
+
 
 .nav{
     position: fixed;
