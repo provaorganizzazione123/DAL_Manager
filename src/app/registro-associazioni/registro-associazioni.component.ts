@@ -33,10 +33,15 @@ export class RegistroAssociazioniComponent implements OnInit {
   ngOnInit() {
     // nell'onInit tengo sotto controllo la variabile "segnaleRegistro", che cambia ogni volta che seleziono 
     // un nuovo elemento "Padre",e gli azzero la lista dei contenitori e gli faccio partire il metodo "carica"
-    this.elementService.segnaleRegistro.subscribe(() => {
-      this.contenitori.splice(0, this.contenitori.length);      
-      
-      this.carica();
+    this.elementService.segnaleRegistro.subscribe(num => {
+      if (num == 0) {
+        this.contenitori.splice(0, this.contenitori.length);
+        this.carica();
+      }
+      else if (num == 1) {
+        this.contenitori.splice(0, this.contenitori.length);
+       this.Padre.splice(0, this.Padre.length);
+      }
     });
   }
 
@@ -78,13 +83,22 @@ export class RegistroAssociazioniComponent implements OnInit {
     });
   }
 
-  Espandi(id){
-    debugger
+  Espandi(id,id1){
+    // Questo metodo al primo click fa le istruzionio che seguono, al secondo in automatico
+    // fa le operazioni inverse. Quindi al primo click da le classi "active1" e "caret"
+    // al secondo le toglie
     let ramo = document.getElementById(id);
-    ramo.classList.toggle('active1');
-    let clas = 'caret';
-   //let span = document.getElementsByClassName(clas)   
-   //span.item.apply("caret-down");
+    // prendo l'oggetto che mi dovrà apparire (div) grazie all'id
+    ramo.classList.toggle('active1');   
+    //gli do la classe "active1" che mi cambia il display da none a block
+    let contenitore = document.getElementById(id1);
+    // Qui prendo il contenitore sempre attraverso l'id
+    // N.B. l'idi di questo contenitore è formato da una concatenzaione tra il nome e l'id del 
+    // contenitore stesso, questo per non andare in conflitto con gli altri id di contenitori ed
+    // elementi presenti nel dom.  
+    contenitore.classList.toggle('caret'); 
+    // assegno al contenitore la classe "caret".
+      
     }
 
   

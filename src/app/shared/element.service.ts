@@ -15,14 +15,14 @@ export class ElementService {
   listaElementi = [];
   listaElementiAppoggio: Element[];
   SegnaleAggiornamento: EventEmitter<boolean>;
-  segnaleRegistro: EventEmitter<boolean>;
+  segnaleRegistro: EventEmitter<number>;
   
  
 
   constructor(private http:HttpClient,
               private toastr: ToastrService) {
                 this.SegnaleAggiornamento= new EventEmitter<boolean>();
-                this.segnaleRegistro = new EventEmitter<boolean>();
+                this.segnaleRegistro = new EventEmitter<number>();
                 
                }
               
@@ -107,7 +107,7 @@ export class ElementService {
     this.SegnaleAggiornamento.emit(parametro);
   }
 
-  emetteSegnaleRegistro (parametro:boolean){
+  emetteSegnaleRegistro (parametro:number){
     this.segnaleRegistro.emit(parametro);
   }
 

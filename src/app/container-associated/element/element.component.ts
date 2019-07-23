@@ -225,6 +225,7 @@ drop(event: CdkDragDrop<string[]>) {
         
         this.assService.listaFiltroAssociazioni = [];
         this.assService.listaIdElementi = []; 
+        this.assService.listaAppoggioIdSelezionati = [];
 
          }
          this.assService.listaAppoggioIdSelezionati.push(IdElemento);
@@ -249,7 +250,8 @@ drop(event: CdkDragDrop<string[]>) {
       async caricaListaFiltro(IdPadre: number){
 
         await this.assService.GetAssociazioneById(IdPadre);
-  
+        await this.service.emetteSegnaleRegistro(0);
+          
         this.catchSignalComponent(1);       //Emissione del segnale per l'aggiornamento della messa in evidenza degli
                                           //elementi associati
       }
@@ -448,6 +450,7 @@ drop(event: CdkDragDrop<string[]>) {
             // padre, non bisogna solo cancellare l'id dalla lista, ma azzerare l'associazione, e quindi 
             // la lista di id.
             this.assService.listaIdElementi = [];
+            this.service.emetteSegnaleRegistro(1);
           }
           else{
             // quindi se l'indice dell'id è diverso da zero, l'id deve essere eliminato dalla lista
