@@ -1,20 +1,16 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container">
-    
         <h4 class="colonnaH4">Registro Associazioni</h4> 
 <div *ngFor="let padre of Padre" style ="border-color: red;border-style: solid; border-width: 1px; margin-top: 50px">
     <p> {{padre.NomeElemento}}</p>
     <p> contenuto in : {{contenitorePadre.Nome_Contenitore}} </p> 
-</div>     
-             
-    
-
-
+</div>    
 
 <ul id="myUL" *ngFor ="let contenitore of contenitori">
         <li >                
-            <span class="caret" [ngClass]="{'Nocaret': !classe, 'caret-down': classe}" (click)="classe = !classe;Espandi(contenitore.Nome_Contenitore)">           
+            <span  class="fa fa-archive" (click)=" Espandi(contenitore.Nome_Contenitore,contenitore.Nome_Contenitore+contenitore.Id_Contenitore)" id = "{{contenitore.Nome_Contenitore}}{{contenitore.Id_Contenitore}}"  >           
             {{contenitore.Nome_Contenitore}}              
-        </span>           
+            </span>           
           <ul class="nested" id="{{contenitore.Nome_Contenitore}}"> 
             <li id="contenitore.Id_Contenitore">
                 <app-elementi-associati [contenitorePadre]="contenitore.Id_Contenitore">  </app-elementi-associati>
@@ -27,4 +23,3 @@
 
 
 
-<!-- [ngClass]="{caret: classe, caret-down: !classe}" (click)="classe = !classe" -->
