@@ -1,3 +1,30 @@
 <div class="container">
-<h4 class="colonnaH4">Registro Associazioni</h4>
+    
+        <h4 class="colonnaH4">Registro Associazioni</h4> 
+<div *ngFor="let padre of Padre" style ="border-color: red;border-style: solid; border-width: 1px; margin-top: 50px">
+    <p> {{padre.NomeElemento}}</p>
+    <p> contenuto in : {{contenitorePadre.Nome_Contenitore}} </p> 
+</div>     
+             
+    
+
+
+
+<ul id="myUL" *ngFor ="let contenitore of contenitori">
+        <li >                
+            <span class="caret" [ngClass]="{'Nocaret': !classe, 'caret-down': classe}" (click)="classe = !classe;Espandi(contenitore.Nome_Contenitore)">           
+            {{contenitore.Nome_Contenitore}}              
+        </span>           
+          <ul class="nested" id="{{contenitore.Nome_Contenitore}}"> 
+            <li id="contenitore.Id_Contenitore">
+                <app-elementi-associati [contenitorePadre]="contenitore.Id_Contenitore">  </app-elementi-associati>
+                </li>            
+            </ul>
+        </li>
+    </ul>
+
 </div>
+
+
+
+<!-- [ngClass]="{caret: classe, caret-down: !classe}" (click)="classe = !classe" -->

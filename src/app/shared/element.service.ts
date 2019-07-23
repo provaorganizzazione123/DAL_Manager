@@ -15,10 +15,15 @@ export class ElementService {
   listaElementi = [];
   listaElementiAppoggio: Element[];
   SegnaleAggiornamento: EventEmitter<boolean>;
+  segnaleRegistro: EventEmitter<boolean>;
+  
+ 
 
   constructor(private http:HttpClient,
               private toastr: ToastrService) {
-                this.SegnaleAggiornamento= new EventEmitter<boolean>()
+                this.SegnaleAggiornamento= new EventEmitter<boolean>();
+                this.segnaleRegistro = new EventEmitter<boolean>();
+                
                }
               
   readonly rootURL = "http://localhost:60537/api";
@@ -101,4 +106,10 @@ export class ElementService {
   emetteSegnaleAggiornamento (parametro:boolean){
     this.SegnaleAggiornamento.emit(parametro);
   }
+
+  emetteSegnaleRegistro (parametro:boolean){
+    this.segnaleRegistro.emit(parametro);
+  }
+
+ 
 }

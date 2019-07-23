@@ -23,12 +23,12 @@ export class ElementComponent implements OnInit {
 @Input() listaElementi;
 colore:boolean;
 elemento:Element[];
-
 drop(event: CdkDragDrop<string[]>) {
 
   moveItemInArray(this.elemento, event.previousIndex, event.currentIndex);
 }
 @Output() IdElemento = new EventEmitter();
+
 
 @Input() edit : Boolean ; 
 
@@ -59,8 +59,8 @@ drop(event: CdkDragDrop<string[]>) {
     }
 
     ngAfterViewInit(): void {
-      this.assService.EmitSignalComponent(1);  //Emissione del segnale per l'aggiornamento della messa in evidenza degli
-                                               //elementi associati
+      this.assService.EmitSignalComponent(1);   //Emissione del segnale per l'aggiornamento della messa in evidenza degli
+      this.assService.EmitSignalComponent(7);   //elementi associati
     }
 
     
@@ -122,6 +122,7 @@ drop(event: CdkDragDrop<string[]>) {
         else{
          this.assService.listaDistruggiAssociazione.splice(this.assService.listaDistruggiAssociazione.indexOf(IdElemento),1)
          this.assService.idGiallo = IdElemento;
+         
          this.catchSignalComponent(5);     
         }
 
@@ -372,6 +373,35 @@ drop(event: CdkDragDrop<string[]>) {
                   console.log(this.assService.listaFiltroAssociazioni);
                   console.log(this.assService.listaAssociazioni);
     
+            break;
+
+            case 7: // Intercettazione segnale nella riapertura di un contenitore che ha all'interno l'elemento padre
+                  debugger
+                  this.assService.listaAppoggioIdSelezionati.forEach(ele => {
+
+                    if(this.assService.listaAppoggioIdSelezionati.indexOf(ele) == 0){
+
+                      let elemento = document.getElementById(ele);
+                      elemento.style.borderLeftColor= "red";
+                      elemento.style.borderLeftStyle= "Solid";
+                      elemento.style.borderLeftWidth= "6px";
+                      elemento.style.borderTopColor= "white";
+                      elemento.style.borderBottomColor= "white";
+                      elemento.style.boxShadow="0 5px 5px -3px rgba(242, 2, 2, 0.0), 0 4px 5px 0px rgba(242, 2, 2, 0.0), 0 2px 7px 0px rgba(242, 2, 2, 0.842)";
+                    }
+                    else{
+
+                      let elemento = document.getElementById(ele);
+                      elemento.style.borderWidth = "6px";
+                      elemento.style.borderCollapse = "separate";
+                      elemento.style.borderLeftStyle= "Solid";
+                      elemento.style.borderTopColor= "white";
+                      elemento.style.borderBottomColor= "white";
+                      elemento.style.borderColor="green";
+                    }
+                    
+                  });
+
             break;
 
             default:
