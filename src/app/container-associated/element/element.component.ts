@@ -498,6 +498,4 @@ drop(event: CdkDragDrop<string[]>) {
       dialogConfig.data=Descrizione;  
       this.dialog.open(DettaglioComponent, dialogConfig);
     }
-
-
 }

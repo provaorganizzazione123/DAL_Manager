@@ -29,6 +29,7 @@ button{
     border-bottom-style: none;
     border-top-style: none;
     border-right-style: none;
+    width: fit-content;
 }
 
 .colonnaH4{

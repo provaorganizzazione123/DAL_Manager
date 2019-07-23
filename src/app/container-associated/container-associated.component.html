@@ -21,12 +21,12 @@
       </div>
   </div> container End
 </div> -->
-<div class="card " style="width: 16.5rem; background-color:lavender;" *ngFor = "let cont of contenitoriAperti " id="{{cont.id}}" >
+<div class="card scroll " style="width: 16.5rem; background-color:lavender;" *ngFor = "let cont of contenitoriAperti " id="{{cont.id}}" >
   <h5 class="card-title">{{cont.nome}}</h5>
   <button  class="btn btn-primary cancella" (click)="chiudiContainer(cont.id)">&times;</button>
   <div class="card-body list-group" id="ListaElementi">
 
-      <app-element style="background-color: lavender ; border-style: none" [edit]= "abilitaDisabilita" class="list-group-item"  [idContenitoreAperto]="cont.id" [listaElementi]="service.listaElementi" (IdElemento)="aggiungiIdElementoALista($event)" ></app-element >
+      <app-element style="background-color: transparent ; border-style: none" [edit]= "abilitaDisabilita" class="list-group-item"  [idContenitoreAperto]="cont.id" [listaElementi]="service.listaElementi" (IdElemento)="aggiungiIdElementoALista($event)" ></app-element >
 
     </div>
 </div>
