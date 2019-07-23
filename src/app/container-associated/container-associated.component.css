@@ -28,11 +28,13 @@
   background-color:white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 20px;
+  width: 7px;
   }
 
 .box-element::-webkit-scrollbar-track {
   background-color: white;
   border-radius: 20px;
+  width: 7px;
 }
 
 .box-element::-webkit-scrollbar-thumb {
@@ -40,6 +42,7 @@
   border: 1px solid orange;
   border-radius: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 7px;
 }
 
 
@@ -93,16 +96,14 @@
 
 .cancella{
   border: none;
-  background: azure;
+  background-color: lavender;
   font-size: 20px;
   padding: inherit;
   width: 20px;
-  height: 20px;
-  position: fixed;
-  margin-left: 238px;
-  margin-top: 0px;
+  height: 18px;
   color: black;
-  background-color: lavender;
+  margin-top: -35px;
+  margin-left: 238px;
 }
 
 .button{
@@ -133,9 +134,9 @@
 }
 
 #Legenda{
-  position:fixed;
-  margin-right: 1%;
-  margin-top: 1%;
+  position: fixed;
+  right: 161px;
+  bottom: 2px;
 }
 
 .toolTip{
@@ -161,14 +162,24 @@
 }
 
 #ListaElementi{
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 1px;
+  padding-right: 1px;
   padding-bottom: 2px;
   padding-top: 2px;
-  width: 265px;
+  width: 291px;
+  margin-left: -15px;
 }
 
 .card-title{
   margin-left: 0.50rem;
-  margin-bottom: 0;
+  margin-bottom: 0.50rem;
+  margin-top: 0.20rem;
 }
+
+.card{
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+
+

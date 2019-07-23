@@ -337,6 +337,4 @@ elemento:Element[];
       dialogConfig.data=Descrizione;
       this.dialog.open(DettaglioComponent, dialogConfig);
     }
-
-
 }
