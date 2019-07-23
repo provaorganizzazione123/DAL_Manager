@@ -52,19 +52,6 @@
               0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
-.work-container {
- float: left;
- margin: auto;
- flex-flow: wrap;
- display: flex;
- align-items: center;
-}
-
-.work-container:after {
- content: "";
- display: table;
- clear: both;
-}
 
 .element {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -140,16 +127,16 @@
 }
 
 .toolTip{
-  float: right; 
+  float: right;
   margin-left : 88px;
   border:solid 1px black;
   align-items: center;
-  background:white*1;  
+  background:white*1;
   border-radius: 8px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);   
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 10px;
   box-shadow: -1px -1px 11px 8px #ecb42a94;
-  
+
 }
 
 .dimensioneSpan{
