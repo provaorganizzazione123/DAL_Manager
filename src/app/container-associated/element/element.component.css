@@ -225,3 +225,120 @@ table{
   transition: opacity 85ms ease-in,transform 85ms ease-in;
   transition: opacity 85ms ease-in,transform 85ms ease-in,-webkit-transform 85ms ease-in;
 }
+
+.ElementoRosso{
+  padding: 20px 10px;
+  border-left-color:transparent;
+  color:black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: white;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: -5px;
+  width: 250px;
+  height: 45px;
+  border-Left-Color:red;
+  border-Left-Style: Solid;
+  border-Left-Width: 6px;
+  border-Top-Color:white;
+  border-Bottom-Color:white;
+  box-Shadow:0 5px 5px -3px rgba(242, 2, 2, 0.0), 0 4px 5px 0px rgba(242, 2, 2, 0.0), 0 2px 7px 0px rgba(242, 2, 2, 0.842);
+}
+
+ .ElementoBianco{
+padding: 20px 10px;
+border-left-color:transparent;
+color:black;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+box-sizing: border-box;
+cursor: pointer;
+background: white;
+font-size: 14px;
+margin-top: 5px;
+margin-bottom: -5px;
+width: 250px;
+height: 45px;
+border-Width: 6px;
+border-Collapse :separate;
+border-Color:transparent;
+box-Shadow:0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842);
+}
+
+ .ElementoGiallo{
+padding: 20px 10px;
+border-left-color:transparent;
+color:black;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+box-sizing: border-box;
+cursor: pointer;
+background: white;
+font-size: 14px;
+margin-top: 5px;
+margin-bottom: -5px;
+width: 250px;
+height: 45px;
+border-Left-Color:yellow;
+border-Left-Style:Solid;
+border-Left-Width: 6px;
+border-Bottom-Color:white;
+box-Shadow:0 5px 5px -3px rgba(242, 242, 2, 0.0), 0 4px 5px 0px rgba(242, 242, 2, 0.0), 0 2px 7px 0px rgba(242, 242, 2, 0.842);
+
+ }
+
+ .ElementoNero{
+padding: 20px 10px;
+border-left-color:transparent;
+color:black;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+box-sizing: border-box;
+cursor: pointer;
+background: white;
+font-size: 14px;
+margin-top: 5px;
+margin-bottom: -5px;
+width: 250px;
+height: 45px;
+border-Left-Color:black;
+border-Left-Style:Solid;
+border-Left-Width: 6px;
+border-Bottom-Color:white;
+box-Shadow:0 5px 5px -3px rgba(242, 242, 2, 0.0), 0 4px 5px 0px rgba(242, 242, 2, 0.0), 0 2px 7px 0px rgba(242, 242, 2, 0.842);
+}
+
+ .ElementoVerde{
+padding: 20px 10px;
+border-left-color:transparent;
+color:black;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+box-sizing: border-box;
+cursor: pointer;
+background: white;
+font-size: 14px;
+margin-top: 5px;
+margin-bottom: -5px;
+width: 250px;
+height: 45px;
+border-Width : 6px;
+border-Collapse : separate;
+border-Left-Style: Solid;
+border-Top-Color:white;
+border-Bottom-Color: White;
+Border-Color:green;
+}
