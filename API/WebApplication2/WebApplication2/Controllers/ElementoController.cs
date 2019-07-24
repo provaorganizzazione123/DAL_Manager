@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Linq;
 using System.Web.Http.Description;
 using System.Web;
+using System;
 
 namespace WebApplication2.Controllers
 {
@@ -25,8 +26,8 @@ namespace WebApplication2.Controllers
 
             return ElementiTornati.ToList();
         }
-        //GET api/values/Parametro
-        public IEnumerable<Elemento> Get(int id)
+
+        public IEnumerable<Elemento> Get(string id)
         {
             IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
 
@@ -35,6 +36,27 @@ namespace WebApplication2.Controllers
             var ElementiTornati = (List<Elemento>)db.Query<Elemento>(SqlString);
 
             return ElementiTornati;
+        }
+
+
+        // POST: api/Elemento
+        public IHttpActionResult PostElemento(Elemento elemento)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // Genero la chiave primaria:
+
+            string IdGui = "EL" + Guid.NewGuid().ToString().Substring(0, 8);
+
+            // ***************devo passare qui i campi da immetere nella query***********
+            IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
+            string stringhetta = "INSERT INTO Arc_Elemento (IdElemento, NomeElemento, DescrizioneElemento, Id_Contenitore) Values ('" + IdGui + "', '" + elemento.NomeElemento + "', '" + elemento.DescrizioneElemento + "', '" + elemento.Id_Contenitore + "');";
+            var affectedRows = db.Execute(stringhetta);
+
+            return CreatedAtRoute("DefaultApi", new { id = elemento.IdElemento }, elemento);
         }
 
         //PUT
@@ -52,23 +74,8 @@ namespace WebApplication2.Controllers
             return CreatedAtRoute("DefaultApi", new { id = elemento.IdElemento }, elemento);
         }
 
-        // POST: api/Elemento
-        public IHttpActionResult PostElemento(Elemento elemento)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            // ***************devo passare qui i campi da immetere nella query***********
-            IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
-            string stringhetta = "INSERT INTO Arc_Elemento (NomeElemento, DescrizioneElemento, Id_Contenitore) Values ('" + elemento.NomeElemento + "', '" + elemento.DescrizioneElemento + "', '" + elemento.Id_Contenitore + "');";
-            var affectedRows = db.Execute(stringhetta);
-
-            return CreatedAtRoute("DefaultApi", new { id = elemento.IdElemento }, elemento);
-        }
-
        [ResponseType(typeof(Elemento))]
-        public List<string> deleteElemento(int id)
+        public List<string> deleteElemento(string id)
         {
             
 
@@ -106,3 +113,4 @@ namespace WebApplication2.Controllers
 
     }
 }
+

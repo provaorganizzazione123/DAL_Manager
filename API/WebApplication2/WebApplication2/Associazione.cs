@@ -10,9 +10,9 @@ namespace WebApplication2
 
     public int? Id_Associazione { get; set; }
 
-    public int? Id_Elemento1 { get; set; }
+    public string Id_Elemento1 { get; set; }
 
-    public int? Id_elemento2 { get; set; }
+    public string Id_elemento2 { get; set; }
 
 
   }

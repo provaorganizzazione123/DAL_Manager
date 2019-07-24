@@ -9,9 +9,8 @@ namespace WebApplication2
 {
     public class Contenitore
     {
-        public int? Id_Contenitore { get; set; }
-        public string Nome_Contenitore { get; set; }
-        
+        public string Id_Contenitore { get; set; }
+        public string Nome_Contenitore { get; set; }       
         public string Colore_Contenitore { get; set; }
     }
 }

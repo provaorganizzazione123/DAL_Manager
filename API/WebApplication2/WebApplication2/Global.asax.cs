@@ -18,7 +18,7 @@ namespace WebApplication2
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Application["SqlString"] = "Data Source=DESKTOP-OK69SHO; Initial catalog=DataBaseDiProva;Integrated Security = true;";
+            Application["SqlString"] = "Data Source=DESKTOP-OK69SHO; Initial catalog=DatabaseDALMG;Integrated Security = true;";
     }
     }
 }

@@ -27,22 +27,22 @@ namespace WebApplication2.Controllers
     }
 
     // GET: api/Associazione/id
-    public IEnumerable<int> Get(int id)
+    public IEnumerable<string> Get(string id)
     {
 
       // Metodo che chiama in get la lista delle associazioni di un determinato elemento padre passandogli l'id
 
       IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
 
-      string SqlString = "SELECT Id_elemento2 FROM [Tab_Associaz_Elem] WHERE Id_Elemento1 =" + id;
+      string SqlString = "SELECT Id_elemento2 FROM [Tab_Associaz_Elem] WHERE Id_Elemento1 =" +"'"+ id + "'";
 
-      var ElementiTornati = (List<int>)db.Query<int>(SqlString);
+      var ElementiTornati = (List<string>)db.Query<string>(SqlString);
 
       return ElementiTornati;
     }
 
     // POST: api/Associazione
-    public List<string> PostAssociazione(List<int> listaId)
+    public List<string> PostAssociazione(List<string> listaId)
     {
       if (!ModelState.IsValid)
       {
@@ -58,8 +58,8 @@ namespace WebApplication2.Controllers
       int conta = listaId.Count;
       for (int i = 1; i != conta; i++)
       {
-        int idPadre = listaId[0];
-        int idFiglio = listaId[i];
+        string idPadre = listaId[0];
+        string idFiglio = listaId[i];
         string stringhetta = "INSERT INTO Tab_Associaz_Elem (Id_Elemento1,Id_Elemento2) Values ('" + idPadre + "', '" + idFiglio + "');";
         var affectedRows = db.Execute(stringhetta);
       }

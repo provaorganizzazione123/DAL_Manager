@@ -8,10 +8,9 @@ namespace WebApplication2
 {
     public class Elemento
     {
-        
-        public int? IdElemento  { get; set; }
+        public string IdElemento { get; set; }
         public string NomeElemento { get; set; }
         public string DescrizioneElemento { get; set; }
-        public int? Id_Contenitore  { get; set; }
+        public string Id_Contenitore { get; set; }
     }
 }

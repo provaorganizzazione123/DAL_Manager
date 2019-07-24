@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using System.Linq;
 using System.Web.Http.Description;
 using System.Web;
-
+using System;
 
 namespace WebApplication2.Controllers
 {
@@ -35,11 +35,16 @@ namespace WebApplication2.Controllers
       {
         // return BadRequest(ModelState);
         return new List<string> { "1", "Il model state non è valido" };
-      }     
+      }
+
+      // Genero la chiave primaria:
+
+      string IdGui = "CN" + Guid.NewGuid().ToString().Substring(0, 8);
+
       // ******devo passare qui i campi da immetere nella query****
       IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
      
-        string stringhetta = "INSERT INTO Arc_Contenitori (Nome_Contenitore , Colore_Contenitore) Values ('" + Contenitore.Nome_Contenitore + "', '" + Contenitore.Colore_Contenitore + "');";
+      string stringhetta = "INSERT INTO Arc_Contenitori (Id_Contenitore, Nome_Contenitore , Colore_Contenitore) Values ('" + IdGui + "', '" + Contenitore.Nome_Contenitore + "', '" + Contenitore.Colore_Contenitore + "');";
       try { var affectedRows = db.Execute(stringhetta);
             return new List<string> { "2", "Contenitore inserito con successo" };
       }
@@ -48,12 +53,12 @@ namespace WebApplication2.Controllers
 
 
     // PUT: api/Contenitore/5
-    public void Put(int id, [FromBody]string value)
+    public void Put(string id, [FromBody]string value)
     {
     }
 
     // DELETE: api/Contenitore/5
-    public void Delete(int id)
+    public void Delete(string id)
     {
     }
   }
