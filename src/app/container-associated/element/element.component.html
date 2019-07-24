@@ -8,39 +8,11 @@
       (mouseover)="colorescritta(ele.IdElemento, ele.NomeElemento)" 
       (mouseleave)="coloreOriginale(ele.IdElemento, ele.NomeElemento)" >{{ele.NomeElemento}}
     <button class="posIcon" id="{{ele.NomeElemento}}"
-          (mouseover)="apparizioneDiv()" 
+          (click)="apparizioneDiv()" 
           (mouseleave)="scomparsaDiv()">
           <i class="fa fa-cog"></i>
     </button>
-    <div class="quick-card-editor-buttons" id="prova" style="display: none">
-      <button class="chiudi" (click)="DeleteElemento(ele)">X</button><hr class="separatore">
-      <button class="modifica" (click)="ModificaElemento(ele.IdElemento)">Edit</button><hr class="separatore">
-      <button class="dettaglio" (click)="dettaglioElemento(ele.DescrizioneElemento)">Dettaglio</button><hr class="separatore">
-    </div>
 </div> 
-
-
-
-<!--icone import-->
- <!-- <div *ngFor="let ele of elemento" class="container list-group-item list-group-item-action" id="ElementoCreato" > -->
-   <!-- <div class="col-sm-10 sinistra" >  -->
-
-    <!-- <div (mouseover)="colorescritta(ele.NomeElemento, ele.IdElemento)" (mouseleave)="coloreOriginale(ele.NomeElemento, ele.IdElemento)" class=""  (click)="catturaId(ele.IdElemento)" >
-      <p class="descrizione" id ="{{ele.NomeElemento}}">
-      {{ele.NomeElemento}}
-      </p>
-      <span class="posIcon" id="{{ele.IdElemento}}"><i class="fa fa-home"></i></span>
-    </div> -->
-
-
-
-
-
-
-
-
-
-
 
 
   <!-- </div> -->

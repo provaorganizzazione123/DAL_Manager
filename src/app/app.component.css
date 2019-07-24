@@ -10,7 +10,6 @@
   overflow-y: hidden;
   }
 
-
 .work-container:after {
     content: "";
     display: table;
@@ -130,11 +129,50 @@ td:active {
 }
 
 .navbar{
-    width: 100%;
-    z-index: 1;
+  width: 100%;
+  z-index: 1;
 }
 
 .bg-primary {
-    background-color:#007BB3!important;
-   }
+  background-color:#007BB3!important;
+}
+
+#Legenda{
+    position: fixed;
+    right: 170px;
+    top: 19px;
+    color: white;
+    cursor: help;
+} 
+
+.toolTip{
+    position: fixed;
+    top: 56px;
+    right: 156px;
+    align-items: center;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: -1px -1px 11px 8px #ecb42a94;
+}
+
+.btnLegenda{
+    height: 15px;
+    width: 15px;
+    border-radius: 5px;
+    border-style: none;
+    cursor: auto;
+}
+
+.alert{
+    margin-top: 56px;
+    position: fixed;
+    top: 0px;
+    right: 158px;
+    z-index: 1;
+}
+
+.intestazione{
+    font-size: 15px;
+    margin-left: 5px;
+}
 
