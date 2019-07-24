@@ -2,12 +2,22 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
  <!-- inizio a fare il drag and drop -->
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box " *ngFor="let ele of elemento" cdkDrag id="{{ele.IdElemento}}" (click)="catturaId(ele.IdElemento)">{{ele.NomeElemento}}
-    <div (mouseover)="colorescritta(ele.NomeElemento, ele.IdElemento)" (mouseleave)="coloreOriginale(ele.NomeElemento, ele.IdElemento)" class=""  (click)="catturaId(ele.IdElemento)" >
-    <span class="posIcon" id="{{ele.IdElemento}}"><i class="fa fa-cog"></i></span>
-  </div>
-</div>
+ <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <div class="example-box " *ngFor="let ele of elemento" cdkDrag id="{{ele.IdElemento}}" 
+      (click)="catturaId(ele.IdElemento)"
+      (mouseover)="colorescritta(ele.IdElemento, ele.NomeElemento)" 
+      (mouseleave)="coloreOriginale(ele.IdElemento, ele.NomeElemento)" >{{ele.NomeElemento}}
+    <button class="posIcon" id="{{ele.NomeElemento}}"
+          (mouseover)="apparizioneDiv()" 
+          (mouseleave)="scomparsaDiv()">
+          <i class="fa fa-cog"></i>
+    </button>
+    <div class="quick-card-editor-buttons" id="prova" style="display: none">
+      <button class="chiudi" (click)="DeleteElemento(ele)">X</button><hr class="separatore">
+      <button class="modifica" (click)="ModificaElemento(ele.IdElemento)">Edit</button><hr class="separatore">
+      <button class="dettaglio" (click)="dettaglioElemento(ele.DescrizioneElemento)">Dettaglio</button><hr class="separatore">
+    </div>
+</div> 
 
 
 
