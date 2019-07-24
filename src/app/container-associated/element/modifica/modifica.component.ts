@@ -31,7 +31,7 @@ export class ModificaComponent implements OnInit {
     
     }
 
-    idPassato: number;
+    idPassato: string;
     eleEdit: Element[];
     eleEdit2: Element;
   
