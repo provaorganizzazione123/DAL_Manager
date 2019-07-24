@@ -11,7 +11,7 @@ import { catchError} from 'rxjs/operators';
 })
 export class AssociatedService {
   listaAppoggioIdSelezionati = [];
-  IdPadreSelezionato: number = 0;
+  IdPadreSelezionato: string = "";
 
   errore: string;
   result: any;
@@ -19,12 +19,12 @@ export class AssociatedService {
   readonly rootURL = "http://localhost:60537/api";
 
   listaAssociazioni: Associated[] = [];
-  listaFiltroAssociazioni: number[] = [];
-  listaDistruggiAssociazione: number[] = [];
+  listaFiltroAssociazioni: string[] = [];
+  listaDistruggiAssociazione: string[] = [];
 
-  listaIdElementi: number[] = [];
+  listaIdElementi: string[] = [];
   listaIdAssociazioniDaEliminare: number[] = [];
-  idGiallo: number;
+  idGiallo: string;
 
 
   riceveSignal: EventEmitter<number>;
@@ -105,11 +105,11 @@ export class AssociatedService {
           this.http.get(this.rootURL + '/Associazione').toPromise().then(res => this.listaAssociazioni = res as Associated[]);    
           }
                   
-          async GetAssociazioneById(IdPadre: number){
+          async GetAssociazioneById(IdPadre: string){
                   
           // Metodo che richiama l'API per il GET filtrato di tutti gli gli ID degli elementi associati all'elemento padre
                   
-            await this.http.get(this.rootURL + '/Associazione/' + IdPadre.toString()).toPromise().then(res => this.listaFiltroAssociazioni = res as number[]);    
+            await this.http.get(this.rootURL + '/Associazione/' + IdPadre.toString()).toPromise().then(res => this.listaFiltroAssociazioni = res as string[]);    
           }
                   
 

@@ -1,5 +1,5 @@
 export class Element {
-    IdElemento :number;
+    IdElemento :string;
     NomeElemento:string;
     DescrizioneElemento:string;
     Id_Contenitore: number;
