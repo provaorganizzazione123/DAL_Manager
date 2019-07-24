@@ -135,33 +135,28 @@ table{
 .example-list {
   width: 250px;
   max-width: 100%;
-  border: solid 1px #ccc;
   min-height: 60px;
   display: block;
-  background: white;
   border-radius: 4px;
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: hidden;
   max-height: 450px;
 }
 
 .example-box {
   padding: 20px 10px;
-  border-left-color:transparent;
-  color:black;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  cursor: pointer;
-  background: white;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-bottom: -5px;
-  width: 250px;
-  height: 45px;
-  border-bottom-style: inset;
+    border-left-color: transparent;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: pointer;
+    background: white;
+    font-size: 14px;
+    margin: 8px;
+    height: 45px;
 }
 
 .cdk-drag-preview {
@@ -251,25 +246,24 @@ table{
 }
 
  .ElementoBianco{
-padding: 20px 10px;
-border-left-color:transparent;
-color:black;
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-between;
-box-sizing: border-box;
-cursor: pointer;
-background: white;
-font-size: 14px;
-margin-top: 5px;
-margin-bottom: -5px;
-width: 250px;
-height: 45px;
-border-Width: 6px;
-border-Collapse :separate;
-border-Color:transparent;
-box-Shadow:0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842);
+  padding: 20px 10px;
+  border-left-color: transparent;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: white;
+  font-size: 14px;
+  margin: 8px;
+  width: 50;
+  height: 45px;
+  border-Width: 6px;
+  border-Collapse: separate;
+  border-Color: transparent;
+  box-Shadow: 0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842);
 }
 
  .ElementoGiallo{
