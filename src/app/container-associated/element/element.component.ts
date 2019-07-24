@@ -225,6 +225,7 @@ drop(event: CdkDragDrop<string[]>) {
         
         this.assService.listaFiltroAssociazioni = [];
         this.assService.listaIdElementi = []; 
+        this.assService.listaAppoggioIdSelezionati = [];
 
          }
          this.assService.listaAppoggioIdSelezionati.push(IdElemento);
@@ -376,7 +377,7 @@ drop(event: CdkDragDrop<string[]>) {
             break;
 
             case 7: // Intercettazione segnale nella riapertura di un contenitore che ha all'interno l'elemento padre
-                  debugger
+                  
                   this.assService.listaAppoggioIdSelezionati.forEach(ele => {
 
                     if(this.assService.listaAppoggioIdSelezionati.indexOf(ele) == 0){
@@ -407,23 +408,44 @@ drop(event: CdkDragDrop<string[]>) {
             default:
             break;
         }
-  
-        
-  
+      }
+
+      mostraLegenda(){
+        // metrodo per aprire il tooltip "Legenda", azionato dal mouseOver del tasto "Legenda"
+        let div = document.getElementById('legenda');
+        div.hidden=false;    
+      }
+    
+      nascondiLegenda(){
+        // metodo per chiudere il tooltip "Legenda", azionato dall'evento mouseLeave del tasto "Legenda"
+        let div = document.getElementById('legenda');
+        div.hidden=true; 
       }
 
       colorescritta(idColore, idIcon){
         let colore = document.getElementById(idColore);
-        colore.style.color="blue";
+        colore.style.backgroundColor="lavenderblush";
+        colore.style.color="gray";
         let icona = document.getElementById(idIcon);
         icona.style.display="block";
       }
 
       coloreOriginale(idColore, idIcon){
         let colore = document.getElementById(idColore);
-        colore.style.color="blue";
+        colore.style.backgroundColor="white";
+        colore.style.color="black";
         let icona = document.getElementById(idIcon);
         icona.style.display="none";
+      }
+
+      apparizioneDiv(){
+        const div = document.getElementById('prova');
+        div.style.display="block";
+      }
+
+      scomparsaDiv(){
+        // const div = document.getElementById('prova');
+        // div.style.display="none";
       }
 
     

@@ -29,7 +29,8 @@ button{
     border-bottom-style: none;
     border-top-style: none;
     border-right-style: none;
-    width: fit-content;
+    width: -webkit-fill-available;
+    max-width: 65px;
 }
 
 .colonnaH4{
@@ -37,3 +38,5 @@ button{
     float: left;
     margin-left: -18px;
 }
+
+

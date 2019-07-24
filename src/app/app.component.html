@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
   <div class="nav">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -21,7 +21,13 @@
           <a class="nav-link" href="#">About</a>
         </li>
         <li class="nav-item">
-          <button mat-raised-button class="mat-raised-button mat-primary">bomberbutton</button>
+          <i  id="Legenda" class="fa fa-question-circle" (mouseover)="mostraLegenda()" (mouseleave)="nascondiLegenda()" ></i>
+          <div id = "legenda" hidden="hidden"  class="toolTip">
+              <button class="btn btn-primary" style ="background-color:red"></button> Elemento Selezionato <br>
+              <button class="btn btn-primary" style ="background-color:yellow"></button> Elemento Associato <br>
+              <button class="btn btn-primary" style ="background-color:green"></button> Elemento Da Associare (Edit Mode)<br>
+              <button class="btn btn-primary" style ="background-color:black"></button> Elemento da Dissociare (Edit Mode)
+            </div>
         </li>
       </ul>
     </div>
@@ -29,10 +35,7 @@
   </div>
   <router-outlet>
     <div class="work-container">
-      <table>
-        <tr app-container-associated="contenitoriAperti" class="work-container"  [contenitoriAperti]="contenitoriAperti" (idContenitoreChiuso)= "cancellaIdDaLista($event)" >
-        </tr>
-      </table>
+        <app-container-associated [contenitoriAperti]="contenitoriAperti" (idContenitoreChiuso)= "cancellaIdDaLista($event)" ></app-container-associated>
     </div>
     
     <div class="colonna">

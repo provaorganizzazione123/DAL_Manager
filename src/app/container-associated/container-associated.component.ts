@@ -6,12 +6,13 @@ import { AssociatedService } from './associated.service';
 import {MatSnackBarModule, MatSnackBar} from '@angular/material';
 import {ToastrService } from 'ngx-toastr';
 import { Contenitore } from '../shared/contenitore.model';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 //import { ToastrService } from 'ngx-toastr';
 declare var jquery:any;
 declare var $ :any;
 
 @Component({
-  selector: 'tr [app-container-associated]',
+  selector: 'app-container-associated',
   templateUrl: './container-associated.component.html',
   
   styleUrls: ['./container-associated.component.css']
@@ -34,6 +35,9 @@ export class ContainerAssociatedComponent implements OnInit {
 
   ngOnInit() { }
 
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.contenitoriAperti, event.previousIndex, event.currentIndex);
+  }
 
   chiudiContainer(contId) {
     let box = document.getElementById(contId);
@@ -138,15 +142,15 @@ export class ContainerAssociatedComponent implements OnInit {
     }
 
 
-    mostraLegenda(){
-      // metrodo per aprire il tooltip "Legenda", azionato dal mouseOver del tasto "Legenda"
-      let div = document.getElementById('legenda');
-      div.hidden=false;    
-    }
+    // mostraLegenda(){
+    //   // metrodo per aprire il tooltip "Legenda", azionato dal mouseOver del tasto "Legenda"
+    //   let div = document.getElementById('legenda');
+    //   div.hidden=false;    
+    // }
   
-    nascondiLegenda(){
-      // metodo per chiudere il tooltip "Legenda", azionato dall'evento mouseLeave del tasto "Legenda"
-      let div = document.getElementById('legenda');
-      div.hidden=true; 
-    }
+    // nascondiLegenda(){
+    //   // metodo per chiudere il tooltip "Legenda", azionato dall'evento mouseLeave del tasto "Legenda"
+    //   let div = document.getElementById('legenda');
+    //   div.hidden=true; 
+    // }
 }
