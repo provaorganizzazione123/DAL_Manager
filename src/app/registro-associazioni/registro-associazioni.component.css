@@ -80,7 +80,7 @@ ul, #myUL {
 
 
 .caret::before {
-  content: "\f16b";
+  content: "\25B6";
   color: black;
   display: inline-block;
   margin-right: 6px;
@@ -101,9 +101,4 @@ ul, #myUL {
 
 .active1 {
   display: block;
-}
-
-.icona{
-  height: 10px;
-  width: 10 px;
 }

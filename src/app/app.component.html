@@ -21,18 +21,18 @@
           <a class="nav-link" href="#">About</a>
         </li>
         <li class="nav-item">
-          <i  id="Legenda" class="fa fa-question-circle" (mouseover)="mostraLegenda()" (mouseleave)="nascondiLegenda()" ></i>
-          <div id = "legenda" hidden="hidden"  class="toolTip">
-              <button class="btn btn-primary" style ="background-color:red"></button> Elemento Selezionato <br>
-              <button class="btn btn-primary" style ="background-color:yellow"></button> Elemento Associato <br>
-              <button class="btn btn-primary" style ="background-color:green"></button> Elemento Da Associare (Edit Mode)<br>
-              <button class="btn btn-primary" style ="background-color:black"></button> Elemento da Dissociare (Edit Mode)
-            </div>
+          <i  id="Legenda" class="fa fa-question-circle" (mouseover)="mostraLegenda()" (mouseleave)="nascondiLegenda()"></i>
         </li>
       </ul>
     </div>
   </nav>
-  </div>
+</div>
+<div class="alert alert-info" id="alert" style="display:none">
+    <button class="btnLegenda" style ="background-color:red"></button> <label class="intestazione">Elemento Selezionato</label><br>
+    <button class="btnLegenda" style ="background-color:yellow"></button> <label class="intestazione">Elemento Associato</label><br>
+    <button class="btnLegenda" style ="background-color:green"></button> <label class="intestazione">Elemento Da Associare (Edit Mode)</label><br>
+    <button class="btnLegenda" style ="background-color:black"></button> <label class="intestazione">Elemento da Dissociare (Edit Mode)</label> 
+</div>
   <router-outlet>
     <div class="work-container">
         <app-container-associated [contenitoriAperti]="contenitoriAperti" (idContenitoreChiuso)= "cancellaIdDaLista($event)" ></app-container-associated>

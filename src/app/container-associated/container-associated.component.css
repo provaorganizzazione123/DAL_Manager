@@ -9,24 +9,6 @@
   height: 50px;
 }
 
-.titolo{
-  text-align: left;
-  align-items: right;
-  border: solid 1px #ccc;
-  color: rgba(0, 0, 0, 0.87);
-  background:azure;
-  border-radius: 10px;
-  box-sizing: border-box;
-  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: min-content;
-  margin: 5px;
-  border-block-end-width: auto;
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
-  border-bottom-right-radius: 0px;
-}
-
 .cancella{
   border: none;
   background-color: lavender;
@@ -52,10 +34,13 @@
 }
 
 #EDIT{
-  position:fixed;
-  top: 58px;
-  right: 150px;
+  position: fixed;
+  top: 9px;
+  right: -2px;
   margin-right: 10px;
+  z-index: 1;
+  background-color: limegreen;
+  width: 145px;
 }
 
 #CreaAss{
@@ -64,25 +49,6 @@
   left:1%;
   flex:auto;
   margin-right: 1%;
-}
-
-#Legenda{
-  position: fixed;
-  right: 161px;
-  bottom: 2px;
-}
-
-.toolTip{
-  float: right;
-  margin-left : 88px;
-  border:solid 1px black;
-  align-items: center;
-  background:white*1;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  box-shadow: -1px -1px 11px 8px #ecb42a94;
-
 }
 
 .dimensioneSpan{
@@ -101,7 +67,6 @@
   padding-top: 2px;
   width: 291px;
   margin-left: -15px;
-  z-index: 1;
 }
 
 .card-title{
@@ -122,6 +87,7 @@
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+  height: min-content;
 }
 
 .example-list {

@@ -70,5 +70,17 @@ inserisciElemento(){
   
   this.dialog.open(InserimentoContenitoreComponent, dialogConfig);
   }
+
+  mostraLegenda(){
+      // metrodo per aprire il tooltip "Legenda", azionato dal mouseOver del tasto "Legenda"
+      let div = document.getElementById('alert');
+      div.style.display="block";    
+    }
+  
+    nascondiLegenda(){
+      // metodo per chiudere il tooltip "Legenda", azionato dall'evento mouseLeave del tasto "Legenda"
+      let div = document.getElementById('alert');
+      div.style.display="none"; 
+    }
  
 }
