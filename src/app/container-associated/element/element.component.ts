@@ -258,6 +258,10 @@ associati= [];
         // Metodo richiamato quando si vuole evidenziare di giallo un elemento già associato al padre selezionato
 
         await this.assService.GetAssociazioneById(IdPadre);
+
+        // richiamo il metodo "emetteSegnaleRegisto" , passando lo 0 in modo che quando arriva lo 0 al component
+        // registro fa partire il metodo per il caricamento del REgistro.
+        await this.service.emetteSegnaleRegistro(0);
   
         this.catchSignalComponent(1);       //Emissione del segnale per l'aggiornamento della messa in evidenza degli
                                             //elementi associati
@@ -477,6 +481,10 @@ associati= [];
         else {
           // se l'id non è presente nella lista, posso procedere con il push dell'id
         this.assService.listaIdElementi.push(id);
+
+           // richiamo il "emmetteSegnaleRegisto" passando 1 in modo che quando l'1 arriva al component Registo, 
+          // viene resettato sia il padre che la lista contenente i figli. 
+          this.service.emetteSegnaleRegistro(1);
         }
         
       }
