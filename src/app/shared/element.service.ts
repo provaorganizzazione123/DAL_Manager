@@ -67,36 +67,36 @@ export class ElementService {
     return this.http.put(this.rootURL + '/Elemento/' + formData.IdElemento, formData);
   }
  
-  deleteElemento(){
-    // return this.http.delete(this.rootURL + '/Elemento/' + this.listaContenitori).subscribe(
-    //   async data => {
-    //     switch(data[0]) { 
-    //       case "1": { 
-    //         this.toastr.warning('Risposta Server', data[1].toString());
-    //         await this.refreshList();
-    //         this.filtraLista(deleteElemento.Id_Contenitore);
-    //         this.emetteSegnaleAggiornamento(true);
-    //          break; 
-    //       } 
-    //       case "2": { 
-    //         this.toastr.info('Risposta Server', data[1].toString());
-    //         await this.refreshList();
-    //         this.filtraLista(deleteElemento.Id_Contenitore);
-    //         this.emetteSegnaleAggiornamento(true);
-    //          break; 
-    //       } 
-    //       case "3": { 
-    //         this.toastr.success('Risposta Server', data[1].toString());
-    //         await this.refreshList();
-    //         this.filtraLista(deleteElemento.Id_Contenitore);
-    //         this.emetteSegnaleAggiornamento(true);
-    //          break; 
-    //       }
-    //                     }
-    //            },
-    //   err =>{
-    //     this.toastr.error('Attenzione', err.error.ExceptionMessage);
-    //   });
+  deleteElemento(deleteElemento: Element){
+    return this.http.delete(this.rootURL + '/Elemento/' + deleteElemento.IdElemento).subscribe(
+      async data => {
+        switch(data[0]) { 
+          case "1": { 
+            this.toastr.warning('Risposta Server', data[1].toString());
+            await this.refreshList();
+            this.filtraLista(deleteElemento.Id_Contenitore);
+            this.emetteSegnaleAggiornamento(true);
+             break; 
+          } 
+          case "2": { 
+            this.toastr.info('Risposta Server', data[1].toString());
+            await this.refreshList();
+            this.filtraLista(deleteElemento.Id_Contenitore);
+            this.emetteSegnaleAggiornamento(true);
+             break; 
+          } 
+          case "3": { 
+            this.toastr.success('Risposta Server', data[1].toString());
+            await this.refreshList();
+            this.filtraLista(deleteElemento.Id_Contenitore);
+            this.emetteSegnaleAggiornamento(true);
+             break; 
+          }
+                        }
+               },
+      err =>{
+        this.toastr.error('Attenzione', err.error.ExceptionMessage);
+      });
   }
 
   populateDropDownList(){

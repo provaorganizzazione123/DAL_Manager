@@ -3,6 +3,7 @@ import { ElementService } from 'src/app/shared/element.service';
 import { MatDialogRef } from '@angular/material';
 import { Element } from 'src/app/shared/element.model';
 
+
 @Component({
   selector: 'app-eliminazione',
   templateUrl: './eliminazione.component.html',
@@ -15,7 +16,8 @@ export class EliminazioneComponent implements OnInit {
   
     
   constructor(private _service : ElementService,
-              public dialogRef : MatDialogRef<EliminazioneComponent>) { }
+              public dialogRef : MatDialogRef<EliminazioneComponent>
+             ) { }
     
 
   ngOnInit() {
@@ -24,12 +26,12 @@ export class EliminazioneComponent implements OnInit {
 
   /*METODO eliminaElemento
   Questo metodo si collega al service invocando il metodo di delete dell'Api*/
-  // eliminaElemento(){
-  //   this._service.deleteElemento(this.deletedElement);
-  //     //this.toastr.warning('Risposta del server', 'Elemento elimnato con successo');
-  //     this.dialogRef.close();
-  //     this._service.refreshList();
-  //                   }
+  eliminaElemento(){
+    debugger
+    this._service.deleteElemento(this.deletedElement);
+      this.dialogRef.close();
+      this._service.refreshList();
+                    }
 
   chiudiPopup(){
     this.dialogRef.close();

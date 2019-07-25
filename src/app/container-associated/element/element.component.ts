@@ -61,7 +61,7 @@ associati= [];
              
                    // Questo subscribe monitora il segnale di aggiornamento che viene inviato come true nel caso di un nuovo elemento inserito
                    // e riesegue il ciclo di filtro della lista elementi in base all'id del contenitore
-             
+                   
                    this.service.SegnaleAggiornamento.subscribe(()=>{
                      this.service.listaElementi.forEach(element => {
                        if (element.id == this.idContenitoreAperto){
@@ -94,7 +94,7 @@ associati= [];
     
 
     catturaId(IdElemento:string){
-
+      debugger
       // Metodo che prende l'id dell'elemento selezionato al momento del click, ed esegue il metodo giusto in base
       // alla modalita selelzionata (EDIT, VISUAL)
 
@@ -211,7 +211,7 @@ associati= [];
 
         // MODALITA' VISIONE: Modalita in cui l'utente può visualizzare gli elementi associati ad un altro elemento selezionato
         ModalitaVisione(IdElemento: string){
-
+          debugger
         if(this.assService.IdPadreSelezionato != ""){
 
           // Controlla se è gia stato selelzionato un elemento come padre, toglie l'evidenziatura del padre e degli elementi associati
@@ -258,10 +258,6 @@ associati= [];
         // Metodo richiamato quando si vuole evidenziare di giallo un elemento già associato al padre selezionato
 
         await this.assService.GetAssociazioneById(IdPadre);
-
-        // richiamo il metodo "emetteSegnaleRegisto" , passando lo 0 in modo che quando arriva lo 0 al component
-        // registro fa partire il metodo per il caricamento del REgistro.
-        await this.service.emetteSegnaleRegistro(0);
   
         this.catchSignalComponent(1);       //Emissione del segnale per l'aggiornamento della messa in evidenza degli
                                             //elementi associati
@@ -481,16 +477,12 @@ associati= [];
         else {
           // se l'id non è presente nella lista, posso procedere con il push dell'id
         this.assService.listaIdElementi.push(id);
-
-           // richiamo il "emmetteSegnaleRegisto" passando 1 in modo che quando l'1 arriva al component Registo, 
-          // viene resettato sia il padre che la lista contenente i figli. 
-          this.service.emetteSegnaleRegistro(1);
         }
         
       }
 
 
-    DeleteElemento(idEle:number){
+    DeleteElemento(elementoDelete:Element){
 
       // Metodo DeleteElemento ----> """"" scaturito dal click sui bottoni X degli elementi """"
       // Questo metodo crea una Dialog facendo partire il component Figlio --> EliminazioneComponent
@@ -501,7 +493,7 @@ associati= [];
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       dialogConfig.width = "60%";
-      dialogConfig.data = idEle;
+      dialogConfig.data = elementoDelete;
       this.dialog.open(EliminazioneComponent,  dialogConfig ); 
     }
 

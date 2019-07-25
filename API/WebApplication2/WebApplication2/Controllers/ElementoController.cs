@@ -95,16 +95,16 @@ namespace WebApplication2.Controllers
             {
                 if(ele.Id_Elemento1 == id)
                 {
-                    return new List<string> { "2", "Non spuoi cancellare un elemento Padre di un associazione" };   
+                    return new List<string> { "2", "Non puoi cancellare un elemento Padre di un associazione" };   
                 }
                
             }
             //Elimina il record nella tabella associazioni prima di eliminare l'elemento
-            string CancFromAssociazioni = "DELETE FROM [Tab_Associaz_Elem] WHERE Id_Elemento2=" + id;
+            string CancFromAssociazioni = "DELETE FROM [Tab_Associaz_Elem] WHERE Id_Elemento2= '" + id + "'";
                 var affectedRowsAssociazioni = db.Execute(CancFromAssociazioni);
             
             //Elimina l'elemento dalla tabella Arc_Elemento
-            string stringhetta = "DELETE FROM Arc_Elemento WHERE IdElemento=" + id;
+            string stringhetta = "DELETE FROM Arc_Elemento WHERE IdElemento= '" + id + "'";
                 var affectedRows = db.Execute(stringhetta);
 
                 return new List<string> { "3", "Elemento eliminato con succcesso" };
