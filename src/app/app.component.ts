@@ -31,15 +31,23 @@ export class AppComponent {
                 }
 
   ngOnInit () {
+
+    // Nell'init si esegue il GET totale degli elementi e delle associazioni
+
     this.service.refreshList();
     this.assService.GetAssociazione();
 }
 
   getIdByList(event) {
+
+  // Metodo che prende in input il contenitore aperto e lo invia al container-associated.component
+
   this.contenitoriAperti.push({id:event.id,nome:event.nome, colore:event.colore});
 }
 
 cancellaIdDaLista(event) {
+
+  // Metodo che elimina dalla lista l'id del contenitore chiuso e emette il segnale con l'id del contenitore stesso al component-list
 
   for (let i = 0; i < this.contenitoriAperti.length; i++) {
     
@@ -54,6 +62,9 @@ cancellaIdDaLista(event) {
 }
 
 inserisciElemento(){
+
+  // Metodo che apre il dialog di inserimento di un nuovo elemento
+
   const dialogConfig = new MatDialogConfig();
   dialogConfig.disableClose = true;
   dialogConfig.autoFocus = true;
@@ -63,7 +74,10 @@ inserisciElemento(){
   }
   
   inserisciContenitore(){
-    const dialogConfig = new MatDialogConfig();
+
+   // Metodo che apre il dialog di inserimento di un nuovo contenitore
+
+  const dialogConfig = new MatDialogConfig();
   dialogConfig.disableClose = true;
   dialogConfig.autoFocus = true;
   dialogConfig.width = "60%";
@@ -72,13 +86,17 @@ inserisciElemento(){
   }
 
   mostraLegenda(){
+
       // metrodo per aprire il tooltip "Legenda", azionato dal mouseOver del tasto "Legenda"
+
       let div = document.getElementById('alert');
       div.style.display="block";    
     }
   
     nascondiLegenda(){
+
       // metodo per chiudere il tooltip "Legenda", azionato dall'evento mouseLeave del tasto "Legenda"
+      
       let div = document.getElementById('alert');
       div.style.display="none"; 
     }

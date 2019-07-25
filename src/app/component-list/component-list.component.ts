@@ -13,7 +13,7 @@ export class ComponentListComponent implements OnInit {
   
 @Output() container = new EventEmitter <{id: string, nome: string, colore : string}> ();
 
-listId=[]; 
+listId=[]; // lista dei contenitori aperti
 
   constructor(private service:ElementService,
               private assService: AssociatedService,
@@ -21,23 +21,34 @@ listId=[];
               private app: AppComponent) { }
 
   ngOnInit() {
+    // Nell'init del component viene fatto il refresh dei contenitori, un metodo del service che carica da server
+    // tutti i contenitori, il subscribe osserva e cattura il segnale emesso al momento di un aggiornamento dei 
+    // contenitori e in caso di nuovo aggiornamento (modifica, inserimento, eliminazione) lancia di nuovo il refresh
+
     this.serviceCont.refreshContenitori();
+
     this.serviceCont.segnaleAggiornamento.subscribe(()=>{
     this.serviceCont.refreshContenitori();
-  });
+    });
 
-  this.app.IdChiusuraSignal.subscribe(sig=>{
-    this.AggiornaChiusura(sig);
-  })
+    // Il subscribe monitora l'emit della propietà IdChiusuraSignal e lancia il metodo AggiornaChiusura al momento
+    // della chiusura di un contenitore
+
+    this.app.IdChiusuraSignal.subscribe(signal=>{
+    this.AggiornaChiusura(signal);
+    })
   }
 
  espandiContenitore (id,nome,colore) {
 
+  // Metodo che emette in output le proprietà del contenitore che si vuole aprire al momento del click
+  // prima esegue un controllo sulla lista dei contenitori aperti per evitare di aprire un contenitore già aperto
+
    let bool = true;
    for (let index = 0; index < this.listId.length; index++)
    {
-     const element = this.listId[index];
-     if (element == id)
+    const element = this.listId[index];
+    if (element == id)
      {
         bool=false;
         break;
@@ -51,6 +62,10 @@ listId=[];
   }
 
   AggiornaChiusura(id: number){
+
+    // Metodo che viene lanciato all'emissione del segnale di chiusura di un contenitore, elimina dalla lista 
+    // dei contenitori aperti l'id del contenitore che si sta chiudendo
+
     if(id!=0 && this.listId.includes(id)){
         this.listId.splice(this.listId.indexOf(id), 1);
     }
