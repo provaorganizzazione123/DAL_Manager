@@ -7,10 +7,10 @@
       (click)="catturaId(ele.IdElemento)"
       (mouseover)="colorescritta(ele.IdElemento, ele.NomeElemento)" 
       (mouseleave)="coloreOriginale(ele.IdElemento, ele.NomeElemento)" >{{ele.NomeElemento}}
-      <div id="{{ele.NomeElemento}}" class="contenitoreIcone">
+      <div id="{{ele.NomeElemento}}" class="contenitoreIcone" (mouseover)="disabilitaElem()" (mouseleave)="abilitaElem()">
     <button class="posIconModifica" id="bottoneModifica{{ele.IdElemento}}"
            (click)="ModificaElemento(ele)"
-           (mouseover)="coloreIconaModifica('bottoneModifica'+ele.IdElemento)" 
+           (mouseover)="coloreIconaModifica('bottoneModifica'+ele.IdElemento)"
            (mouseleave)="coloreIconaModificaOrig('bottoneModifica'+ele.IdElemento)">
            <i class="fa fa-cog"></i>
     </button>

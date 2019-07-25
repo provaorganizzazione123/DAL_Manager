@@ -22,7 +22,7 @@ export class MenuFiltriContenitoreComponent implements OnInit {
     // attivato dal click, richiamo il metodo "signalOrdinamento" del service "filtriService"
     // passandogli l'id del contenitore di appartenenza, che a sua volta viene
     // preso in input da "container-associated" nell'html
-    debugger
+ 
     this.filtriService.signalOrdinamento(this.idContenitoreDiAppartenenza)
   }
 }

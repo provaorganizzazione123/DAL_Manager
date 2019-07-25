@@ -27,10 +27,10 @@ export class EliminazioneComponent implements OnInit {
   /*METODO eliminaElemento
   Questo metodo si collega al service invocando il metodo di delete dell'Api*/
   eliminaElemento(){
-    debugger
+ 
     this._service.deleteElemento(this.deletedElement);
       this.dialogRef.close();
-      this._service.refreshList();
+      //this._service.refreshList();
                     }
 
   chiudiPopup(){

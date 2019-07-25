@@ -23,9 +23,10 @@ export class ElementComponent implements OnInit {
   @Input() idContenitoreAperto;   // Propietà che prende in input l'id del contenitore appena aperto
 
   @Input() listaElementi;   // Lista presa in input che contiene tutti gli elementi di un determinato contenitore viene ciclata nel ng-for per la creazione degli elementi a video
+  click: boolean = true;
   colore:boolean;
-  elemento:Element[];  // Oggetto di tipo Element utilizzato per il drag & drop  
- 
+  elemento:Element[];  // Oggetto di tipo Element utilizzato per il drag & drop
+  
   drop(event: CdkDragDrop<string[]>) {
   
     // Evento che abilita il drag & drop degli elementi
@@ -61,7 +62,7 @@ associati= [];
              
                    // Questo subscribe monitora il segnale di aggiornamento che viene inviato come true nel caso di un nuovo elemento inserito
                    // e riesegue il ciclo di filtro della lista elementi in base all'id del contenitore
-             
+                   
                    this.service.SegnaleAggiornamento.subscribe(()=>{
                      this.service.listaElementi.forEach(element => {
                        if (element.id == this.idContenitoreAperto){
@@ -97,12 +98,14 @@ associati= [];
       // Metodo che prende l'id dell'elemento selezionato al momento del click, ed esegue il metodo giusto in base
       // alla modalita selelzionata (EDIT, VISUAL)
 
-      if(!this.edit){
-        this.ModalitaEdit(IdElemento)      
+      if(this.click){
+        if(!this.edit){
+          this.ModalitaEdit(IdElemento)      
+        }
+        else{
+          this.ModalitaVisione(IdElemento)
+        } 
       }
-      else{
-        this.ModalitaVisione(IdElemento)
-      } 
        
       }
 
@@ -210,6 +213,7 @@ associati= [];
 
         // MODALITA' VISIONE: Modalita in cui l'utente può visualizzare gli elementi associati ad un altro elemento selezionato
         ModalitaVisione(IdElemento: string){
+         
         if(this.assService.IdPadreSelezionato != ""){
 
           // Controlla se è gia stato selelzionato un elemento come padre, toglie l'evidenziatura del padre e degli elementi associati
@@ -256,11 +260,11 @@ associati= [];
         // Metodo richiamato quando si vuole evidenziare di giallo un elemento già associato al padre selezionato
 
         await this.assService.GetAssociazioneById(IdPadre);
-
+  
         // richiamo il metodo "emetteSegnaleRegisto" , passando lo 0 in modo che quando arriva lo 0 al component
         // registro fa partire il metodo per il caricamento del REgistro.
         await this.service.emetteSegnaleRegistro(0);
-  
+
         this.catchSignalComponent(1);       //Emissione del segnale per l'aggiornamento della messa in evidenza degli
                                             //elementi associati
       }
@@ -419,6 +423,13 @@ associati= [];
         icona.style.display="none";
       }
 
+      disabilitaElem(){ 
+        this.click = false;
+      }
+
+      abilitaElem(){
+        this.click= true;
+      }
 
       coloreIconaModifica(param){
         let colore = document.getElementById(param);
@@ -475,19 +486,19 @@ associati= [];
             // la lista di id.
             this.assService.listaIdElementi = [];
             // richiamo il "emmetteSegnaleRegisto" passando 1 in modo che quando l'1 arriva al component Registo, 
-          // viene resettato sia il padre che la lista contenente i figli. 
-          this.service.emetteSegnaleRegistro(1);
+            // viene resettato sia il padre che la lista contenente i figli. 
+            this.service.emetteSegnaleRegistro(1);
           }
         }
         else {
           // se l'id non è presente nella lista, posso procedere con il push dell'id
-        this.assService.listaIdElementi.push(id);           
+        this.assService.listaIdElementi.push(id);
         }
         
       }
 
 
-      DeleteElemento(elementoDelete:Element){
+    DeleteElemento(elementoDelete:Element){
 
       // Metodo DeleteElemento ----> """"" scaturito dal click sui bottoni X degli elementi """"
       // Questo metodo crea una Dialog facendo partire il component Figlio --> EliminazioneComponent
@@ -532,7 +543,7 @@ associati= [];
 
 
 
-  ordinaAssociati(idContenitore) {   
+  ordinaAssociati(idContenitore) {
     // metodo per riordinare gli elementi del contenitore, mettendo in alto quelli associati 
     // all'elemento selezionato.
     // prima mi filtro la lista di tutti gli elementi associati all'elemento selezionato 
@@ -544,7 +555,7 @@ associati= [];
     });
     // filtro poi la lista "associati" e mi prendo solo quelli del contenitore in questione
     // a questo punto mi ritrovo con la lista degli elementi associati all'lemento selezionato,
-    // ma che appartengono al contenitore di riferimento.     
+    // ma che appartengono al contenitore di riferimento.
     let list = this.associati.filter(e=>e.Id_Contenitore == idContenitore)
     // mi ciclo la lista , e per ogni suo elemento mi vado a ricavare l'indice nella lista "elemento"
     // che è la lista che uso nell' *ngFor
@@ -553,12 +564,11 @@ associati= [];
     // elementoe quindi a video verrà visualizzato in alto rispetto agli altri.
     // Ovviamente essendo in un ciclo, questa operazione viene fatta per tutti gli elementi
     // di "list", quindi questi elementi mi appariranno a video più in alto rispetto agli altri.
-     list.forEach(element=>{
-       let indice =this.elemento.indexOf(element)
-      this.elemento.splice(indice,1);
-      this.elemento.splice(0,0, element);
-    })
+    list.forEach(element=>{
+      let indice =this.elemento.indexOf(element)
+     this.elemento.splice(indice,1);
+     this.elemento.splice(0,0, element);
+   })
   } 
-
   
 }
