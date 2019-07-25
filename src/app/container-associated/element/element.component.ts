@@ -19,18 +19,22 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 export class ElementComponent implements OnInit {
 
-@Input() idContenitoreAperto;
-@Input() listaElementi;
+@Input() idContenitoreAperto;   // Propietà che prende in input l'id del contenitore appena aperto
+
+@Input() listaElementi;   // Lista presa in input che contiene tutti gli elementi di un determinato contenitore viene ciclata nel ng-for per la creazione degli elementi a video
 colore:boolean;
-elemento:Element[];
+elemento:Element[];  // Oggetto di tipo Element utilizzato per il drag & drop
+
 drop(event: CdkDragDrop<string[]>) {
+
+  // Evento che abilita il drag & drop degli elementi
 
   moveItemInArray(this.elemento, event.previousIndex, event.currentIndex);
 }
-@Output() IdElemento = new EventEmitter();
 
+@Output() IdElemento = new EventEmitter();    // Propietà che contiene l'id dell'elemento selezionato, emessa in out-put 
 
-@Input() edit : Boolean ; 
+@Input() edit : Boolean ;  // Propietà presa in input per eseguire routine di EDIT o VISUALIZZAZIONE
 
   constructor( private service : ElementService,
                private assService: AssociatedService,
@@ -38,15 +42,22 @@ drop(event: CdkDragDrop<string[]>) {
 
   ngOnInit() {
 
+    // Nell'init viene ciclata la lista degli elementi in base all'id del contenitore
+
     this.listaElementi.forEach(element => {
       if (element.id == this.idContenitoreAperto){
            this.elemento=element.l;
       } 
      });
+
+     // Questo subscribe monitora il segnale delle routine inviato da altri component e lancia il metodo che gestisce questi segnali numerici
      
      this.assService.riceveSignal.subscribe((param: number) => {
       this.catchSignalComponent(param)
       });
+
+      // Questo subscribe monitora il segnale di aggiornamento che viene inviato come true nel caso di un nuovo elemento inserito
+      // e riesegue il ciclo di filtro della lista elementi in base all'id del contenitore
 
       this.service.SegnaleAggiornamento.subscribe(()=>{
         this.service.listaElementi.forEach(element => {
@@ -59,6 +70,10 @@ drop(event: CdkDragDrop<string[]>) {
     }
 
     ngAfterViewInit(): void {
+
+      // Questi 2 segnali vengono inviati direttamente al metodo per l'aggiornamento in tempo reale di CRUD dell'elemento
+      // o nel caso di aggiornamento associazione 
+
       this.catchSignalComponent(1);
       this.catchSignalComponent(7);
     }
@@ -66,6 +81,9 @@ drop(event: CdkDragDrop<string[]>) {
     
 
     catturaId(IdElemento:string){
+
+      // Metodo che prende l'id dell'elemento selezionato al momento del click, ed esegue il metodo giusto in base
+      // alla modalita selelzionata (EDIT, VISUAL)
 
       if(!this.edit){
         this.ModalitaEdit(IdElemento)      
@@ -76,14 +94,12 @@ drop(event: CdkDragDrop<string[]>) {
        
       }
 
-//MODALITA EDIT: Modalità in cui l'utento puo creare nuove associazioni o eliminare quelle già esistenti
+     //MODALITA EDIT: Modalità in cui l'utento puo creare nuove associazioni o eliminare quelle già esistenti
       ModalitaEdit(IdElemento: string){
 
-        // premendo il tasto "edit" abilito la modalità edit, e giocando con una booleana, abilito l'evento click del tasto Crea Associazione
+      // premendo il tasto "edit" abilito la modalità edit, e giocando con una booleana, abilito l'evento click del tasto Crea Associazione
       // metodo che cattura l'id dell'elemento che deve essere aggiunto alla lista per l'associazione
       // presente nel metodo del container-associated.
-
-      //this.IdElemento.emit(IdElemento); // passo l'id al container-associated (padre)
       
       this.aggiungiIdElementoAListaAdatta(IdElemento);
 
@@ -98,7 +114,6 @@ drop(event: CdkDragDrop<string[]>) {
       // = -1 Elemento già associato
       // = altro  Elemento da associare
       
-
       if (indice === 0)
       { // entra in questo if se l'id è padre   
         this.assService.listaAppoggioIdSelezionati.push(IdElemento);
@@ -115,34 +130,37 @@ drop(event: CdkDragDrop<string[]>) {
         }
   
         if(!this.assService.listaDistruggiAssociazione.includes(IdElemento)){
+          // Carica la lista degli id da disassociare se la lista stessa non contiene l'id selezionato 
           this.assService.listaDistruggiAssociazione.push(IdElemento);
-          this.catchSignalComponent(4);
+          this.catchSignalComponent(4);   // Invio segnale per evidenziamento in Nero
           
         }
         else{
+          // Toglie dalla lista degli id da disassociare nel caso in cui l'utente sceglie di non disassociare più l'elemento 
          this.assService.listaDistruggiAssociazione.splice(this.assService.listaDistruggiAssociazione.indexOf(IdElemento),1)
          this.assService.idGiallo = IdElemento;
          
-         this.catchSignalComponent(5);     
+         this.catchSignalComponent(5);  // Invio segnale per evidenziamento in Giallo
         }
 
       }
       else{
           // entra in questo else se l'id non è il primo della lista e quindi non è "padre"
-          if(this.assService.listaAppoggioIdSelezionati.includes(IdElemento)){ // controllo se lid è presente nella lista di id selezionati
-            let IdElementoinStringa:string ;                        // se è presente, lo deselezionop e lo cancello dalla lista  
-          IdElementoinStringa=IdElemento.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+          if(this.assService.listaAppoggioIdSelezionati.includes(IdElemento)){    // controllo se lid è presente nella lista di id selezionati
+            let IdElementoinStringa:string ;                                      // se è presente, lo deselezionop e lo cancello dalla lista  
+          IdElementoinStringa=IdElemento.toString();                              // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
         let elemento = document.getElementById(IdElementoinStringa);
         elemento.className='ElementoBianco';
         this.assService.listaIdElementi.splice(this.assService.listaIdElementi.indexOf(IdElemento),1);
         this.assService.listaAppoggioIdSelezionati.splice(this.assService.listaAppoggioIdSelezionati.indexOf(IdElemento), 1);
           }
-          else { // se l'id non è presente nella lista id selezionati, lo seleziono e lo aggiungo alla lista
+          else { 
+            // se l'id non è presente nella lista id selezionati, lo seleziono e lo aggiungo alla lista
           this.assService.listaAppoggioIdSelezionati.push(IdElemento) 
           let IdElementoinStringa:string ;
-          IdElementoinStringa=IdElemento.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
-        let elemento = document.getElementById(IdElementoinStringa);
-        elemento.className='ElementoVerde';
+          IdElementoinStringa=IdElemento.toString();    // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+          let elemento = document.getElementById(IdElementoinStringa);
+          elemento.className='ElementoVerde';
           }
         }
       }
@@ -167,9 +185,7 @@ drop(event: CdkDragDrop<string[]>) {
           let elemento = document.getElementById(IdElementoinStringa);
           elemento.className='ElementoBianco';  
 
-        });
-          
-        
+        });      
 
             // poi azzero la lista
             this.assService.listaAppoggioIdSelezionati = [];
@@ -180,13 +196,15 @@ drop(event: CdkDragDrop<string[]>) {
       }
 
 
- // MODALITA' VISIONE: Modalita in cui l'utente può visualizzare gli elementi associati ad un altro elemento selezionato
-      ModalitaVisione(IdElemento: string){
+        // MODALITA' VISIONE: Modalita in cui l'utente può visualizzare gli elementi associati ad un altro elemento selezionato
+        ModalitaVisione(IdElemento: string){
 
         if(this.assService.IdPadreSelezionato != ""){
 
+          // Controlla se è gia stato selelzionato un elemento come padre, toglie l'evidenziatura del padre e degli elementi associati
+
           let IdElementoinStringa:string ;
-          IdElementoinStringa = this.assService.IdPadreSelezionato.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+          IdElementoinStringa = this.assService.IdPadreSelezionato.toString();    // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
           let elemento = document.getElementById(IdElementoinStringa);
           elemento.className='ElementoBianco';
 
@@ -194,7 +212,7 @@ drop(event: CdkDragDrop<string[]>) {
             // ciclo la lista id selezionati, per prendere ogni elemento e deselezionarlo
             try{
             let IdElementoinStringa:string ;
-            IdElementoinStringa = element.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+            IdElementoinStringa = element.toString();     // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
             let elemento = document.getElementById(IdElementoinStringa);
             elemento.className='ElementoBianco';
             }
@@ -212,8 +230,11 @@ drop(event: CdkDragDrop<string[]>) {
       }
 
       selezioneElementoPadre(IdElem: string){
+
+        // Metodo richiamato quando si vuole selezionare un nuovo elemento come padre
+
         this.assService.IdPadreSelezionato = IdElem;
-        let IdElementoinStringa: string = IdElem.toString(); // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
+        let IdElementoinStringa: string = IdElem.toString();    // getElementById vuole come id una stringa, quindi devo convertire l'id in stringa
         let elemento = document.getElementById(IdElementoinStringa);
         elemento.className='ElementoRosso';  
         this.caricaListaFiltro(IdElem)
@@ -221,19 +242,21 @@ drop(event: CdkDragDrop<string[]>) {
   
       async caricaListaFiltro(IdPadre: string){
 
+        // Metodo richiamato quando si vuole evidenziare di giallo un elemento già associato al padre selezionato
+
         await this.assService.GetAssociazioneById(IdPadre);
   
         this.catchSignalComponent(1);       //Emissione del segnale per l'aggiornamento della messa in evidenza degli
-                                          //elementi associati
+                                            //elementi associati
       }
   
       catchSignalComponent(param: number){
 
         /* Metodo che intercetta il segnale del service ed esegue istruzioni specifiche a seconda del valore 
-           numerico ricevuto. Ad ogni numero equivale una funzionalità specifica del component  */
+           numerico ricevuto. Ad ogni numero equivale una routine specifica del component  */
 
         switch (param) {
-          case 1: // Intercettazione del segnale per la messa in evidenza degli elementi associati ad un elemento padre
+          case 1: // Intercettazione del segnale per la messa in evidenza degli elementi già associati ad un elemento padre
                   this.assService.listaFiltroAssociazioni.forEach(ind => {
                     try{
                       if(!this.assService.listaDistruggiAssociazione.includes(ind)){
@@ -273,13 +296,11 @@ drop(event: CdkDragDrop<string[]>) {
                   this.assService.listaDistruggiAssociazione.splice(1,this.assService.listaDistruggiAssociazione.length);
                   this.assService.listaAppoggioIdSelezionati.splice(1,this.assService.listaAppoggioIdSelezionati.length);
 
-                  console.log("VERIFICA")
-                  console.log(this.assService.listaIdElementi) 
-                  console.log(this.assService.IdPadreSelezionato)
-                  console.log(this.assService.listaDistruggiAssociazione)
             break;
 
           case 3:
+                  // Routine di aggiornamento liste nel caso di nuove associazioni 
+                  
                   this.assService.GetAssociazione();
                   for (let i = 1; i < this.assService.listaIdElementi.length; i++) {
                     this.assService.listaIdElementi.splice(i,1);
@@ -288,11 +309,11 @@ drop(event: CdkDragDrop<string[]>) {
                     this.assService.listaAppoggioIdSelezionati.splice(i,1);
                   }
                   this.caricaListaFiltro(this.assService.IdPadreSelezionato);
-                  //this.catchSignalComponent(1);
 
           break;
             
           case 4:
+                  // Routine di evidenziamento nero degli elementi che si vogliono disassociare 
                   let IdElementoinStringa = this.assService.listaDistruggiAssociazione[this.assService.listaDistruggiAssociazione.length-1].toString();
                   let elemento = document.getElementById(IdElementoinStringa);
                   elemento.className='ElementoNero';
@@ -300,11 +321,16 @@ drop(event: CdkDragDrop<string[]>) {
             break;
 
             case 5:
+                  // Routine di evidenziamento giallo di un elemento già associato
                   let elementoGiallo = document.getElementById(this.assService.idGiallo.toString());
                   elementoGiallo.className='ElementoGiallo';          
             break;
 
             case 6:
+                    // Routine che si verifica all'avvenuta disassociazione di uno o più elementi
+                    // Il ciclo si occupa di togliere il bordo giallo agli elementi non più associati
+                    // poi vengono aggiornate le liste delle associazioni e si azzerano le liste di appoggio per le disassociazioni appena avvenute
+
                 for (let i = 1; i < this.assService.listaDistruggiAssociazione.length; i++) {
                   var element = this.assService.listaDistruggiAssociazione[i];
                     let IdElementoinStringa:string ;
@@ -316,12 +342,12 @@ drop(event: CdkDragDrop<string[]>) {
                   this.assService.GetAssociazioneById(this.assService.IdPadreSelezionato);
                   this.assService.listaDistruggiAssociazione = [];
                   this.assService.listaIdAssociazioniDaEliminare = [];
-                  console.log(this.assService.listaFiltroAssociazioni);
-                  console.log(this.assService.listaAssociazioni);
     
             break;
 
-            case 7: // Intercettazione segnale nella riapertura di un contenitore che ha all'interno l'elemento padre
+            case 7: // Intercettazione segnale nella riapertura di un contenitore, che cicla le due liste di 
+                    // appoggio degli elementi selezionati come nuova associazione (Verdi) e come elementi da 
+                    // disassociare (Neri) e li evidenzia
               
                   this.assService.listaAppoggioIdSelezionati.forEach(ele => {
 
@@ -338,9 +364,17 @@ drop(event: CdkDragDrop<string[]>) {
                     
                   });
 
+                  for (let i = 1; i < this.assService.listaDistruggiAssociazione.length; i++) {
+                    
+                    let elemento = document.getElementById(this.assService.listaDistruggiAssociazione[i]);
+                      elemento.className='ElementoNero';
+                    
+                  }
+
             break;
 
             default:
+                   // DEFAULT
             break;
         }
   
@@ -349,27 +383,36 @@ drop(event: CdkDragDrop<string[]>) {
       }
 
       colorescritta(idColore, idIcon){
+
+        // Metodo che gestisce il colore del nome di un elemento quando si verifica un mouse-over
+
         let colore = document.getElementById(idColore);
         colore.style.color="blue";
+        colore.style.backgroundColor= "antiquewhite";
         let icona = document.getElementById(idIcon);
         icona.style.display="block";
       }
 
       coloreOriginale(idColore, idIcon){
+
+        // Metodo che gestisce il colore del nome di un elemento quando si verifica un mouse-leave
+
         let colore = document.getElementById(idColore);
-        colore.style.color="blue";
+        colore.style.color="black";
+        colore.style.backgroundColor= "white";
         let icona = document.getElementById(idIcon);
         icona.style.display="none";
       }
 
     
       aggiungiIdElementoAListaAdatta(id){
-        // metodo che riceve l'id dell'elemento da associare dal componente "element" e lo aggiunge 
-        // ad una lista di id da associare
+
+        // Metodo che gestisce il la selezione di un elemento aggiungendolo tramite controlli alla 
+        // lista adatta
   
         // Controllo se è stato selezionato un elemento già associato al padre
         if(this.assService.listaFiltroAssociazioni.includes(id)){
-          //this.caricaListaDistruggiAssociazione(id)
+          // l'inserimento della lista avviene nel metodo modalitaEdit, modalitaVisual
         }
   
         else if (this.assService.listaIdElementi.includes(id)){
@@ -385,11 +428,6 @@ drop(event: CdkDragDrop<string[]>) {
             // la lista di id.
             this.assService.listaIdElementi = [];
           }
-          else{
-            // quindi se l'indice dell'id è diverso da zero, l'id deve essere eliminato dalla lista
-          //this.assService.listaIdElementi.splice(this.assService.listaIdElementi.indexOf(id),1);
-          console.log(this.assService.listaIdElementi)
-          }
         }
         else {
           // se l'id non è presente nella lista, posso procedere con il push dell'id
@@ -399,12 +437,13 @@ drop(event: CdkDragDrop<string[]>) {
       }
 
 
-    
-    /* Metodo DeleteElemento ----> """"" scaturito dal click sui bottoni X degli elementi """"
-    Questo metodo crea una Dialog facendo partire il component Figlio --> EliminazioneComponent
-    passando l'id dell'elemento da cancellare tramite dialogConfig.data e passando 
-    l'intero oggetto dialogConfig per fargli vedere la proprietà */
     DeleteElemento(idEle:number){
+
+      // Metodo DeleteElemento ----> """"" scaturito dal click sui bottoni X degli elementi """"
+      // Questo metodo crea una Dialog facendo partire il component Figlio --> EliminazioneComponent
+      // passando l'id dell'elemento da cancellare tramite dialogConfig.data e passando 
+      // l'intero oggetto dialogConfig per fargli vedere la proprietà
+
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -414,9 +453,12 @@ drop(event: CdkDragDrop<string[]>) {
     }
 
     
-    /*Funzione modifica elemento, generiamo un popup(dialogConfig), generando un nuovo component */
+    
 
     ModificaElemento(ele:Element){
+
+      // Funzione modifica elemento, generiamo un popup(dialogConfig), generando un nuovo component
+
       const dialogConfig =new MatDialogConfig();
       dialogConfig.disableClose= false;
       dialogConfig.autoFocus=true;
@@ -427,6 +469,9 @@ drop(event: CdkDragDrop<string[]>) {
     }
 
     dettaglioElemento(Descrizione){
+
+      // Metodo per la visualizzazione del dettaglio di un elemento generando un popup
+
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
