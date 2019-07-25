@@ -43,46 +43,33 @@ export class ElementService {
     // a video del contenitore 
 
     var id = Id_Cont;
-   // if (this.controlist(id)){
+
     var l = this.list.filter(e => e.Id_Contenitore == Id_Cont);
     this.listaElementi.push({id,l});
-   // }
 
-  }
 
-   // controlist(id){
-
-    // Metodo che controllo se nella lista filtrata è già presente una sottolista di quel contenitore
-
-  //   var cont = true;
-  //   this.listaElementi.forEach(ele => {
-  //     if (ele.id == id){
-  //       cont = false
-  //     }
-  //   });
-  //   return cont;
-  // }  
+  } 
 
   putElemento(formData : Element){
     return this.http.put(this.rootURL + '/Elemento/' + formData.IdElemento, formData);
   }
  
-  deleteElemento(deleteElemento: Element){
+  deleteElemento(deleteElemento: Element){ debugger
     return this.http.delete(this.rootURL + '/Elemento/' + deleteElemento.IdElemento).subscribe(
       async data => {
         switch(data[0]) { 
           case "1": { 
             this.toastr.warning('Risposta Server', data[1].toString());
-            await this.refreshList();
-            this.filtraLista(deleteElemento.Id_Contenitore);
-            this.emetteSegnaleAggiornamento(true);
+            //await this.refreshList();
+            //this.filtraLista(deleteElemento.Id_Contenitore);
+            //this.emetteSegnaleAggiornamento(true);
              break; 
           } 
           case "2": { 
             this.toastr.info('Risposta Server', data[1].toString());
-            await this.refreshList();
-            this.filtraLista(deleteElemento.Id_Contenitore);
-            this.emetteSegnaleAggiornamento(true);
+            //await this.refreshList();
+            //this.filtraLista(deleteElemento.Id_Contenitore);
+            //this.emetteSegnaleAggiornamento(true);
              break; 
           } 
           case "3": { 

@@ -34,7 +34,7 @@ export class ElementiAssociatiComponent implements OnInit {
     }
 
   filtraElementiAssociati(idContenitore) {   
-    debugger  
+ 
      // Azzero la lista "elementiFiltrati"
     this.elementiFiltrati.splice(0, this.elementiFiltrati.length);
     // uso l'id contenitore per trovare gli elementi che contiene, filtrando "list"
