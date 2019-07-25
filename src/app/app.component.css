@@ -1,6 +1,6 @@
 .work-container {
   float: left;
-  margin-top:7%;
+  margin-top:56px;
   flex-flow:wrap;
   display:flex;
   align-items:right;
@@ -36,6 +36,31 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width: 7px;
     }
+
+.apri-chiudi{
+    height: 30px;
+    width: 33px;
+    font-size: 18px;
+    font-family: fantasy;
+    border-style: none;
+    background-color: lavender;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-bottom-left-radius: 10px;
+    
+}
+
+#apriColonna{
+    position: fixed;
+    top: 56px;
+    right: 0px;
+}
+
+#chiudiColonna{
+    position: fixed;
+    top: 56px;
+    right: 156px;
+}
 
 .colonna{
     position: absolute;
@@ -139,8 +164,8 @@ td:active {
 
 #Legenda{
     position: fixed;
-    right: 170px;
-    top: 19px;
+    right: 165px;
+    top: 18px;
     color: white;
     cursor: help;
 } 
@@ -169,6 +194,7 @@ td:active {
     top: 0px;
     right: 158px;
     z-index: 1;
+    background-color: azure;
 }
 
 .intestazione{

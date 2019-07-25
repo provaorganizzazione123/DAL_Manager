@@ -45,11 +45,20 @@
 
 #CreaAss{
   position: fixed;
-  top: 8%;
-  left:1%;
-  flex:auto;
-  margin-right: 1%;
+  top: 58px;
+  left: 2px;
+  flex: auto;
+  background-color: limegreen;
 }
+
+#DisAss{
+  position: fixed;
+  top: 58px;
+  left: 159px;
+  flex: auto;
+  background-color: red;
+}
+
 
 .dimensioneSpan{
   width: 50px;
@@ -66,13 +75,13 @@
   padding-bottom: 2px;
   padding-top: 2px;
   width: 291px;
-  margin-left: -15px; 
+  margin-left: -15px;
 }
 
 .card-title{
-  margin-left: 0.50rem;
-  margin-bottom: 0.50rem;
-  margin-top: 0.20rem;
+  margin-left: 0.90rem;
+  margin-bottom: 0.35rem;
+  margin-top: 0.35rem;
 }
 
 .card{
@@ -95,7 +104,8 @@
   flex-direction: row;
   border-radius: 4px;
   overflow: hidden;
-  
+  margin-top: 38px;
+  margin-left: 2px;
 }
 
 .example-box {
@@ -154,4 +164,3 @@
 .dropdown{
   width: 106px;
 }
-

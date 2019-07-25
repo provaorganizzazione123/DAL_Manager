@@ -100,5 +100,29 @@ inserisciElemento(){
       let div = document.getElementById('alert');
       div.style.display="none"; 
     }
- 
+
+    apriColonna(){
+      let chiudi = document.getElementById('chiudiColonna');
+      let apri = document.getElementById('apriColonna');
+      let contenitore = document.getElementById('work-container');
+      let colonna = document.getElementById('colonna');
+
+      chiudi.style.display = "block";
+      colonna.style.display = "flex";
+      contenitore.style.width = "88%";
+      apri.style.display = "none";
+    }
+
+    chiudiColonna(){
+      let chiudi = document.getElementById('chiudiColonna');
+      let apri = document.getElementById('apriColonna');
+      let contenitore = document.getElementById('work-container');
+      let colonna = document.getElementById('colonna');
+
+      chiudi.style.display = "none";
+      colonna.style.display = "none";
+      contenitore.style.width = "100%";
+      apri.style.display = "block";
+      
+    }
 }
