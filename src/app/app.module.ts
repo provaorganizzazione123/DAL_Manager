@@ -28,6 +28,7 @@ import { InserimentoContenitoreComponent } from './inserimento-contenitore/inser
 import { ElementiAssociatiComponent } from './registro-associazioni/elementi-associati/elementi-associati.component';
 import { TreeviewModule } from 'ngx-treeview';
 import { AlertModule } from 'ngx-bootstrap';
+import { MenuFiltriContenitoreComponent } from './container-associated/menu-filtri-contenitore/menu-filtri-contenitore.component';
 
 
 
@@ -44,6 +45,7 @@ import { AlertModule } from 'ngx-bootstrap';
     DettaglioComponent,
     InserimentoContenitoreComponent,
     ElementiAssociatiComponent,
+    MenuFiltriContenitoreComponent,
     
     
     

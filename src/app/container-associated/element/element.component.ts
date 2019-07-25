@@ -9,6 +9,7 @@ import { AssociatedService } from '../associated.service';
 import { __await } from 'tslib';
 import { DettaglioComponent } from './dettaglio/dettaglio.component';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {FiltriService} from'../menu-filtri-contenitore/filtri.service';
 
 
 @Component({
@@ -19,52 +20,64 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 export class ElementComponent implements OnInit {
 
-@Input() idContenitoreAperto;   // Propietà che prende in input l'id del contenitore appena aperto
+  @Input() idContenitoreAperto;   // Propietà che prende in input l'id del contenitore appena aperto
 
-@Input() listaElementi;   // Lista presa in input che contiene tutti gli elementi di un determinato contenitore viene ciclata nel ng-for per la creazione degli elementi a video
-colore:boolean;
-elemento:Element[];  // Oggetto di tipo Element utilizzato per il drag & drop
-
-drop(event: CdkDragDrop<string[]>) {
-
-  // Evento che abilita il drag & drop degli elementi
-
-  moveItemInArray(this.elemento, event.previousIndex, event.currentIndex);
-}
-
-@Output() IdElemento = new EventEmitter();    // Propietà che contiene l'id dell'elemento selezionato, emessa in out-put 
-
+  @Input() listaElementi;   // Lista presa in input che contiene tutti gli elementi di un determinato contenitore viene ciclata nel ng-for per la creazione degli elementi a video
+  colore:boolean;
+  elemento:Element[];  // Oggetto di tipo Element utilizzato per il drag & drop
+  
+  drop(event: CdkDragDrop<string[]>) {
+  
+    // Evento che abilita il drag & drop degli elementi
+  
+    moveItemInArray(this.elemento, event.previousIndex, event.currentIndex);
+  }
+  
+  @Output() IdElemento = new EventEmitter();    // Propietà che contiene l'id dell'elemento selezionato, emessa in out-put 
+  
+associati= [];
 @Input() edit : Boolean ;  // Propietà presa in input per eseguire routine di EDIT o VISUALIZZAZIONE
 
   constructor( private service : ElementService,
                private assService: AssociatedService,
+               private filtriService :FiltriService,
                public dialog : MatDialog) { }
 
-  ngOnInit() {
-
-    // Nell'init viene ciclata la lista degli elementi in base all'id del contenitore
-
-    this.listaElementi.forEach(element => {
-      if (element.id == this.idContenitoreAperto){
-           this.elemento=element.l;
-      } 
-     });
-
-     // Questo subscribe monitora il segnale delle routine inviato da altri component e lancia il metodo che gestisce questi segnali numerici
-     
-     this.assService.riceveSignal.subscribe((param: number) => {
-      this.catchSignalComponent(param)
-      });
-
-      // Questo subscribe monitora il segnale di aggiornamento che viene inviato come true nel caso di un nuovo elemento inserito
-      // e riesegue il ciclo di filtro della lista elementi in base all'id del contenitore
-
-      this.service.SegnaleAggiornamento.subscribe(()=>{
-        this.service.listaElementi.forEach(element => {
-          if (element.id == this.idContenitoreAperto){
-               this.elemento=element.l;
-          } 
-         });
+               ngOnInit() {
+             
+                 // Nell'init viene ciclata la lista degli elementi in base all'id del contenitore
+             
+                 this.listaElementi.forEach(element => {
+                   if (element.id == this.idContenitoreAperto){
+                        this.elemento=element.l;
+                   } 
+                  });
+             
+                  // Questo subscribe monitora il segnale delle routine inviato da altri component e lancia il metodo che gestisce questi segnali numerici
+                  
+                  this.assService.riceveSignal.subscribe((param: number) => {
+                   this.catchSignalComponent(param)
+                   });
+             
+                   // Questo subscribe monitora il segnale di aggiornamento che viene inviato come true nel caso di un nuovo elemento inserito
+                   // e riesegue il ciclo di filtro della lista elementi in base all'id del contenitore
+             
+                   this.service.SegnaleAggiornamento.subscribe(()=>{
+                     this.service.listaElementi.forEach(element => {
+                       if (element.id == this.idContenitoreAperto){
+                            this.elemento=element.l;
+                       } 
+                      });
+                   })
+       // contr5ollo la variabile "ordinamentoAssociati" del service "filtri" 
+       // azzero la lista associati e faccio partire il metodo "ordinaAssociati"
+       // passandogli il contenuto della variabile, solo se il contenuto della variabile (che è un id contenitore)
+       // è uguale all'id del contenitore dove sono adesso.
+      this.filtriService.ordinamentoAssociati.subscribe(num =>{
+        if(num == this.idContenitoreAperto){
+        this.associati= [];
+        this.ordinaAssociati(num)
+        }
       })
 
     }
@@ -479,4 +492,22 @@ drop(event: CdkDragDrop<string[]>) {
       dialogConfig.data=Descrizione;  
       this.dialog.open(DettaglioComponent, dialogConfig);
     }
+
+
+
+  ordinaAssociati(idContenitore) {
+    debugger
+    this.assService.listaFiltroAssociazioni.forEach(element => {
+      let elemento = this.service.list.filter(e => e.IdElemento == element)[0];
+      this.associati.push(elemento);
+    });
+    
+
+    let list = this.associati.filter(e=>e.Id_Contenitore == idContenitore)
+    // list.forEach(element=>{
+    
+    //})
+
+  } 
+  
 }

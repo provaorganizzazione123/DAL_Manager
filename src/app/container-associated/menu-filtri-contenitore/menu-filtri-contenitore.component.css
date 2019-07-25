@@ -1,0 +1,14 @@
+.icon{
+    transform: rotate(180deg);
+    border: none;
+    background-color: lavender;
+    font-size: 20px; 
+    color: black;  
+  }
+  .icon1{
+    
+    border: none;
+    background-color: lavender;
+    font-size: 20px; 
+    color: black;  
+  }

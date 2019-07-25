@@ -20,11 +20,12 @@ declare var $ :any;
 
 
 export class ContainerAssociatedComponent implements OnInit {
- @Input () contenitoriAperti;   // lista presa in input dall'app.component che contiene la lista dei contenitori che si vogliono aprire
- 
+  @Input () contenitoriAperti;   // lista presa in input dall'app.component che contiene la lista dei contenitori che si vogliono aprire
+
  listEleCont :Element[];
  abilitaDisabilita : Boolean = true;  // booleana per abilitare/disabilitare l'editMode
- 
+ abilitaDisabilitaMenu : Boolean = true; 
+
  @Output () idContenitoreChiuso= new EventEmitter();    // Id del contenitore che si vuole chiudere inviato in output all'app.component che lo rinvia al component-list.component  
   
  constructor(private service: ElementService,
@@ -124,6 +125,20 @@ export class ContainerAssociatedComponent implements OnInit {
       }
 
 
+    }
+
+    mostraMenu(id){// metodo per aprire e chiudere il menu del contenitore in base alla 
+      // variabile booleana  "abilitaDisabilitaMenu"
+      if(this.abilitaDisabilitaMenu){        
+        let div = document.getElementById(id); 
+        div.hidden= false;                     
+        this.abilitaDisabilitaMenu=false;
+      }
+      else{
+        let div = document.getElementById(id);
+        div.hidden= true;
+        this.abilitaDisabilitaMenu=true;
+      }      
     }
 
 }
