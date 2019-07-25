@@ -68,7 +68,7 @@ namespace WebApplication2.Controllers
             }
             // ***************devo passare qui i campi da immetere nella query***********
             IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
-            string stringhetta = "Update [Arc_Elemento] SET NomeElemento='"+ elemento.NomeElemento+"', DescrizioneElemento='"+ elemento.DescrizioneElemento+"', Id_Contenitore= '"+ elemento.Id_Contenitore +"' WHERE IdElemento =" + elemento.IdElemento ;
+            string stringhetta = "Update [Arc_Elemento] SET NomeElemento='"+ elemento.NomeElemento+"', DescrizioneElemento='"+ elemento.DescrizioneElemento+"', Id_Contenitore= '"+ elemento.Id_Contenitore +"' WHERE IdElemento = '" + elemento.IdElemento + "'" ;
             var affectedRows = db.Execute(stringhetta);
 
             return CreatedAtRoute("DefaultApi", new { id = elemento.IdElemento }, elemento);
