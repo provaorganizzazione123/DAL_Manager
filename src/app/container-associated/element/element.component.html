@@ -7,11 +7,26 @@
       (click)="catturaId(ele.IdElemento)"
       (mouseover)="colorescritta(ele.IdElemento, ele.NomeElemento)" 
       (mouseleave)="coloreOriginale(ele.IdElemento, ele.NomeElemento)" >{{ele.NomeElemento}}
-    <button class="posIcon" id="{{ele.NomeElemento}}"
-          (click)="apparizioneDiv()" 
-          (mouseleave)="scomparsaDiv()">
-          <i class="fa fa-cog"></i>
+      <div id="{{ele.NomeElemento}}" class="contenitoreIcone">
+    <button class="posIconModifica" id="bottoneModifica{{ele.IdElemento}}"
+           (click)="ModificaElemento(ele)"
+           (mouseover)="coloreIconaModifica('bottoneModifica'+ele.IdElemento)" 
+           (mouseleave)="coloreIconaModificaOrig('bottoneModifica'+ele.IdElemento)">
+           <i class="fa fa-cog"></i>
     </button>
+    <button class="posIconDettaglio" id="bottoneDettaglio{{ele.IdElemento}}"
+           (click)="dettaglioElemento(ele.DescrizioneElemento)"
+           (mouseover)="coloreIconaDettaglio('bottoneDettaglio'+ele.IdElemento)" 
+           (mouseleave)="coloreIconaDettaglioOrig('bottoneDettaglio'+ele.IdElemento)">
+        <i class="fa fa-info"></i>
+  </button>
+    <button class="posIconElimina" id="bottoneElimina{{ele.IdElemento}}"
+           (click)="DeleteElemento(ele.IdElemento)"
+           (mouseover)="coloreIconaElimina('bottoneElimina'+ele.IdElemento)" 
+           (mouseleave)="coloreIconaEliminaOrig('bottoneElimina'+ele.IdElemento)">
+        <i class="fa fa-times-circle"></i>
+  </button>
+</div>
 </div> 
 
 

@@ -417,6 +417,38 @@ associati= [];
         icona.style.display="none";
       }
 
+
+      coloreIconaModifica(param){
+        let colore = document.getElementById(param);
+        colore.style.color = "black";
+      }
+
+      coloreIconaModificaOrig(param){
+        let colore = document.getElementById(param);
+        colore.style.color = "gray";
+      }
+
+      coloreIconaDettaglio(param){
+        let colore = document.getElementById(param);
+        colore.style.color = "black";
+      }
+
+      coloreIconaDettaglioOrig(param){
+        let colore = document.getElementById(param);
+        colore.style.color = "gray";
+      }
+
+      coloreIconaElimina(param){
+        let colore = document.getElementById(param);
+        colore.style.color = "red";
+      }
+
+      coloreIconaEliminaOrig(param){
+        let colore = document.getElementById(param);
+        colore.style.color = "gray";
+      }
+
+
     
       aggiungiIdElementoAListaAdatta(id){
 

@@ -21,7 +21,7 @@
           <a class="nav-link" href="#">About</a>
         </li>
         <li class="nav-item">
-          <i  id="Legenda" class="fa fa-question-circle" (mouseover)="mostraLegenda()" (mouseleave)="nascondiLegenda()"></i>
+          <i  id="Legenda" class="fa fa-question-circle" style="font-size: 20px" (mouseover)="mostraLegenda()" (mouseleave)="nascondiLegenda()"></i>
         </li>
       </ul>
     </div>
@@ -34,11 +34,12 @@
     <button class="btnLegenda" style ="background-color:black"></button> <label class="intestazione">Elemento da Dissociare (Edit Mode)</label> 
 </div>
   <router-outlet>
-    <div class="work-container">
+    <div class="work-container" id="work-container">
         <app-container-associated [contenitoriAperti]="contenitoriAperti" (idContenitoreChiuso)= "cancellaIdDaLista($event)" ></app-container-associated>
+        <button id="chiudiColonna" class="apri-chiudi" (click)="chiudiColonna()">-</button>
+        <button id="apriColonna" class="apri-chiudi" (click)="apriColonna()" style="display: none">+</button>
     </div>
-    
-    <div class="colonna">
+    <div class="colonna" id="colonna">
     <table style="float: right">
       <tr>
         <td>

@@ -1,5 +1,4 @@
 
-
 <div div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
 <div class="card scroll " style="width: 265px; background-color:lavender;" *ngFor = "let cont of contenitoriAperti " id="{{cont.id}}" cdkDrag>
   <h5 class="card-title">{{cont.nome}}</h5>
@@ -21,12 +20,11 @@
 
 
 <div>
-<button id="EDIT" type="button" class="btn btn-primary"  (click)= "abilitaAssociazione()">EDIT MODE</button>
+<input id="EDIT" type="button" class="btn btn-primary"  (click)= "abilitaAssociazione()" value="EDIT MODE">
 </div>
-
 <div>
   <button id="CreaAss" type="button" class="btn btn-primary" (click)="creaAssociazione()" hidden="hidden">Crea Associazione</button>
-  <button id="DisAss" type="button" class="btn btn-primary" (click)="distruggiAssociazione()" hidden="hidden">Distruggi Associazione</button>
+  <button id="DisAss" type="button" class="btn btn-primary" (click)="distruggiAssociazione()" hidden="hidden">Elimina Associazione</button>
 </div>
 
 
