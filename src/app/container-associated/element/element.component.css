@@ -157,6 +157,8 @@ table{
     font-size: 14px;
     margin: 8px;
     height: 45px;
+    width:237px;
+
 }
 
 .cdk-drag-preview {
@@ -222,28 +224,28 @@ table{
 }
 
 .ElementoRosso{
-  padding: 20px 10px;
-  border-left-color:transparent;
-  color:black;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  cursor: pointer;
-  background: white;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-bottom: -5px;
-  width: 250px;
-  height: 45px;
-  border-Left-Color:red;
-  border-Left-Style: Solid;
-  border-Left-Width: 6px;
-  border-Top-Color:white;
-  border-Bottom-Color:white;
-  box-Shadow:0 5px 5px -3px rgba(242, 2, 2, 0.0), 0 4px 5px 0px rgba(242, 2, 2, 0.0), 0 2px 7px 0px rgba(242, 2, 2, 0.842);
-}
+    padding: 20px 10px;
+    border-left-color:transparent;
+    color:black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: pointer;
+    background:white;
+    margin:8px;
+    font-size: 14px;
+    width: 237px;
+    height: 45px;
+    border-Left-Color:red;
+    border-Left-Style: Solid;
+    border-Left-Width: 6px;
+    border-Top-Color:white;
+    border-Bottom-Color:white;
+    box-Shadow:0 5px 5px -3px rgba(242, 2, 2, 0.0), 0 4px 5px 0px rgba(242, 2, 2, 0.0), 0 6px 7px 0px rgba(242, 2, 2, 0.842);
+  }
+
 
  .ElementoBianco{
   padding: 20px 10px;
@@ -258,81 +260,79 @@ table{
   background: white;
   font-size: 14px;
   margin: 8px;
-  width: 50;
+  width: 237px;
   height: 45px;
   border-Width: 6px;
   border-Collapse: separate;
   border-Color: transparent;
-  box-Shadow: 0 5px 5px -3px rgba(179, 183, 238, 0.0), 0 4px 5px 0px rgba(179, 183, 238, 0), 0 2px 7px 0px rgba(179, 183, 238, 0.842);
-}
-
- .ElementoGiallo{
-padding: 20px 10px;
-border-left-color:transparent;
-color:black;
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-between;
-box-sizing: border-box;
-cursor: pointer;
-background: white;
-font-size: 14px;
-margin-top: 5px;
-margin-bottom: -5px;
-width: 250px;
-height: 45px;
-border-Left-Color:yellow;
-border-Left-Style:Solid;
-border-Left-Width: 6px;
-border-Bottom-Color:white;
-box-Shadow:0 5px 5px -3px rgba(242, 242, 2, 0.0), 0 4px 5px 0px rgba(242, 242, 2, 0.0), 0 2px 7px 0px rgba(242, 242, 2, 0.842);
-
  }
 
+ .ElementoGiallo{
+  padding: 20px 10px;
+  border-left-color:transparent;
+  color:black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: pointer;
+  background:white;
+  margin:8px;
+  font-size: 14px;
+  width: 237px;
+  height: 45px;
+  border-Left-Color:yellow;
+  border-Left-Style: Solid;
+  border-Left-Width: 6px;
+  border-Top-Color:white;
+  border-Bottom-Color:white;
+  box-Shadow:0 5px 5px -3px yellow, 0 4px 5px 0px yellow, 0 2px 7px 0px yellow;
+}
+
  .ElementoNero{
-padding: 20px 10px;
-border-left-color:transparent;
-color:black;
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-between;
-box-sizing: border-box;
-cursor: pointer;
-background: white;
-font-size: 14px;
-margin-top: 5px;
-margin-bottom: -5px;
-width: 250px;
-height: 45px;
-border-Left-Color:black;
-border-Left-Style:Solid;
-border-Left-Width: 6px;
-border-Bottom-Color:white;
-box-Shadow:0 5px 5px -3px rgba(242, 242, 2, 0.0), 0 4px 5px 0px rgba(242, 242, 2, 0.0), 0 2px 7px 0px rgba(242, 242, 2, 0.842);
+  padding: 20px 10px;
+  border-left-color:transparent;
+  color:black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: pointer;
+  background:white;
+  margin:8px;
+  font-size: 14px;
+  width: 237px;
+  height: 45px;
+  border-Left-Color:black;
+  border-Left-Style: Solid;
+  border-Left-Width: 6px;
+  border-Top-Color:white;
+  border-Bottom-Color:white;
+  box-Shadow:0 5px 5px -3px black, 0 4px 5px 0px black, 0 2px 7px 0px black;
 }
 
  .ElementoVerde{
-padding: 20px 10px;
-border-left-color:transparent;
-color:black;
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-between;
-box-sizing: border-box;
-cursor: pointer;
-background: white;
-font-size: 14px;
-margin-top: 5px;
-margin-bottom: -5px;
-width: 250px;
-height: 45px;
-border-Width : 6px;
-border-Collapse : separate;
-border-Left-Style: Solid;
-border-Top-Color:white;
-border-Bottom-Color: White;
-Border-Color:green;
+  padding: 20px 10px;
+  border-left-color:transparent;
+  color:black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: pointer;
+  background:white;
+  margin:8px;
+  font-size: 14px;
+  width: 237px;
+  height: 45px;
+  border-Left-Color:green;
+  border-Left-Style: Solid;
+  border-Left-Width: 6px;
+  border-Top-Color:white;
+  border-Bottom-Color:white;
+  box-Shadow:0 5px 5px -3px green, 0 4px 5px 0px green, 0 2px 7px 0px green;
+
 }
