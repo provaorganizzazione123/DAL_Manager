@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar, MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { Element } from 'src/app/shared/element.model';
 import { ElementService } from 'src/app/shared/element.service';
 import { NgForm } from '@angular/forms';
@@ -13,44 +13,39 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./modifica.component.css']
 })
 export class ModificaComponent implements OnInit {
+  
+  eleDaModificare: Element;
+
 
   constructor(private service : ElementService,
-    private toastr : ToastrService,
-    public dialogRef : MatDialogRef<ModificaComponent>) {
-    this.service.refreshList();
-    this.idPassato=this.dialogRef._containerInstance._config.data;
-    this.eleEdit=this.service.list.filter(e => e.IdElemento == this.idPassato);
-    this.eleEdit2 = this.eleEdit[0];
-    this.service.formData =
+              private toastr : ToastrService,
+              public dialogRef : MatDialogRef<ModificaComponent>)
     {
-      IdElemento : this.eleEdit2.IdElemento,
-      NomeElemento : this.eleEdit2.NomeElemento,
-      DescrizioneElemento: this.eleEdit2.DescrizioneElemento,
-      Id_Contenitore: this.eleEdit2.Id_Contenitore,
-    }
+    this.eleDaModificare=this.dialogRef._containerInstance._config.data;
     
+    this.service.formData =
+      {
+      IdElemento : this.eleDaModificare.IdElemento,
+      NomeElemento : this.eleDaModificare.NomeElemento,
+      DescrizioneElemento: this.eleDaModificare.DescrizioneElemento,
+      Id_Contenitore: this.eleDaModificare.Id_Contenitore,
+      }  
     }
-
-    idPassato: string;
-    eleEdit: Element[];
-    eleEdit2: Element;
-  
 
   ngOnInit() {
+    this.service.populateDropDownList();
   }
-
 
   onSubmit(form: NgForm){
    this.updateRecord(form);
    this.dialogRef.close();
-   
   }
 
-
-   updateRecord(form:NgForm){
+  updateRecord(form:NgForm){
     this.service.putElemento(form.value).subscribe(res => {
-      this.toastr.info('Risposta del server', 'Aggiornamento avvenuto con successo');
-      this.service.refreshList();
+    this.toastr.info('Risposta del server', 'Aggiornamento avvenuto con successo');
+    this.service.refreshList();
+    this.service.emetteSegnaleAggiornamento(true);
     })
   }
 
@@ -58,4 +53,3 @@ export class ModificaComponent implements OnInit {
     this.dialogRef.close();
   }
 }
-

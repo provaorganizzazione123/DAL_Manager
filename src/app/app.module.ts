@@ -26,8 +26,6 @@ import { ModificaComponent } from './container-associated/element/modifica/modif
 import { DettaglioComponent } from './container-associated/element/dettaglio/dettaglio.component';
 import { InserimentoContenitoreComponent } from './inserimento-contenitore/inserimento-contenitore.component';
 import { ElementiAssociatiComponent } from './registro-associazioni/elementi-associati/elementi-associati.component';
-import { TreeviewModule } from 'ngx-treeview';
-import { AlertModule } from 'ngx-bootstrap';
 import { MenuFiltriContenitoreComponent } from './container-associated/menu-filtri-contenitore/menu-filtri-contenitore.component';
 
 
@@ -51,8 +49,6 @@ import { MenuFiltriContenitoreComponent } from './container-associated/menu-filt
     
   ],
   imports: [
-    AlertModule.forRoot(),
-    TreeviewModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     DragDropModule,
