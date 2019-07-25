@@ -8,7 +8,7 @@
 
 <ul id="myUL" *ngFor ="let contenitore of contenitori">
         <li >                
-            <span  class="fa fa-archive" (click)=" Espandi(contenitore.Nome_Contenitore,contenitore.Nome_Contenitore+contenitore.Id_Contenitore)" id = "{{contenitore.Nome_Contenitore}}{{contenitore.Id_Contenitore}}"  >           
+            <span  class="fa fa-archive" style="font-size: 20px" (click)=" Espandi(contenitore.Nome_Contenitore,contenitore.Nome_Contenitore+contenitore.Id_Contenitore)" id = "{{contenitore.Nome_Contenitore}}{{contenitore.Id_Contenitore}}"  >           
             {{contenitore.Nome_Contenitore}}              
             </span>           
           <ul class="nested" id="{{contenitore.Nome_Contenitore}}"> 

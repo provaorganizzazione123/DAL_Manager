@@ -66,7 +66,7 @@
   padding-bottom: 2px;
   padding-top: 2px;
   width: 291px;
-  margin-left: -15px;
+  margin-left: -15px; 
 }
 
 .card-title{
@@ -138,3 +138,20 @@
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
+.menu {
+  border: none;
+  background-color: lavender;
+  font-size: 20px;
+  padding: inherit;
+  width: 20px;
+  height: 18px;
+  color: black;
+  margin-top: 7px;
+  margin-left: 238px;
+}
+
+.dropdown{
+  width: 106px;
+}
+
