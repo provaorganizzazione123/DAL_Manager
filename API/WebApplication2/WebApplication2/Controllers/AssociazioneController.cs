@@ -72,7 +72,7 @@ namespace WebApplication2.Controllers
          ***** come parametro.
          ***** Questro metodo ritorna una lista di stringhe, che viene gestita nel front end, per stampare
          ***** l'esito della chiamata a DB con un messaggio visualizzato dall'utente su un TOAST  *****/
-        public List<string> DeleteAssociazione(int id)
+        public List<string> DeleteAssociazione(string id)
         {
             if (!ModelState.IsValid)
             {
@@ -82,11 +82,27 @@ namespace WebApplication2.Controllers
             /***** APRO LA CONNESSIONE AL DB *****/
             IDbConnection db = new SqlConnection(HttpContext.Current.Application["SqlString"].ToString());
 
-            //Elimina l'elemento dalla tabella Arc_Elemento
+            /* INIZIO PROVE VISTA */
+
+            string queryElementoFiglio = "SELECT Tab_Associaz_Elem.Id_Elemento2 FROM Tab_Associaz_Elem WHERE Tab_Associaz_Elem.Id_Associazione = '"+id+"'";
+
+            var idElementoFiglio = (List<string>)db.Query<string>(queryElementoFiglio);  //mi ritorna l'ID dell elemento//
+
+            
+
+            string queryNomeElemento = "SELECT NomeElemento FROM Arc_Elemento WHERE IdElemento = '" + idElementoFiglio[0] + "'";
+
+            var NomeElemento = (List<string>)db.Query<string>(queryNomeElemento);
+
+
+            /* FINE PROVE VISTA */
+  
+            //Elimina l'elemento dalla tabella Arc_Elemento//
+
             string sqlString = "DELETE FROM Tab_Associaz_Elem WHERE Id_Associazione=" + id;
             var affectedRows = db.Execute(sqlString);
 
-            return new List<string> { "2", "Elemento disassociato con succcesso" };
+            return new List<string> { "2", "L'elemento '" + NomeElemento[0] + "' è stato disassociato" };
 
         }
     }
