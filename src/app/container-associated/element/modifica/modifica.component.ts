@@ -13,9 +13,12 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./modifica.component.css']
 })
 export class ModificaComponent implements OnInit {
+
+  /*--------Dichiarazioni Variabili --------------*/
   
   eleDaModificare: Element;
 
+  /*---------------------------------------------*/
 
   constructor(private service : ElementService,
               private toastr : ToastrService,

@@ -8,7 +8,11 @@ import { MatDialogRef } from '@angular/material';
 })
 export class DettaglioComponent implements OnInit {
 
+  /*--------Dichiarazioni Variabili --------------*/
+
 dettaglio:string;
+
+/*-----------------------------------------------*/
 
   constructor(public dialogRef : MatDialogRef<DettaglioComponent>) {
     this.dettaglio = this.dialogRef._containerInstance._config.data

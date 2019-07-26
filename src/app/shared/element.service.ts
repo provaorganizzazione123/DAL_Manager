@@ -9,13 +9,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ElementService {
+
+  /*--------Dichiarazioni Variabili --------------*/
+
+  listaElementi = [];  
   formData : Element;
   list :Element[];
-  listaContenitori : Contenitore[];
-  listaElementi = [];
   listaElementiAppoggio: Element[];
+  listaContenitori : Contenitore[];    
   SegnaleAggiornamento: EventEmitter<boolean>;
   segnaleRegistro: EventEmitter<number>;
+
+  /*---------------------------------------------*/
   
  
 
@@ -54,7 +59,7 @@ export class ElementService {
     return this.http.put(this.rootURL + '/Elemento/' + formData.IdElemento, formData);
   }
  
-  deleteElemento(deleteElemento: Element){ debugger
+  deleteElemento(deleteElemento: Element){ 
     return this.http.delete(this.rootURL + '/Elemento/' + deleteElemento.IdElemento).subscribe(
       async data => {
         switch(data[0]) { 

@@ -20,24 +20,20 @@ import {FiltriService} from'../menu-filtri-contenitore/filtri.service';
 
 export class ElementComponent implements OnInit {
 
-  @Input() idContenitoreAperto;   // Propietà che prende in input l'id del contenitore appena aperto
+  /* -------Dichiarazioni Variabili --------------*/
 
+  @Input() idContenitoreAperto;   // Propietà che prende in input l'id del contenitore appena aperto
   @Input() listaElementi;   // Lista presa in input che contiene tutti gli elementi di un determinato contenitore viene ciclata nel ng-for per la creazione degli elementi a video
+  @Input() edit : Boolean ;  // Propietà presa in input per eseguire routine di EDIT o VISUALIZZAZIONE
+  @Output() IdElemento = new EventEmitter();    // Propietà che contiene l'id dell'elemento selezionato, emessa in out-put 
   click: boolean = true;
   colore:boolean;
-  elemento:Element[];  // Oggetto di tipo Element utilizzato per il drag & drop
-  
-  drop(event: CdkDragDrop<string[]>) {
-  
-    // Evento che abilita il drag & drop degli elementi
-  
-    moveItemInArray(this.elemento, event.previousIndex, event.currentIndex);
-  }
-  
-  @Output() IdElemento = new EventEmitter();    // Propietà che contiene l'id dell'elemento selezionato, emessa in out-put 
-  
-associati= [];
-@Input() edit : Boolean ;  // Propietà presa in input per eseguire routine di EDIT o VISUALIZZAZIONE
+  elemento:Element[];  // Oggetto di tipo Element utilizzato per il drag & drop 
+  associati = []; // array di appoggio per il metodo "ordinaAssociati"
+
+  /*------------------------------------------------*/
+
+
 
   constructor( private service : ElementService,
                private assService: AssociatedService,
@@ -45,12 +41,12 @@ associati= [];
                public dialog : MatDialog) { }
 
                ngOnInit() {
-             
-                 // Nell'init viene ciclata la lista degli elementi in base all'id del contenitore
-             
+                 // Nell'init viene ciclata la lista degli elementi in base all'id del contenitore                
                  this.listaElementi.forEach(element => {
                    if (element.id == this.idContenitoreAperto){
                         this.elemento=element.l;
+                        // ordino l'array elemento in ordine alfabetico in base al nome dell'elemento 
+                        this.elemento.sort((a,b)=> (a.NomeElemento.toLowerCase() > b.NomeElemento.toLowerCase()) ? 1 : ((b.NomeElemento.toLowerCase() > a.NomeElemento.toLowerCase()) ? -1 : 0));
                    } 
                   });
              
@@ -67,19 +63,46 @@ associati= [];
                      this.service.listaElementi.forEach(element => {
                        if (element.id == this.idContenitoreAperto){
                             this.elemento=element.l;
+                            this.elemento.sort((a,b)=> (a.NomeElemento.toLowerCase() > b.NomeElemento.toLowerCase()) ? 1 : ((b.NomeElemento.toLowerCase() > a.NomeElemento.toLowerCase()) ? -1 : 0));
                        } 
                       });
                    })
-       // contr5ollo la variabile "ordinamentoAssociati" del service "filtri" 
+       // controllo la variabile "ordinamentoAssociati" del service "filtri" 
        // azzero la lista associati e faccio partire il metodo "ordinaAssociati"
-       // passandogli il contenuto della variabile, solo se il contenuto della variabile (che è un id contenitore)
+       // passandogli il contenuto della variabile, solo se il contenuto stesso 
+        //della variabile (che è un id contenitore)
        // è uguale all'id del contenitore dove sono adesso.
       this.filtriService.ordinamentoAssociati.subscribe(num =>{
         if(num == this.idContenitoreAperto){
         this.associati= [];
-        this.ordinaAssociati(num)
+        this.ordinaAssociati(num);
         }
-      })
+      });
+
+      // controllo la variabile "ordinamentoNonAssociati" del service "filtri"
+      // azzerlo la lista "associati" e faccio partire il metodo "ordinaNonAssociati"
+      // passandogli il contenuto della variabile, solo se il contenuto stesso della variabile
+      // (che è l'id contenitore)
+      // è uguale all'id del contenitore dove sono adesso
+
+       this.filtriService.ordinamentoNonAssociati.subscribe(num =>{
+         if (num == this.idContenitoreAperto){
+           this.associati = [];
+          this.ordinaNonAssociati(num);
+        }
+       });
+
+       // controllo la variabile "ordinamentoAlfabetico" del service "filtri"
+       // afaccio partire il metodo "ordinamentoAlfabetico"
+       // passandogli il contenuto della variabile, solo se il contenuto della stessa variabile
+       // (che è l'id contenitore)
+       // è uguale all'id del contenitore dove sono adesso
+
+       this.filtriService.ordinamentoAlfabetico.subscribe(num =>{
+         if (num ==  this.idContenitoreAperto){
+           this.ordinamentoAlfabetico();
+         }
+       });
 
     }
 
@@ -90,6 +113,13 @@ associati= [];
 
       this.catchSignalComponent(1);
       this.catchSignalComponent(7);
+    }
+
+    drop(event: CdkDragDrop<string[]>) {
+  
+      // Evento che abilita il drag & drop degli elementi
+    
+      moveItemInArray(this.elemento, event.previousIndex, event.currentIndex);
     }
 
     
@@ -543,7 +573,7 @@ associati= [];
 
 
 
-  ordinaAssociati(idContenitore) {
+  ordinaAssociati(idContenitore) { 
     // metodo per riordinare gli elementi del contenitore, mettendo in alto quelli associati 
     // all'elemento selezionato.
     // prima mi filtro la lista di tutti gli elementi associati all'elemento selezionato 
@@ -553,10 +583,11 @@ associati= [];
       let elemento = this.service.list.filter(e => e.IdElemento == element)[0];
       this.associati.push(elemento);
     });
-    // filtro poi la lista "associati" e mi prendo solo quelli del contenitore in questione
-    // a questo punto mi ritrovo con la lista degli elementi associati all'lemento selezionato,
+    // filtro poi la lista "associati" e mi prendo solo gli elementi del contenitore in questione
+    // a questo punto mi ritrovo con la lista degli elementi associati all'elemento selezionato,
     // ma che appartengono al contenitore di riferimento.
     let list = this.associati.filter(e=>e.Id_Contenitore == idContenitore)
+    // metto la lista in ordine alfabetico
     // mi ciclo la lista , e per ogni suo elemento mi vado a ricavare l'indice nella lista "elemento"
     // che è la lista che uso nell' *ngFor
     // avuto l'indice, prima rimuovo l'elemento dalla lista, poi lo inserisco all'indice 0,
@@ -564,11 +595,46 @@ associati= [];
     // elementoe quindi a video verrà visualizzato in alto rispetto agli altri.
     // Ovviamente essendo in un ciclo, questa operazione viene fatta per tutti gli elementi
     // di "list", quindi questi elementi mi appariranno a video più in alto rispetto agli altri.
-    list.forEach(element=>{
-      let indice =this.elemento.indexOf(element)
-     this.elemento.splice(indice,1);
-     this.elemento.splice(0,0, element);
-   })
-  } 
-  
+    list.sort((a,b)=> (a.NomeElemento.toLowerCase() < b.NomeElemento.toLowerCase()) ? 1 : ((b.NomeElemento.toLowerCase() < a.NomeElemento.toLowerCase()) ? -1 : 0));    
+    list.forEach(element => {
+      let indice = this.elemento.indexOf(element);
+      this.elemento.splice(indice, 1);
+      this.elemento.splice(0, 0, element);
+    })
+  }
+
+  ordinaNonAssociati(idContenitore) {
+    // metodo per riordinare gli elementi del contenitore, mettendo in alto quelli non associati all'elemento selezionato
+    // prima mi filtro la lista di tutti gli elementi associati all'elemento selezionato
+    // (lista che contiene solo gli id degli elementi), e grazie a "list", mi ricavo l'elemento completo
+    // aggiungo poi l'elemento nella lista "associati" 
+    
+    this.assService.listaFiltroAssociazioni.forEach(element => {
+      let elemento = this.service.list.filter(e => e.IdElemento == element)[0];
+      this.associati.push(elemento);
+    });
+    // filtro la lista "associati" e mi prendo solo gli elementi del contenitore in questione
+    // a questo punto mi ritrovo con la lista degli elementi associati all'elemento selezionato,
+    // ma che appartengono solo al contenitore di riferimento.
+    let list = this.associati.filter(e => e.Id_Contenitore == idContenitore)
+    // metto la lista in ordine alfabetico, e poi la ciclo
+    // per ogni passaggio del ciclo mi ricavo l'indice dell'elemeneto
+    // grazie all'indice riesco a rimuoverlo dalla lista "elemento"
+    // poi riaggiungo l'elemento in modo che si ritrovi in fondo alla lista
+    // e di conseguenza anche a video si ritroverà in fondo.
+    //Avrò cosi gli elementi non associati in alto e gli elementi associati in basso.
+    list.sort((a,b)=> (a.NomeElemento.toLowerCase() > b.NomeElemento.toLowerCase()) ? 1 : ((b.NomeElemento.toLowerCase() > a.NomeElemento.toLowerCase()) ? -1 : 0));
+    list.forEach(element => {
+      let indice = this.elemento.indexOf(element);
+      this.elemento.splice(indice, 1);
+      this.elemento.push(element);
+
+    })
+  }
+
+  ordinamentoAlfabetico(){
+    // metodo per riordinare la lista degli elementi in ordine alfabetico A-Z
+    this.elemento.sort((a,b)=> (a.NomeElemento.toLowerCase() > b.NomeElemento.toLowerCase()) ? 1 : ((b.NomeElemento.toLowerCase() > a.NomeElemento.toLowerCase()) ? -1 : 0));
+  }
+
 }

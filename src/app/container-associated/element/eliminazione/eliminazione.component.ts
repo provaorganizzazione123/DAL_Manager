@@ -11,9 +11,11 @@ import { Element } from 'src/app/shared/element.model';
 })
 export class EliminazioneComponent implements OnInit {
   
+  /*--------Dichiarazioni Variabili --------------*/
   
   deletedElement : Element;
-  
+
+  /*---------------------------------------------*/  
     
   constructor(private _service : ElementService,
               public dialogRef : MatDialogRef<EliminazioneComponent>

@@ -8,11 +8,16 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class ContenitoreService {
+
+  /*--------Dichiarazioni Variabili --------------*/
+
+  formData: Contenitore;
+  listaContenitori: Contenitore[];
+  segnaleAggiornamento: EventEmitter<boolean>;
   readonly rootURL = "http://localhost:60537/api";
-  // Url API 
-  formData : Contenitore;
-  listaContenitori : Contenitore[];
-  segnaleAggiornamento : EventEmitter<boolean> ;
+  // Url API
+
+/*-----------------------------------------------*/
 
   constructor(private http:HttpClient,
               

@@ -9,12 +9,17 @@ import {RegistroAssociazioniComponent} from '../registro-associazioni.component'
   styleUrls: ['./elementi-associati.component.css']
 })
 export class ElementiAssociatiComponent implements OnInit {
-  elementi = [];  
-  elementiFiltrati=[];
-  listaIdContenitori=[];
-  @Input() contenitorePadre:number ;
-  @Output() numeroElementi = new EventEmitter () ;
-  numero:number;
+
+  /*--------Dichiarazioni Variabili --------------*/
+
+  elementi = [];
+  elementiFiltrati = [];
+  listaIdContenitori = [];
+  numero: number;
+  @Input() contenitorePadre: number;
+  @Output() numeroElementi = new EventEmitter();  
+
+  /*---------------------------------------------*/
 
   constructor(private elementService:ElementService,
               private associazioneService:AssociatedService,
