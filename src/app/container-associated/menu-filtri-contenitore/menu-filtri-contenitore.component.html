@@ -1,8 +1,14 @@
-filtro :
+<label>filtro:</label>
   <select>
     <option>None</option>
     <option>Associati</option>
     <option>Non Associati</option>
   </select>
-  <button class="fa fa-upload icon1" aria-hidden="true" (click)="ordinAssociati()" style="border: none"></button>
-  <button class="fa fa-upload icon " aria-hidden="true" style="border: none"></button>
+  <button class="fa fa-upload icon1" aria-hidden="true" id="ordina{{idContenitoreDiAppartenenza}}"
+          (click)="ordinAssociati()" 
+          (mouseover)="ingrandisciIcona('ordina'+idContenitoreDiAppartenenza)" 
+          (mouseleave)="ridimensionaIcona('ordina'+idContenitoreDiAppartenenza)" style="border: none"></button>
+  <button class="fa fa-upload icon " aria-hidden="true" id="disordina{{idContenitoreDiAppartenenza}}"
+          (mouseover)="ingrandisciIcona2('disordina'+idContenitoreDiAppartenenza)" 
+          (mouseleave)="ridimensionaIcona2('disordina'+idContenitoreDiAppartenenza)"style="border: none"></button>
+          
