@@ -12,13 +12,15 @@ import { debug } from 'util';
   styleUrls: ['./registro-associazioni.component.css']
 })
 export class RegistroAssociazioniComponent implements OnInit {
+/*--------Dichiarazioni Variabili --------------*/
 
-  listaElementiAssociati = [];
-  contenitori = [];
   Padre;
   contenitorePadre;
+  contenitori = [];
+  listaElementiAssociati = [];
   partezaMetodo: EventEmitter<boolean>; 
  
+  /*-------------------------------------------*/
 
 
 

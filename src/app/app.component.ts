@@ -12,15 +12,16 @@ import { ContenitoreService } from './inserimento-contenitore/contenitore.servic
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent {  
   title = 'ContainerofList';
   listaContenitori : Contenitore[];
   contenitoriAperti = [];
   idDaCancellare;
   IdChiusuraSignal: EventEmitter<number>;
 
-
+/* -------Dichiarazioni Variabili --------------*/
   @Output() contenitore = new EventEmitter <{id: string, nome: string}> ();
+/* ---------------------------------------------*/  
   
   constructor( private service: ElementService,
                private serviceCont: ContenitoreService,

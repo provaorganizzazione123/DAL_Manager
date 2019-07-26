@@ -8,7 +8,11 @@ import {FiltriService} from './filtri.service';
 })
 export class MenuFiltriContenitoreComponent implements OnInit {
 
+  /*--------Dichiarazioni Variabili --------------*/
+
 @Input() idContenitoreDiAppartenenza;
+
+ /*----------------------------------------------*/
 
   constructor(
     private filtriService:FiltriService
@@ -19,10 +23,25 @@ export class MenuFiltriContenitoreComponent implements OnInit {
 
 
   ordinAssociati(){
-    // attivato dal click, richiamo il metodo "signalOrdinamento" del service "filtriService"
+    // attivato dal click, richiamo il metodo "signalOrdinamentoAssociati" del service "filtriService"
     // passandogli l'id del contenitore di appartenenza, che a sua volta viene
     // preso in input da "container-associated" nell'html
-    this.filtriService.signalOrdinamento(this.idContenitoreDiAppartenenza)
+ 
+    this.filtriService.signalOrdinamentoAssociati(this.idContenitoreDiAppartenenza);
+  }
+
+  ordinNonAssociati() {
+    // attivato dal click, richiamo il metodo "signalOrdinamentoNonAssociati" del service "filtriService"
+    // passandogli l'id del contenitore di appartenenza, che a sua volta viene preso in input
+    // da "container-asssociated" nell' html
+    this.filtriService.signalOrdinamentoNonAssociati(this.idContenitoreDiAppartenenza);
+  }
+
+  ordinAflabetico(){
+    // attivato dal click, richiamo il metodo "signalOrdinamentoAlfabetico" del service "filtriService"
+    // passandogli l'id del contenitore di appartenenza, che a sua volta viene 
+    // preso in input da "container-associated" nell'html
+    this.filtriService.signalOrdinamentoAlfabetico(this.idContenitoreDiAppartenenza)
   }
 
   ingrandisciIcona(id){

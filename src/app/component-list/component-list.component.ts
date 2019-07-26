@@ -10,10 +10,14 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./component-list.component.css']
 })
 export class ComponentListComponent implements OnInit {
-  
-@Output() container = new EventEmitter <{id: string, nome: string, colore : string}> ();
 
-listId=[]; // lista dei contenitori aperti
+  /*--------Dichiarazioni Variabili --------------*/
+
+  listId = []; // lista dei contenitori aperti  
+  @Output() container = new EventEmitter<{ id: string, nome: string, colore: string }>();
+  
+
+/*----------------------------------------------*/
 
   constructor(private service:ElementService,
               private assService: AssociatedService,

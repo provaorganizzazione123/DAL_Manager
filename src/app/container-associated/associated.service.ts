@@ -10,29 +10,23 @@ import { catchError} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AssociatedService {
+
+/*--------Dichiarazioni Variabili --------------*/
+
+  listaAppoggioIdSelezionati = [];   // Lista di appoggio per gli elementi selezionati per una nuova associazione (Verdi)
   errore: string;
   result: any;
-
-  readonly rootURL = "http://localhost:60537/api";  // Stringa di connessione all'API utilizzata 
-
-  IdPadreSelezionato: string = "";   // Propietà che contiene l'id del padre attualmente selezionato
-
-  listaAssociazioni: Associated[] = [];  // Lista che contiene tutte le associazioni presenti nel DB
-  
-  listaFiltroAssociazioni: string[] = [];   // Lista che contiene l'id degli elementi già associati al padre selezionato (Gialli)
-  
-  listaDistruggiAssociazione: string[] = [];    // Lista che contiene gli id degli elementi che si vuole disassociare dall'elemento padre (Neri)
-  
-  listaIdAssociazioniDaEliminare: number[] = []; // Lista che contiene gli id delle associazioni che si vogliono eliminare, viene costruita partendo dalla lista listaDistruggiAssociazione
-  
-  listaAppoggioIdSelezionati = [];   // Lista di appoggio per gli elementi selezionati per una nuova associazione (Verdi)
-
-  listaIdElementi: string[] = [];   // Lista degli elementi da associare ad un altro elemento identificato come padre, viene inviata al server per l'inserimento dell'associazione    
-
   idGiallo: string;  // Propietà di appoggio per gli Id degli elementi che devono essere evidenziati in giallo
-
-
+  IdPadreSelezionato: string = "";   // Propietà che contiene l'id del padre attualmente selezionato
+  listaAssociazioni: Associated[] = [];  // Lista che contiene tutte le associazioni presenti nel DB
+  listaFiltroAssociazioni: string[] = [];   // Lista che contiene l'id degli elementi già associati al padre selezionato (Gialli)
+  listaDistruggiAssociazione: string[] = [];    // Lista che contiene gli id degli elementi che si vuole disassociare dall'elemento padre (Neri)
+  listaIdAssociazioniDaEliminare: number[] = []; // Lista che contiene gli id delle associazioni che si vogliono eliminare, viene costruita partendo dalla lista listaDistruggiAssociazione
+  listaIdElementi: string[] = [];   // Lista degli elementi da associare ad un altro elemento identificato come padre, viene inviata al server per l'inserimento dell'associazione    
   riceveSignal: EventEmitter<number>;  // Segnale che viene inviato all' element.component che varia a seconda della routine da eseguire
+  readonly rootURL = "http://localhost:60537/api";  // Stringa di connessione all'API utilizzata   
+
+/*---------------------------------------------*/
 
   constructor(private http: HttpClient, private toastr: ToastrService) { 
   this.riceveSignal = new EventEmitter<number>();
