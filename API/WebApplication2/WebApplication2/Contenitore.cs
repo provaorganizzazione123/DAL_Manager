@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication2
-{
+{   //***** MODEL che rispecchia la tabella [Arc_Contenitori] *****//
     public class Contenitore
     {
         public string Id_Contenitore { get; set; }

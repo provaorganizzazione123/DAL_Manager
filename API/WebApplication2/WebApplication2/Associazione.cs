@@ -5,6 +5,7 @@ using System.Web;
 
 namespace WebApplication2
 {
+    //***** MODEL che rispecchia la tabella [Tab_Associaz_Elem] *****//
   public class Associazione
   {
 
