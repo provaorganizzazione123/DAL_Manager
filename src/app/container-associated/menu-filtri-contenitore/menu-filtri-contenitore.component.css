@@ -2,13 +2,22 @@
     transform: rotate(180deg);
     border: none;
     background-color: lavender;
-    font-size: 20px; 
-    color: black;  
+    font-size: 15px;
+    color: rgb(70, 67, 67); 
   }
+  
   .icon1{
-    
     border: none;
     background-color: lavender;
-    font-size: 20px; 
-    color: black;  
+    font-size: 15px;
+    color: rgb(70, 67, 67);
   }
+
+  select{
+    border-radius: 5px;
+  }
+
+  label{
+    margin-right: 5px;
+  }
+

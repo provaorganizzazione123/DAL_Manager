@@ -5,15 +5,13 @@
   <button  class="btn btn-primary cancella" (click)="chiudiContainer(cont.id)">&times;</button>
   <button class="fa fa-ellipsis-h menu" aria-hidden="true" (click)="mostraMenu(cont.id+cont.nome)"></button>
   
-  <div id = "{{cont.id}}{{cont.nome}}" hidden="hidden"> 
+  <div id = "{{cont.id}}{{cont.nome}}" hidden="hidden" class="divFiltri"> 
       <app-menu-filtri-contenitore [idContenitoreDiAppartenenza]= "cont.id"></app-menu-filtri-contenitore>
     
   </div> 
   <div class="card-body list-group" id="ListaElementi">
-
       <app-element style="background-color: transparent ; border-style: none" [edit]= "abilitaDisabilita" class="list-group-item"  [idContenitoreAperto]="cont.id" [listaElementi]="service.listaElementi" (IdElemento)="aggiungiIdElementoALista($event)" ></app-element >
-
-    </div>
+ </div>
 
 </div>
 </div>

@@ -157,10 +157,16 @@
   width: 20px;
   height: 18px;
   color: black;
-  margin-top: 7px;
-  margin-left: 238px;
+  margin-top: -9px;
+  margin-left: 217px;
 }
 
 .dropdown{
   width: 106px;
+}
+
+.divFiltri{
+  margin-left: 0.9rem;
+  margin-top: 10px;
+  margin-bottom: -12px;
 }

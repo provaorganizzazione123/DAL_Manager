@@ -2,7 +2,7 @@
   float: left;
   margin-top:56px;
   flex-flow:wrap;
-  display:flex;
+  display:inline-table;
   align-items:right;
   width: 88%;
   height: 300%;
@@ -17,6 +17,8 @@
     }
 
 .work-container::-webkit-scrollbar {
+    position: fixed;
+    bottom: 0;
     background-color:white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 20px;
@@ -24,18 +26,22 @@
     }
 
 .work-container::-webkit-scrollbar-track {
+    position: fixed;
+    bottom: 0;
     background-color: white;
     border-radius: 20px;
     width: 7px;
     }
 
 .work-container::-webkit-scrollbar-thumb {
+    position: fixed;
+    bottom: 0;
     background-color: orange;
     border: 1px solid orange;
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width: 7px;
-    }
+    } 
 
 .apri-chiudi{
     height: 30px;
@@ -43,11 +49,12 @@
     font-size: 18px;
     font-family: fantasy;
     border-style: none;
-    background-color: lavender;
+    background-color: aliceblue;
     border-bottom-style: solid;
     border-left-style: solid;
     border-bottom-left-radius: 10px;
-    
+    box-shadow: -1px 5px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
 #apriColonna{
@@ -59,7 +66,10 @@
 #chiudiColonna{
     position: fixed;
     top: 56px;
-    right: 156px;
+    right: 158px;
+    border-right-style: solid;
+    border-right-color: grey;
+    border-right-width: 1px;
 }
 
 .colonna{
@@ -73,22 +83,7 @@
     overflow: hidden;
     }
 
-td{
-    border-left-color: blue;
-    border-left-style: solid;
-    border-left-width: 2px;
-    border-bottom-color: blue;
-    border-bottom-style: solid;
-    border-bottom-width: 2px;
-    padding: 10px;
-    border-bottom-left-radius: 15px;
-    height: 45%;
-    align-items: center;
-    position: fixed;
-    top: 9%;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    }
+
 
 .top{
     position: fixed;
@@ -105,6 +100,7 @@ td{
 table{
     border-collapse: inherit;
     margin-top: -15px;
+    margin-left: -1px;
     }
 
 
@@ -114,6 +110,37 @@ table{
     color: blue;
     padding-top: 0;
     padding-bottom: 0;
+    }
+
+td{ 
+
+    border-left-color: grey;
+    background-color: aliceblue;
+    border-left-style: solid;
+    border-left-width: 1px;
+    padding: 10px;
+    height: 43%;
+    align-items: center;
+    position: fixed;
+    top: 9%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    box-shadow: -1px 5px 8px 0 rgba(0, 0, 0, 0.2)
+
+    /* border-left-color: blue;
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-bottom-color: blue;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    padding: 10px;
+    border-bottom-left-radius: 15px;
+    height: 45%;
+    align-items: center;
+    position: fixed;
+    top: 9%;
+    overflow-y: scroll;
+    overflow-x: hidden; */
     }
 
 
