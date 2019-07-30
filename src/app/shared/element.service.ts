@@ -38,7 +38,15 @@ export class ElementService {
   }
   
   async refreshList(){
-   await this.http.get(this.rootURL + '/Elemento').toPromise().then(res=> this.list =res as Element[]);
+   //await this.http.get(this.rootURL + '/Elemento').toPromise().then(res=> this.list =res as Element[]);
+   var toastrErr = this.toastr;
+   await this.http.get(this.rootURL + '/Elemento').subscribe(
+                                                    data => this.list = data as Element[],
+                                                    error => {toastrErr.warning("Errore di connessione GET ELEMENTI:\n reload tra 5 sec","Server Down",
+                                                    {disableTimeOut:true,
+                                                     positionClass:"toast-top-left"});
+                                                              window.setTimeout(function(){location.reload()},7000)}
+                                                    );
   }
 
   filtraLista(Id_Cont){

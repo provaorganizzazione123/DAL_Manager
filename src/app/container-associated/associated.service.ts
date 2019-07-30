@@ -110,8 +110,14 @@ export class AssociatedService {
     GetAssociazione(){
 
       // Metodo che richiama l'API per il GET di tutte le associazioni presenti nel DB e le salva nella listaAssociazioni
-                  
-      this.http.get(this.rootURL + '/Associazione').toPromise().then(res => this.listaAssociazioni = res as Associated[]);    
+      var toastrErr = this.toastr;    
+      this.http.get(this.rootURL + '/Associazione').subscribe(
+                                                      res => this.listaAssociazioni = res as Associated[],
+                                                      error => {toastrErr.warning("Errore di connessione GET ASSOCIAZIONI:\n reload tra 5 sec","Server Down",
+                                                      {disableTimeOut:true,
+                                                       positionClass:"toast-top-left"});
+                                                          window.setTimeout(function(){location.reload()},5000)} 
+                                                      );    
       }
                   
       async GetAssociazioneById(IdPadre: string){
