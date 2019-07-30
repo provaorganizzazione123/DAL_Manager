@@ -26,7 +26,16 @@ export class ContenitoreService {
               }
 
  refreshContenitori(){
-  this.http.get(this.rootURL + '/Contenitore').toPromise().then(res=> this.listaContenitori = res as Contenitore[]);
+
+  var toastrErr = this.toastr;
+  
+  this.http.get(this.rootURL + '/Contenitore').subscribe(
+                                                res=> this.listaContenitori = res as Contenitore[],
+                                                error => {toastrErr.warning("Errore di connessione GET CONTENITORI reload tra 5 sec","Server Down",
+                                                                             {disableTimeOut:true,
+                                                                              positionClass:"toast-top-left"});
+                                                          window.setTimeout(function(){location.reload()},5000)}
+                                                );
   }
 
   postContenitore(formData : Contenitore) {
